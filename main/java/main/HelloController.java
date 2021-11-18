@@ -1,4 +1,4 @@
-package corn_snake;
+package main;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

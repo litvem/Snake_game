@@ -10,6 +10,6 @@ module main {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens corn_snake to javafx.fxml;
-    exports corn_snake;
+    opens main to javafx.fxml;
+    exports main;
 }
