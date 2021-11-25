@@ -9,6 +9,7 @@ module main {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires com.fasterxml.jackson.databind;
 
     opens corn_snake to javafx.fxml;
     exports corn_snake;
