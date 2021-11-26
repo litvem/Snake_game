@@ -45,10 +45,10 @@ public class Field {
 
         this.snake = new Snake(INITIAL_COORDINATES[0], INITIAL_COORDINATES[1], INITIAL_COORDINATES[2], INITIAL_COORDINATES[3]);
 
-        for (int i = 0; i <= INITIAL_COORDINATES.length ; i++){
+        for (int i = 0; i <= INITIAL_COORDINATES.length - 1; i++){
             if (i == 0){
                 this.matrix[1 + i][7] = Tile.SNAKE_TAIL;
-            } else if (i == INITIAL_COORDINATES.length) {
+            } else if (i == INITIAL_COORDINATES.length - 1) {
                 this.matrix[1 + i][7] = Tile.SNAKE_HEAD;
             } else {
                 this.matrix[1 + i][7] = Tile.SNAKE_BODY;
