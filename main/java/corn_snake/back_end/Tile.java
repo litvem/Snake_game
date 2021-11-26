@@ -20,7 +20,12 @@ public enum Tile {
     /**
      * Represents the last segment (using the movement's direction as reference) of the snake.
      */
-    SNAKE_TAIL("w");
+    SNAKE_TAIL("w"),
+
+    /**
+     * Represents the obstacles in the field.
+     */
+    OBSTACLE("*");
 
     final String symbol;
 

@@ -13,9 +13,26 @@ public class Field {
      */
     public Field(){
         this.matrix = new Tile[17][17];
-        for(int i = 0; i < this.matrix[0].length; i++){
-            for (int j = 0; j < matrix[0].length; j++){
-                this.matrix[i][j] = Tile.EMPTY;
+
+        for(int i = 0; i < this.matrix[0].length ; i++){
+
+            //Setting all tiles from the first and las rows to Tile.OBSTACLE
+            if (i == 0 || i == this.matrix[0].length - 1){
+                for (int j = 0; j < this.matrix[0].length; j++){
+                    matrix[i][j] = Tile.OBSTACLE;
+                }
+            } else {
+                for (int k = 0; k < matrix[0].length; k++){
+
+                    //Setting the first and last tile of all the remaining rows to Tile.OBSTACLE
+                    if (k == 0 || k == matrix[0].length - 1){
+                        this.matrix[i][k] = Tile.OBSTACLE;
+
+                        //Setting all the other tiles to Tile.EMPTY
+                    } else {
+                        this.matrix[i][k] = Tile.EMPTY;
+                    }
+                }
             }
         }
         this.addSnake();
