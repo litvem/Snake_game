@@ -93,6 +93,7 @@ public class Json {
     }
 
     /**
+     * Serializes an object to JSON.
      *
      * @param o object to serialize to JSON
      * @param file destination of the serialized object
