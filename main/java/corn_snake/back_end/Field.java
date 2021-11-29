@@ -49,7 +49,7 @@ public class Field {
             if (i == 0){
                 this.matrix[1 + i][7] = Tile.SNAKE_TAIL;
             } else if (i == INITIAL_COORDINATES.length - 1) {
-                this.matrix[1 + i][7] = Tile.SNAKE_HEAD;
+                this.matrix[1 + i][7] = Tile.SNAKE_HEAD_DOWN;
             } else {
                 this.matrix[1 + i][7] = Tile.SNAKE_BODY;
             }
@@ -107,7 +107,7 @@ public class Field {
                         } else {
                             snake.setSegment(i, row + 1, column);
                             matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row + 1][column] = Tile.SNAKE_HEAD;
+                            matrix[row + 1][column] = Tile.SNAKE_HEAD_DOWN;
                         }
 
                         break;
@@ -118,7 +118,7 @@ public class Field {
                         } else {
                             snake.setSegment(i, row - 1, column);
                             matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row - 1][column] = Tile.SNAKE_HEAD;
+                            matrix[row - 1][column] = Tile.SNAKE_HEAD_UP;
                         }
 
                         break;
@@ -129,7 +129,7 @@ public class Field {
                         } else {
                             snake.setSegment(i, row, column + 1);
                             matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row][column + 1] = Tile.SNAKE_HEAD;
+                            matrix[row][column + 1] = Tile.SNAKE_HEAD_RIGHT;
                         }
 
                         break;
@@ -140,7 +140,7 @@ public class Field {
                         } else {
                             snake.setSegment(i, row, column - 1);
                             matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row][column - 1] = Tile.SNAKE_HEAD;
+                            matrix[row][column - 1] = Tile.SNAKE_HEAD_LEFT;
                         }
                         break;
 
