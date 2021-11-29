@@ -16,11 +16,17 @@ public enum Tile {
      * segments of the snake.
      */
     SNAKE_BODY("a"),
+    /*
+    * Represents the segment at the border of filed. The fist row or the last row or the first column or the last column
+    * */
+
+    TILE_FRUIT("f"),
 
     /**
      * Represents the last segment (using the movement's direction as reference) of the snake.
      */
     SNAKE_TAIL("w");
+
 
     final String symbol;
 
