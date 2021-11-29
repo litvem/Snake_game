@@ -1,11 +1,15 @@
 package corn_snake.back_end;
 
+import java.util.Random;
+
 public class Field {
     final private static Integer[][] INITIAL_COORDINATES = new Integer[][]{{1, 7}, {2, 7}, {3, 7}, {4, 7}};
 
-
+    private static final Integer ROWS =  17;
+    private static final Integer COLS = 17;
     final private Tile[][] matrix;
     private Snake snake;
+    private Fruit fruit;
 
     /**
      * When called, the constructor creates a matrix of Tiles and set all elements to the EMPTY tile.
@@ -13,31 +17,108 @@ public class Field {
      */
     public Field(){
         this.matrix = new Tile[17][17];
-        for(int i = 0; i < this.matrix[0].length; i++){
-            for (int j = 0; j < matrix[0].length; j++){
-                this.matrix[i][j] = Tile.EMPTY;
+
+        for(int i = 0; i < this.matrix[0].length ; i++){
+
+            //Setting all tiles from the first and las rows to Tile.OBSTACLE
+            if (i == 0 || i == this.matrix[0].length - 1){
+                for (int j = 0; j < this.matrix[0].length; j++){
+                    matrix[i][j] = Tile.OBSTACLE;
+                }
+            } else {
+                for (int k = 0; k < matrix[0].length; k++){
+
+                    //Setting the first and last tile of all the remaining rows to Tile.OBSTACLE
+                    if (k == 0 || k == matrix[0].length - 1){
+                        this.matrix[i][k] = Tile.OBSTACLE;
+
+                        //Setting all the other tiles to Tile.EMPTY
+                    } else {
+                        this.matrix[i][k] = Tile.EMPTY;
+                    }
+                }
             }
         }
         this.addSnake();
+        this.addFruit();
     }
 
     /**
      * Creates a snake and sets its initial coordinates. Also sets the correct values of those coordinates in the field.
      */
-    private void addSnake(){
+    private void addSnake() {
 
         this.snake = new Snake(INITIAL_COORDINATES[0], INITIAL_COORDINATES[1], INITIAL_COORDINATES[2], INITIAL_COORDINATES[3]);
 
-        for (int i = 0; i <= INITIAL_COORDINATES.length ; i++){
-            if (i == 0){
+        for (int i = 0; i <= INITIAL_COORDINATES.length - 1; i++) {
+            if (i == 0) {
                 this.matrix[1 + i][7] = Tile.SNAKE_TAIL;
-            } else if (i == INITIAL_COORDINATES.length) {
-                this.matrix[1 + i][7] = Tile.SNAKE_HEAD;
+            } else if (i == INITIAL_COORDINATES.length - 1) {
+                this.matrix[1 + i][7] = Tile.SNAKE_HEAD_DOWN;
             } else {
-                this.matrix[1 + i][7] = Tile.SNAKE_BODY;
+                this.matrix[1 + i][7] = Tile.SNAKE_VERTICAL_BODY;
             }
         }
     }
+
+    /**
+     * Creates and add fruit until random location of food is empty.
+     */
+
+    private void addFruit(){
+        Random rand = new Random();
+        Integer c = 0;
+        Integer r = 0;
+        do{
+             r = rand.nextInt(ROWS);
+             c = rand.nextInt(COLS);
+            this.fruit = new Fruit(r, c);
+        } while(this.fruit.equals(Tile.SNAKE_HEAD));
+
+        this.matrix[r][c] = Tile.TILE_FRUIT;
+    }
+
+
+    public void update(String command) {
+        updateField(command);
+        addFruit();
+
+    }
+
+    /**
+     * In cose of snake addition, we need to update its body, head and tail accordingly
+     */
+
+    public void updateField(String command) {
+        boolean isAdd = false;
+        for(int i = 0; i < this.matrix[0].length; i++){
+            for (int j = 0; j < matrix[0].length; j++){
+                if(this.matrix[i][j].equals(Tile.TILE_FRUIT)) {
+                    this.matrix[i][j] = Tile.EMPTY;
+                }
+                if(this.matrix[i][j].equals(Tile.TILE_FRUIT) && this.matrix[i][j].equals(Tile.SNAKE_HEAD)) {
+                    snake.increaseSize(i,j);
+                    isAdd = true;
+
+                }
+                if(isAdd && this.matrix[i][j].equals(Tile.SNAKE_TAIL)) {
+                    this.matrix[i][j] = Tile.SNAKE_BODY;
+                    switch(command) {
+                        case "d":
+                            this.matrix[i-1][j] = Tile.SNAKE_TAIL;
+                        case "u":
+                            this.matrix[i+1][j] = Tile.SNAKE_TAIL;
+                        case "l":
+                            this.matrix[i][j+1] = Tile.SNAKE_TAIL;
+                        case "r":
+                            this.matrix[i][j-1] = Tile.SNAKE_TAIL;
+                    }
+                }
+            }
+        }
+    }
+
+
 
 
     public Tile[][] getMatrix(){
@@ -55,18 +136,17 @@ public class Field {
 
 
     /**
-     *
      * @param command set the snake's direction of movement.
      */
-    public void moveSnake(String command){
+    public void moveSnake(String command) {
         /*
         Creating a variable that will store the coordinates of the segment that will be updated so the next segment's coordinates
         can be updated to the location of the current segment.
          */
-        Integer[] previousSegment = new Integer[]{0,0};
+        Integer[] previousSegment = new Integer[]{0, 0};
 
         //Iterating through the snake.
-        for (int i = snake.getSize() - 1; i >= 0; i--){
+        for (int i = snake.getSize() - 1; i >= 0; i--) {
             /*
             - If the current segment is the snake's head the program verifies if the next tile in the desired direction is
             the segment that precedes the snake's head. In that case nothing will happen.
@@ -77,10 +157,12 @@ public class Field {
             the next segment in that direction will have the value updated to a Tile.SNAKE_HEAD.
              */
 
-            if (i == snake.getSize() - 1){
+            if (i == snake.getSize() - 1) {
                 previousSegment = snake.getSegment(i);
                 int row = snake.getSegment(i)[0];
                 int column = snake.getSegment(i)[1];
+                Integer[] newHeadCoordinates;
+
 
                 switch (command) {
                     case "d":
@@ -90,7 +172,7 @@ public class Field {
                         } else {
                             snake.setSegment(i, row + 1, column);
                             matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row + 1][column] = Tile.SNAKE_HEAD;
+                            matrix[row + 1][column] = Tile.SNAKE_HEAD_DOWN;
                         }
 
                         break;
@@ -101,7 +183,7 @@ public class Field {
                         } else {
                             snake.setSegment(i, row - 1, column);
                             matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row - 1][column] = Tile.SNAKE_HEAD;
+                            matrix[row - 1][column] = Tile.SNAKE_HEAD_UP;
                         }
 
                         break;
@@ -112,7 +194,7 @@ public class Field {
                         } else {
                             snake.setSegment(i, row, column + 1);
                             matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row][column + 1] = Tile.SNAKE_HEAD;
+                            matrix[row][column + 1] = Tile.SNAKE_HEAD_RIGHT;
                         }
 
                         break;
@@ -123,12 +205,18 @@ public class Field {
                         } else {
                             snake.setSegment(i, row, column - 1);
                             matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row][column - 1] = Tile.SNAKE_HEAD;
+                            matrix[row][column - 1] = Tile.SNAKE_HEAD_LEFT;
                         }
+
                         break;
 
                     default:
                         return;
+                }
+
+                if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.EMPTY) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_TAIL)) {
+                    this.snake.setSegment(i, newHeadCoordinates[0], newHeadCoordinates[1]);
+                    this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = Tile.SNAKE_HEAD;
                 }
 
                 /*
@@ -137,7 +225,7 @@ public class Field {
                 -This segment's coordinates is changed to the old coordinates of the segment that was updated directly before this segment.
                 -the value of the updated coordinate is changed to Tile.SNAKE_TAIL
                  */
-            } else if(i == 0){
+            } else if (i == 0) {
                 int row = snake.getSegment(0)[0];
                 int column = snake.getSegment(0)[1];
 
@@ -160,5 +248,55 @@ public class Field {
 
             }
         }
+
+        /*
+        After all the snake's coordinates are updated the dody tiles are set to the correct values.
+         */
+        for(int i = 1; i < snake.getSize() - 1; i++){
+            this.setBodyDirection(i);
+        }
+    }
+
+    /**
+     * Set the correct body tile to a specific segment based on the position of the preceding and following segments.
+     * @param segmentIndex indicates which segment will have the value set.
+     */
+    private void setBodyDirection(int segmentIndex) {
+        int segmentRow = snake.getSegment(segmentIndex)[0];
+        int segmentColumn = snake.getSegment(segmentIndex)[1];
+
+        int precedingSegmentIndex = segmentIndex - 1;
+        int precedingSegmentRow = snake.getSegment(precedingSegmentIndex)[0];
+        int precedingSegmentColumn = snake.getSegment(precedingSegmentIndex)[1];
+
+        int followingSegmentIndex = segmentIndex + 1;
+        int followingSegmentRow = snake.getSegment(followingSegmentIndex)[0];
+        int followingSegmentColumn = snake.getSegment(followingSegmentIndex)[1];
+
+        Tile bodyTile;
+
+        if (segmentRow == precedingSegmentRow && segmentRow == followingSegmentRow) {
+            bodyTile = Tile.SNAKE_HORIZONTAL_BODY;
+
+        } else if (segmentColumn == precedingSegmentColumn && segmentColumn == followingSegmentColumn) {
+            bodyTile = Tile.SNAKE_VERTICAL_BODY;
+
+        } else if ((segmentRow == followingSegmentRow+1 && segmentColumn == precedingSegmentColumn-1) || (segmentRow == precedingSegmentRow+1 && segmentColumn == followingSegmentColumn-1)) {
+            bodyTile = Tile.SNAKE_CORNER_RIGHT_UP_BODY;
+
+        } else if ((segmentRow == followingSegmentRow-1 && segmentColumn == precedingSegmentColumn-1) || (segmentRow == precedingSegmentRow-1 && segmentColumn == followingSegmentColumn-1)) {
+            bodyTile = Tile.SNAKE_CORNER_RIGHT_DOWN_BODY;
+
+        } else if ((segmentRow == followingSegmentRow-1 && segmentColumn == precedingSegmentColumn+1) || (segmentRow == precedingSegmentRow-1 && segmentColumn == followingSegmentColumn+1)) {
+            bodyTile = Tile.SNAKE_CORNER_LEFT_DOWN_BODY;
+
+        } else {
+            bodyTile = Tile.SNAKE_CORNER_LEFT_UP_BODY;
+        }
+
+        int row = snake.getSegment(segmentIndex)[0];
+        int column = snake.getSegment(segmentIndex)[1];
+
+        matrix[row][column] = bodyTile;
     }
 }
