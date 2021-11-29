@@ -1,12 +1,9 @@
 package corn_snake.facade.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import java.lang.reflect.Field;
 
 public class FieldController {
     @FXML
@@ -50,34 +47,33 @@ public class FieldController {
             "file:///" + FieldController.class.getResource("Tile.png").getFile()
     );
 
-    public void updateFrame(ActionEvent e) throws IllegalAccessException {
-        final int BORDER = 15;
+    public void updateFrame() {
+        final int A = 65; // ASCII code for "A"
+        final int O = 79; // ASCII code for "O"
+        final int OFFSET = 64;
 
-        Field[] fields = getClass().getDeclaredFields();
+        char row;
+        int column;
 
-        int row = 0;
-        int column = 0;
+        try {
+            for (int i = A; i <= O; i++) {
+                row = (char) i; // row iterates over A-O
+                for (column = 1; column <= 15; column++) {
+                    ImageView image = (ImageView) getClass().getField(String.format("%s%d", row, column)).get(this);
 
-        for (Field field : fields) {
-            Class<?> type = field.getType();
-            Object value = field.get(this);
-
-            if (type != ImageView.class) {
-                continue;
-            } else {
-                ImageView image = (ImageView) value;
-                image.setImage(placeholder);
-                column++;
+                    /*
+                    switch (field[i - OFFSET][column]) {
+                        case EMPTY:
+                            // Something;
+                            break;
+                        default:
+                            // Fruit
+                    }
+                     */
+                }
             }
-
-            if (column > BORDER) {
-                row++;
-                column = 0;
-            }
-
-            if (row > BORDER) {
-                return;
-            }
+        } catch (Exception e) {
+            System.exit(1);
         }
     }
 }

@@ -20,6 +20,7 @@ public class Json {
 
     /**
      * Generates a default {@link ObjectMapper} that does not fail when receiving unknown properties
+     *
      * @return an {@link ObjectMapper}
      */
     private static ObjectMapper getDefault() {
@@ -29,7 +30,8 @@ public class Json {
     }
 
     /**
-     * Reads from a file and returns a string with all of the file's contents
+     * Reads from a file and returns a string with all the file's contents
+     *
      * @param file file to read from
      * @return a string with all the text from the file
      * @throws IOException if the file does not exist
@@ -48,6 +50,7 @@ public class Json {
 
     /**
      * Generates a {@link JsonNode} from the provided string
+     *
      * @param json source string
      * @return a {@link JsonNode} representing the source's contents
      * @throws IOException
@@ -75,6 +78,7 @@ public class Json {
 
     /**
      * Deflates an object to a {@link JsonNode}
+     *
      * @param o object to serialize to JSON
      * @return a JsonNode representing the object
      */
@@ -84,6 +88,7 @@ public class Json {
 
     /**
      * Generates a string representation of a {@code JsonNode}
+     *
      * @param node {@code JsonNode} to generate a string representation of
      * @return a string to be written to a JSON file
      * @throws IOException
