@@ -47,7 +47,7 @@ public class FieldController {
             "file:///" + FieldController.class.getResource("Tile.png").getFile()
     );
 
-    public void updateFrame() throws IllegalAccessException {
+    public void updateFrame() {
         final int A = 65; // ASCII code for "A"
         final int O = 79; // ASCII code for "O"
         final int OFFSET = 64;
@@ -72,7 +72,7 @@ public class FieldController {
                      */
                 }
             }
-        } catch (NoSuchFieldException e) {
+        } catch (Exception e) {
             System.exit(1);
         }
     }
