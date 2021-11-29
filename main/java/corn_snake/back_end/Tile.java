@@ -53,6 +53,7 @@ public enum Tile {
      */
     OBSTACLE("*");
 
+
     final String symbol;
 
     /**

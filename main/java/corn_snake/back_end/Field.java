@@ -1,11 +1,15 @@
 package corn_snake.back_end;
 
+import java.util.Random;
+
 public class Field {
     final private static Integer[][] INITIAL_COORDINATES = new Integer[][]{{1, 7}, {2, 7}, {3, 7}, {4, 7}};
 
-
+    private static final Integer ROWS =  17;
+    private static final Integer COLS = 17;
     final private Tile[][] matrix;
     private Snake snake;
+    private Fruit fruit;
 
     /**
      * When called, the constructor creates a matrix of Tiles and set all elements to the EMPTY tile.
@@ -36,6 +40,7 @@ public class Field {
             }
         }
         this.addSnake();
+        this.addFruit();
     }
 
     /**
@@ -55,6 +60,65 @@ public class Field {
             }
         }
     }
+
+    /**
+     * Creates and add fruit until random location of food is empty.
+     */
+
+    private void addFruit(){
+        Random rand = new Random();
+        Integer c = 0;
+        Integer r = 0;
+        do{
+             r = rand.nextInt(ROWS);
+             c = rand.nextInt(COLS);
+            this.fruit = new Fruit(r, c);
+        } while(this.fruit.equals(Tile.SNAKE_HEAD));
+
+        this.matrix[r][c] = Tile.TILE_FRUIT;
+    }
+
+
+    public void update(String command) {
+        updateField(command);
+        addFruit();
+
+    }
+
+    /**
+     * In cose of snake addition, we need to update its body, head and tail accordingly
+     */
+
+    public void updateField(String command) {
+        boolean isAdd = false;
+        for(int i = 0; i < this.matrix[0].length; i++){
+            for (int j = 0; j < matrix[0].length; j++){
+                if(this.matrix[i][j].equals(Tile.TILE_FRUIT)) {
+                    this.matrix[i][j] = Tile.EMPTY;
+                }
+                if(this.matrix[i][j].equals(Tile.TILE_FRUIT) && this.matrix[i][j].equals(Tile.SNAKE_HEAD)) {
+                    snake.increaseSize(i,j);
+                    isAdd = true;
+
+                }
+                if(isAdd && this.matrix[i][j].equals(Tile.SNAKE_TAIL)) {
+                    this.matrix[i][j] = Tile.SNAKE_BODY;
+                    switch(command) {
+                        case "d":
+                            this.matrix[i-1][j] = Tile.SNAKE_TAIL;
+                        case "u":
+                            this.matrix[i+1][j] = Tile.SNAKE_TAIL;
+                        case "l":
+                            this.matrix[i][j+1] = Tile.SNAKE_TAIL;
+                        case "r":
+                            this.matrix[i][j-1] = Tile.SNAKE_TAIL;
+                    }
+                }
+            }
+        }
+    }
+
+
 
 
     public Tile[][] getMatrix(){
