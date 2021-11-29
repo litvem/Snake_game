@@ -10,10 +10,17 @@ public class Snake {
      The constructor will always create a body with the same size.
      The body consists of an ArrayList of arrays of Integer (always two integer, the first represents the row and the second represents the column).
      */
-    public Snake(Integer[] segment0, Integer[] segment1, Integer[] segment2, Integer[] segment3){
+    public Snake(Integer[] segment0, Integer[] segment1, Integer[] segment2, Integer[] segment3){ // This is fine for initialization but what when we increase snake length. how it would accept fifth segment?
         this.body = new ArrayList<>(Arrays.asList(segment0, segment1, segment2, segment3));
     }
 
+    /**
+     *
+     * @return Returns the increment in snake.
+     */
+    public boolean increaseSize(int row, int col){
+        return this.body.add(new Integer[]{row,col});
+    }
     /**
      *
      * @return Returns the size of the snake.
