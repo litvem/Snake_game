@@ -8,6 +8,8 @@ public class MainBackEndPrinting {
         field.moveSnake("l");
         field.moveSnake("l");
         field.moveSnake("u");
+        field.moveSnake("u");
+        field.moveSnake("u");
 
         field.printField();
     }
