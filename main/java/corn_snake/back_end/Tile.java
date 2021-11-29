@@ -12,20 +12,46 @@ public enum Tile {
     SNAKE_HEAD("x"),
 
     /**
-     * Represents any segment of the snake except for the head and last (using the movement's direction as reference)
+     * Represents any horizontal segment of the snake except for the head and last (using the movement's direction as reference)
      * segments of the snake.
      */
-    SNAKE_BODY("a"),
-    /*
-    * Represents the segment at the border of filed. The fist row or the last row or the first column or the last column
-    * */
+    SNAKE_HORIZONTAL_BODY(">"),
 
-    TILE_FRUIT("f"),
+    /**
+     * Represents any vertical segment of the snake except for the head and last (using the movement's direction as reference)
+     * segments of the snake.
+     */
+    SNAKE_VERTICAL_BODY("^"),
+
+    /**
+     * Represents a segment that is between a segment on its right side and another segment under it.
+     */
+    SNAKE_CORNER_RIGHT_DOWN_BODY("|~"),
+
+    /**
+     * Represents a segment that is between a segment on its right side and another segment on top of it.
+     */
+    SNAKE_CORNER_RIGHT_UP_BODY("L"),
+
+    /**
+     * Represents a segment that is between a segment on its left side and another segment under it.
+     */
+    SNAKE_CORNER_LEFT_DOWN_BODY("7"),
+
+    /**
+     * Represents a segment that is between a segment on its left side and another segment on top of it.
+     */
+    SNAKE_CORNER_LEFT_UP_BODY("_|"),
 
     /**
      * Represents the last segment (using the movement's direction as reference) of the snake.
      */
-    SNAKE_TAIL("w");
+    SNAKE_TAIL("w"),
+
+    /**
+     * Represents the obstacles in the field.
+     */
+    OBSTACLE("*");
 
 
     final String symbol;
