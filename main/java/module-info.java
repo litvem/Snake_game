@@ -1,4 +1,4 @@
-module main {
+module corn_snake {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
