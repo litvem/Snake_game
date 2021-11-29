@@ -9,7 +9,10 @@ public enum Tile {
     /**
      * Represents the head of the snake.
      */
-    SNAKE_HEAD("x"),
+    SNAKE_HEAD_UP("x"),
+    SNAKE_HEAD_DOWN("x"),
+    SNAKE_HEAD_LEFT("x"),
+    SNAKE_HEAD_RIGHT("x"),
 
     /**
      * Represents any horizontal segment of the snake except for the head and last (using the movement's direction as reference)
