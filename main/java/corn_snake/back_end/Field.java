@@ -138,7 +138,7 @@ public class Field {
     /**
      * @param command set the snake's direction of movement.
      */
-    public void moveSnake(String command) {
+    public void moveSnake(String command) throws GameOverException {
         /*
         Creating a variable that will store the coordinates of the segment that will be updated so the next segment's coordinates
         can be updated to the location of the current segment.
@@ -214,6 +214,8 @@ public class Field {
                 if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.EMPTY) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_TAIL)) {
                     this.snake.setSegment(i, newHeadCoordinates[0], newHeadCoordinates[1]);
                     this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
+                } else {
+                    throw new GameOverException("Game Over");
                 }
 
                 /*
