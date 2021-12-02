@@ -16,7 +16,7 @@ public class Field {
      * Then a function to add the snake to field is called.
      */
     public Field(){
-        this.matrix = new Tile[17][17];
+        this.matrix = new Tile[ROWS][COLS];
 
         for(int i = 0; i < this.matrix[0].length ; i++){
 
@@ -70,10 +70,10 @@ public class Field {
         Integer c = 0;
         Integer r = 0;
         do{
-             r = rand.nextInt(ROWS);
-             c = rand.nextInt(COLS);
+             r = rand.nextInt(ROWS-1) + 1;
+             c = rand.nextInt(COLS-1) + 1;
             this.fruit = new Fruit(r, c);
-        } while(this.fruit.equals(Tile.SNAKE_HEAD_UP));
+        } while(this.fruit.equals(Tile.SNAKE_HEAD_UP ));
 
         this.matrix[r][c] = Tile.FRUIT;
     }
@@ -101,17 +101,17 @@ public class Field {
                     isAdd = true;
 
                 }
-                if(isAdd && this.matrix[i][j].equals(Tile.SNAKE_TAIL)) {
+                if(isAdd && this.matrix[i][j].equals(Tile.SNAKE_HEAD_UP)) {
                     this.matrix[i][j] = Tile.SNAKE_VERTICAL_BODY;
                     switch(command) {
                         case "d":
-                            this.matrix[i-1][j] = Tile.SNAKE_TAIL;
+                            this.matrix[i+1][j] = Tile.SNAKE_HEAD_DOWN;
                         case "u":
-                            this.matrix[i+1][j] = Tile.SNAKE_TAIL;
+                            this.matrix[i-1][j] = Tile.SNAKE_HEAD_UP;
                         case "l":
-                            this.matrix[i][j+1] = Tile.SNAKE_TAIL;
+                            this.matrix[i][j-1] = Tile.SNAKE_HEAD_LEFT;
                         case "r":
-                            this.matrix[i][j-1] = Tile.SNAKE_TAIL;
+                            this.matrix[i][j+1] = Tile.SNAKE_HEAD_RIGHT;
                     }
                 }
             }
