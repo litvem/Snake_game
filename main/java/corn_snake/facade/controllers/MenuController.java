@@ -1,8 +1,8 @@
 package corn_snake.facade.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 public class MenuController {
 
@@ -15,22 +15,22 @@ public class MenuController {
     }
 
     @FXML
-    public void onPlayClick(ActionEvent event) {
+    public void onPlayClick(MouseEvent event) {
         action.setText("Play clicked!");
     }
 
     @FXML
-    public void onCreditsClick(ActionEvent event) {
+    public void onCreditsClick(MouseEvent event) {
         action.setText("Credits clicked!");
     }
 
     @FXML
-    public void onLeaderboardClick(ActionEvent event) {
+    public void onLeaderboardClick(MouseEvent event) {
         action.setText("Leaderboard clicked!");
     }
 
     @FXML
-    public void onHowToPlayClick(ActionEvent event) {
+    public void onHowToPlayClick(MouseEvent event) {
         action.setText("How to play clicked!");
     }
 }
