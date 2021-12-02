@@ -152,9 +152,8 @@ public class Field {
             the segment that precedes the snake's head. In that case nothing will happen.
 
             - If it is possible to move in that direction:
-            the snake's head's coordinates will be changed to the coordinates of the next segment of the desired direction,
-            the current coordinate will be set to Tile.SNAKE_BODY,
-            the next segment in that direction will have the value updated to a Tile.SNAKE_HEAD.
+            the snake's head's new coordinates will be saved in the headNewCoordinates variable,
+            the correct head tile value is saved in the newHeadTile variable.
              */
 
             if (i == snake.getSize() - 1) {
@@ -211,7 +210,9 @@ public class Field {
                         return;
                 }
 
+                //If the snake hits a wall or its body the GameOverException is thrown.
                 if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.EMPTY) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_TAIL)) {
+                    //Updating the head segment's coordinates and the tile in the matrix.
                     this.snake.setSegment(i, newHeadCoordinates[0], newHeadCoordinates[1]);
                     this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
                 } else {
@@ -219,7 +220,7 @@ public class Field {
                 }
 
                 /*
-                If the current segment is the final segment of the snake's body:
+                If the current segment is the final segment of the snake's body (the tail):
                 -the value of this tile in the field is changed to Tile.EMPTY.
                 -This segment's coordinates is changed to the old coordinates of the segment that was updated directly before this segment.
                 -the value of the updated coordinate is changed to Tile.SNAKE_TAIL
