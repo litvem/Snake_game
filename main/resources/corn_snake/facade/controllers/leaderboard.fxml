@@ -7,14 +7,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.Leaderboard">
    <children>
       <Button layoutX="514.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="85.0" text="Main Menu" />
       <TableView layoutX="1.0" layoutY="93.0" prefHeight="350.0" prefWidth="600.0">
         <columns>
           <TableColumn minWidth="69.33337140083313" prefWidth="69.33337140083313" text="Placement " />
-          <TableColumn minWidth="200.0" prefWidth="423.3332748413086" text="Nmae" />
+          <TableColumn minWidth="200.0" prefWidth="423.3332748413086" text="Name" />
             <TableColumn minWidth="107.33340454101562" prefWidth="107.33340454101562" text="Score" />
         </columns>
       </TableView>
