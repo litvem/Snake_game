@@ -1,10 +1,15 @@
 package corn_snake.back_end;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Leaderboard {
 
     private List<Score> top10;
+
+    public Leaderboard() {
+        this.top10 = new ArrayList<>();
+    }
 
     public List<Score> getTop10() {
         return top10;
