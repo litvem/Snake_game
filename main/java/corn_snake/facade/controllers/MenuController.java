@@ -1,8 +1,14 @@
 package corn_snake.facade.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MenuController {
 
@@ -15,8 +21,19 @@ public class MenuController {
     }
 
     @FXML
-    public void onPlayClick(MouseEvent event) {
+    public void onPlayClick(MouseEvent event) throws IOException {
         action.setText("Play clicked!");
+        Stage stage = (Stage) action.getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                FieldController.class.getResource("game_field.fxml")
+        );
+        Scene scene = new Scene(fxmlLoader.load());
+
+        stage.setResizable(false);
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
