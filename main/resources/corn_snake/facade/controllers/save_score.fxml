@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"> fx:controller="corn_snake.facade.controllers.SaveScoreController">
    <children>
       <Label layoutX="178.0" layoutY="137.0" prefHeight="18.0" prefWidth="204.0" />
       <Label layoutX="201.0" layoutY="106.0" prefHeight="30.0" prefWidth="153.0" text="Your Score:    " textAlignment="CENTER" textFill="#753bbf">
