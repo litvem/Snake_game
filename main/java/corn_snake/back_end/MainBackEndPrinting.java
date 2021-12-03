@@ -5,11 +5,17 @@ public class MainBackEndPrinting {
         Field field = new Field();
         field.printField();
         System.out.println();
-        field.moveSnake("l");
-        field.moveSnake("l");
-        field.moveSnake("u");
-        field.moveSnake("u");
-        field.moveSnake("u");
+
+        try {
+            field.moveSnake("l");
+            field.moveSnake("l");
+            field.moveSnake("u");
+            field.moveSnake("u");
+
+
+        } catch (GameOverException exception){
+            System.out.println(exception.getMessage());
+        }
 
         field.printField();
     }
