@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.MenuController">
+<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.MenuController">
    <children>
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="536.0" layoutY="14.0" onMouseClicked="#onExitClick" pickOnBounds="true" preserveRatio="true">
          <image>
