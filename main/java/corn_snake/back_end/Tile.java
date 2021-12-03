@@ -54,7 +54,12 @@ public enum Tile {
     /**
      * Represents the obstacles in the field.
      */
-    OBSTACLE("*");
+    OBSTACLE("*"),
+
+    /**
+     * Represents the fruit in the field.
+     */
+    FRUIT("a");
 
 
     final String symbol;

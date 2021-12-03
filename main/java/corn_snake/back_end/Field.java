@@ -73,9 +73,9 @@ public class Field {
              r = rand.nextInt(ROWS);
              c = rand.nextInt(COLS);
             this.fruit = new Fruit(r, c);
-        } while(this.fruit.equals(Tile.SNAKE_HEAD));
+        } while(this.fruit.equals(Tile.SNAKE_HEAD_UP));
 
-        this.matrix[r][c] = Tile.TILE_FRUIT;
+        this.matrix[r][c] = Tile.FRUIT;
     }
 
 
@@ -93,16 +93,16 @@ public class Field {
         boolean isAdd = false;
         for(int i = 0; i < this.matrix[0].length; i++){
             for (int j = 0; j < matrix[0].length; j++){
-                if(this.matrix[i][j].equals(Tile.TILE_FRUIT)) {
+                if(this.matrix[i][j].equals(Tile.FRUIT)) {
                     this.matrix[i][j] = Tile.EMPTY;
                 }
-                if(this.matrix[i][j].equals(Tile.TILE_FRUIT) && this.matrix[i][j].equals(Tile.SNAKE_HEAD)) {
+                if(this.matrix[i][j].equals(Tile.FRUIT) && this.matrix[i][j].equals(Tile.SNAKE_HEAD_UP)) {
                     snake.increaseSize(i,j);
                     isAdd = true;
 
                 }
                 if(isAdd && this.matrix[i][j].equals(Tile.SNAKE_TAIL)) {
-                    this.matrix[i][j] = Tile.SNAKE_BODY;
+                    this.matrix[i][j] = Tile.SNAKE_VERTICAL_BODY;
                     switch(command) {
                         case "d":
                             this.matrix[i-1][j] = Tile.SNAKE_TAIL;
@@ -162,6 +162,7 @@ public class Field {
                 int row = snake.getSegment(i)[0];
                 int column = snake.getSegment(i)[1];
                 Integer[] newHeadCoordinates;
+                Tile newHeadTile;
 
 
                 switch (command) {
@@ -170,9 +171,8 @@ public class Field {
                         if (snake.getSegment(i - 1)[0] == row + 1 && snake.getSegment(i - 1)[1] == column) {
                             return;
                         } else {
-                            snake.setSegment(i, row + 1, column);
-                            matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row + 1][column] = Tile.SNAKE_HEAD_DOWN;
+                            newHeadCoordinates = new Integer[]{row + 1, column};
+                            newHeadTile = Tile.SNAKE_HEAD_DOWN;
                         }
 
                         break;
@@ -181,9 +181,8 @@ public class Field {
                         if (snake.getSegment(i - 1)[0] == row - 1 && snake.getSegment(i - 1)[1] == column) {
                             return;
                         } else {
-                            snake.setSegment(i, row - 1, column);
-                            matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row - 1][column] = Tile.SNAKE_HEAD_UP;
+                            newHeadCoordinates = new Integer[]{row - 1, column};
+                            newHeadTile = Tile.SNAKE_HEAD_UP;
                         }
 
                         break;
@@ -192,9 +191,8 @@ public class Field {
                         if (snake.getSegment(i - 1)[0] == row && snake.getSegment(i - 1)[1] == column + 1) {
                             return;
                         } else {
-                            snake.setSegment(i, row, column + 1);
-                            matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row][column + 1] = Tile.SNAKE_HEAD_RIGHT;
+                            newHeadCoordinates = new Integer[]{row, column + 1};
+                            newHeadTile = Tile.SNAKE_HEAD_RIGHT;
                         }
 
                         break;
@@ -203,9 +201,8 @@ public class Field {
                         if (snake.getSegment(i - 1)[0] == row && snake.getSegment(i - 1)[1] == column - 1) {
                             return;
                         } else {
-                            snake.setSegment(i, row, column - 1);
-                            matrix[row][column] = Tile.SNAKE_BODY;
-                            matrix[row][column - 1] = Tile.SNAKE_HEAD_LEFT;
+                            newHeadCoordinates = new Integer[]{row, column - 1};
+                            newHeadTile = Tile.SNAKE_HEAD_LEFT;
                         }
 
                         break;
@@ -216,7 +213,7 @@ public class Field {
 
                 if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.EMPTY) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_TAIL)) {
                     this.snake.setSegment(i, newHeadCoordinates[0], newHeadCoordinates[1]);
-                    this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = Tile.SNAKE_HEAD;
+                    this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
                 }
 
                 /*
