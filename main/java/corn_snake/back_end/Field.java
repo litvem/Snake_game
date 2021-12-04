@@ -210,20 +210,11 @@ public class Field {
                         return;
                 }
 
-                //If the head hits a wall or its body the GameOverException is thrown.
+                //If the snake hits a wall or its body the GameOverException is thrown.
                 if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.EMPTY) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_TAIL)) {
                     //Updating the head segment's coordinates and the tile in the matrix.
                     this.snake.setSegment(i, newHeadCoordinates[0], newHeadCoordinates[1]);
                     this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
-
-                //If the snake reaches a fruit, the snake eat the fruit and grows, after that a new fruit is added and the rest of the body doesn't move.
-                } else if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.FRUIT)) {
-                    this.snake.increaseSize(newHeadCoordinates[0], newHeadCoordinates[1]);
-                    this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
-                    this.setBodyDirection(i);
-                    this.addFruit();
-                    return;
-
                 } else {
                     throw new GameOverException("Game Over");
                 }
