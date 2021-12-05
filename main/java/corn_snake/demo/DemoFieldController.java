@@ -64,7 +64,7 @@ public class DemoFieldController implements Initializable {
     private Image turnDR, turnDL, tailU, tailD, tailR, tailL, obstacle;
 
     private final static Image placeholder = new Image(
-            "file:///" + DemoFieldController.class.getResource("Tile.png").getFile()
+            "file:///" + DemoFieldController.class.getResource("snowflake.jpeg").getFile()
     );
 
     private static final char[] ROWS = {
