@@ -90,7 +90,7 @@ public class DemoFieldController implements Initializable {
         cd.setDelay(Duration.seconds(0.5));
         cd.setCycleCount(4);
         cd.setOnFinished(
-                event -> {
+                (event) -> {
                     countdown.setText("");
                 }
         );
@@ -99,7 +99,7 @@ public class DemoFieldController implements Initializable {
         // Duration.millis(5) equivalent to Thread.sleep(5)
         Timeline load = new Timeline(
                 new KeyFrame(
-                        Duration.millis(5), event -> {
+                        Duration.millis(5), (event) -> {
                             try {
                                 // Gets all tiles
                                 ImageView image = (ImageView) getClass().getDeclaredField(
@@ -120,7 +120,7 @@ public class DemoFieldController implements Initializable {
                         }
                 )
         );
-        load.setDelay(Duration.seconds(1));
+        load.setDelay(Duration.seconds(3));
         load.setCycleCount(289);
 
         load.play();
