@@ -6,13 +6,13 @@ import java.util.List;
 
 public class Leaderboard {
 
-    private static ArrayList<Score> top10;
+    private ArrayList<Score> top10;
 
     public Leaderboard() {
         top10 = new ArrayList<Score>();
     }
 
-    public List<Score> getTop10() {
+    public ArrayList<Score> getTop10() {
         return top10;
     }
 
