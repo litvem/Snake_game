@@ -1,6 +1,6 @@
 package corn_snake.back_end;
 
-public class Score {
+public class Score implements Comparable<Score> {
 
     private String name;
     private int score;
@@ -37,5 +37,10 @@ public class Score {
     @Override
     public String toString() {
         return String.format("Name: %s, Score: %d", name, score);
+    }
+
+    @Override
+    public int compareTo(Score otherScore) {
+        return Integer.compare(getScore(), otherScore.getScore());
     }
 }
