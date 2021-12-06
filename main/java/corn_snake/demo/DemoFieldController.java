@@ -58,10 +58,8 @@ public class DemoFieldController implements Initializable {
     @FXML
     private ImageView startScreen;
 
-    @FXML
-    private Image empty, fruit, headU, headD, headR, headL, bodyH, bodyV, turnUR, turnUL;
-    @FXML
-    private Image turnDR, turnDL, tailU, tailD, tailR, tailL, obstacle;
+    private static Image empty, fruit, headU, headD, headR, headL, bodyH, bodyV, turnUR, turnUL;
+    private static Image turnDR, turnDL, tailU, tailD, tailR, tailL, obstacle;
 
     private final static Image placeholder = new Image(
             "file:///" + DemoFieldController.class.getResource("snowflake.jpeg").getFile()
@@ -81,13 +79,13 @@ public class DemoFieldController implements Initializable {
         // Sets a countdown before starting the game
         Timeline cd = new Timeline(
                 new KeyFrame(
-                        Duration.seconds(1), event -> {
+                        Duration.seconds(1), (event) -> {
                             countdown.setText(String.valueOf(cdNum));
                             cdNum--;
                         }
                 )
         );
-        cd.setDelay(Duration.seconds(0.5));
+        cd.setDelay(Duration.seconds(1));
         cd.setCycleCount(4);
         cd.setOnFinished(
                 (event) -> {
@@ -120,7 +118,7 @@ public class DemoFieldController implements Initializable {
                         }
                 )
         );
-        load.setDelay(Duration.seconds(3));
+        load.setDelay(Duration.seconds(3.5));
         load.setCycleCount(289);
 
         load.play();
