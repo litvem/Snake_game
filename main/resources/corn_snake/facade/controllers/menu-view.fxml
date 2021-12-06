@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.MenuController">
+   <children>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="536.0" layoutY="14.0" onMouseClicked="#onExitClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@ExitButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="218.0" fitWidth="332.0" layoutX="137.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Title.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="471.0" layoutY="14.0" onMouseClicked="#onCreditsClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CreditsButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="406.0" layoutY="14.0" onMouseClicked="#onLeaderboardClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@LeaderBoardButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="341.0" layoutY="14.0" onMouseClicked="#onHowToPlayClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@ControllsButton.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="279.0" onMouseClicked="#onPlayClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@PlayButton.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="action" layoutX="28.0" layoutY="39.0" prefHeight="18.0" prefWidth="217.0" />
+   </children>
+</AnchorPane>

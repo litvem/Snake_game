@@ -12,5 +12,6 @@ module corn_snake {
     requires com.fasterxml.jackson.databind;
 
     opens corn_snake to javafx.fxml;
+    opens corn_snake.facade.controllers to javafx.fxml;
     exports corn_snake;
 }
