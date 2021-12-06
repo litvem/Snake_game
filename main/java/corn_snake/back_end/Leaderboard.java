@@ -2,7 +2,7 @@ package corn_snake.back_end;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+
 
 public class Leaderboard {
 
@@ -13,8 +13,13 @@ public class Leaderboard {
     }
 
     public ArrayList<Score> getTop10() {
-        return top10;
+        ArrayList<Score> copyOfTop10 = new ArrayList<>();
+        for (Score tempScore : top10) {
+            copyOfTop10.add(tempScore);
+        }
+        return copyOfTop10;
     }
+
 
     public void setTop10(ArrayList<Score> top10) {
         // Only to be used by the Json class
