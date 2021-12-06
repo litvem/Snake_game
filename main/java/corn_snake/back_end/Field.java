@@ -16,7 +16,7 @@ public class Field {
      * Then a function to add the snake to field is called.
      */
     public Field(){
-        this.matrix = new Tile[17][17];
+        this.matrix = new Tile[ROWS][COLS];
 
         for(int i = 0; i < this.matrix[0].length ; i++){
 
@@ -70,10 +70,10 @@ public class Field {
         Integer c = 0;
         Integer r = 0;
         do{
-             r = rand.nextInt(ROWS);
-             c = rand.nextInt(COLS);
+             r = rand.nextInt(ROWS-1) + 1;
+             c = rand.nextInt(COLS-1) + 1;
             this.fruit = new Fruit(r, c);
-        } while(this.fruit.equals(Tile.SNAKE_HEAD_UP));
+        } while(this.fruit.equals(Tile.SNAKE_HEAD_UP ));
 
         this.matrix[r][c] = Tile.FRUIT;
     }
@@ -101,17 +101,17 @@ public class Field {
                     isAdd = true;
 
                 }
-                if(isAdd && this.matrix[i][j].equals(Tile.SNAKE_TAIL)) {
+                if(isAdd && this.matrix[i][j].equals(Tile.SNAKE_HEAD_UP)) {
                     this.matrix[i][j] = Tile.SNAKE_VERTICAL_BODY;
                     switch(command) {
                         case "d":
-                            this.matrix[i-1][j] = Tile.SNAKE_TAIL;
+                            this.matrix[i+1][j] = Tile.SNAKE_HEAD_DOWN;
                         case "u":
-                            this.matrix[i+1][j] = Tile.SNAKE_TAIL;
+                            this.matrix[i-1][j] = Tile.SNAKE_HEAD_UP;
                         case "l":
-                            this.matrix[i][j+1] = Tile.SNAKE_TAIL;
+                            this.matrix[i][j-1] = Tile.SNAKE_HEAD_LEFT;
                         case "r":
-                            this.matrix[i][j-1] = Tile.SNAKE_TAIL;
+                            this.matrix[i][j+1] = Tile.SNAKE_HEAD_RIGHT;
                     }
                 }
             }
@@ -138,7 +138,7 @@ public class Field {
     /**
      * @param command set the snake's direction of movement.
      */
-    public void moveSnake(String command) {
+    public void moveSnake(String command) throws GameOverException {
         /*
         Creating a variable that will store the coordinates of the segment that will be updated so the next segment's coordinates
         can be updated to the location of the current segment.
@@ -152,9 +152,8 @@ public class Field {
             the segment that precedes the snake's head. In that case nothing will happen.
 
             - If it is possible to move in that direction:
-            the snake's head's coordinates will be changed to the coordinates of the next segment of the desired direction,
-            the current coordinate will be set to Tile.SNAKE_BODY,
-            the next segment in that direction will have the value updated to a Tile.SNAKE_HEAD.
+            the snake's head's new coordinates will be saved in the headNewCoordinates variable,
+            the correct head tile value is saved in the newHeadTile variable.
              */
 
             if (i == snake.getSize() - 1) {
@@ -211,13 +210,26 @@ public class Field {
                         return;
                 }
 
+                //If the head hits a wall or its body the GameOverException is thrown.
                 if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.EMPTY) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_TAIL)) {
+                    //Updating the head segment's coordinates and the tile in the matrix.
                     this.snake.setSegment(i, newHeadCoordinates[0], newHeadCoordinates[1]);
                     this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
+
+                //If the snake reaches a fruit, the snake eat the fruit and grows, after that a new fruit is added and the rest of the body doesn't move.
+                } else if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.FRUIT)){
+                    this.snake.increaseSize(newHeadCoordinates[0], newHeadCoordinates[1]);
+                    this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
+                    this.setBodyDirection(i);
+                    this.addFruit();
+                    return;
+
+                }else {
+                    throw new GameOverException("Game Over");
                 }
 
                 /*
-                If the current segment is the final segment of the snake's body:
+                If the current segment is the final segment of the snake's body (the tail):
                 -the value of this tile in the field is changed to Tile.EMPTY.
                 -This segment's coordinates is changed to the old coordinates of the segment that was updated directly before this segment.
                 -the value of the updated coordinate is changed to Tile.SNAKE_TAIL
