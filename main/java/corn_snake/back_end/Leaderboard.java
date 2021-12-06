@@ -9,10 +9,10 @@ public class Leaderboard {
     private ArrayList<Score> top10;
 
     public Leaderboard() {
-        top10 = new ArrayList<Score>();
+        this.top10 = new ArrayList<>();
     }
 
-    public ArrayList<Score> getTop10() {
+    public List<Score> getTop10() {
         return top10;
     }
 
