@@ -217,14 +217,14 @@ public class Field {
                     this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
 
                 //If the snake reaches a fruit, the snake eat the fruit and grows, after that a new fruit is added and the rest of the body doesn't move.
-                } else if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.FRUIT)){
+                } else if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.FRUIT)) {
                     this.snake.increaseSize(newHeadCoordinates[0], newHeadCoordinates[1]);
                     this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
                     this.setBodyDirection(i);
                     this.addFruit();
                     return;
 
-                }else {
+                } else {
                     throw new GameOverException("Game Over");
                 }
 
