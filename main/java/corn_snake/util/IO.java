@@ -28,7 +28,8 @@ public class IO {
     /**
      * Loads a new JavaFX {@link Scene}
      *
-     * @param currentStage the current {@link Stage} that is used. Bind the container to an FXID to access the stage, example:
+     * @param currentStage the current {@link Stage} that is used.
+     *                     Bind the container to an FXID to access the stage, example:
      *                     {@code (Stage) <container>.getScene().getWindow()}
      * @param file FXML file to load scene from
      * @param clazz {@link Class} to get resources from
