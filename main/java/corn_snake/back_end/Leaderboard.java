@@ -2,24 +2,19 @@ package corn_snake.back_end;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.List;
 
 public class Leaderboard {
 
     private ArrayList<Score> top10;
 
     public Leaderboard() {
-        top10 = new ArrayList<Score>();
+        this.top10 = new ArrayList<>();
     }
 
-    public ArrayList<Score> getTop10() {
-        ArrayList<Score> copyOfTop10 = new ArrayList<>();
-        for (Score tempScore : top10) {
-            copyOfTop10.add(tempScore);
-        }
-        return copyOfTop10;
+    public List<Score> getTop10() {
+        return top10;
     }
-
 
     public void setTop10(ArrayList<Score> top10) {
         // Only to be used by the Json class

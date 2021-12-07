@@ -11,6 +11,7 @@ module corn_snake {
     requires eu.hansolo.tilesfx;
     requires com.fasterxml.jackson.databind;
 
-    opens corn_snake to javafx.fxml;
+    opens corn_snake to javafx.graphics, javafx.fxml;
+    opens corn_snake.demo to javafx.graphics, javafx.fxml;
     exports corn_snake;
 }

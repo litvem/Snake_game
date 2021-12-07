@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.SaveScoreController">
+   <children>
+      <Label layoutX="178.0" layoutY="137.0" prefHeight="18.0" prefWidth="204.0" />
+      <Label layoutX="201.0" layoutY="106.0" prefHeight="30.0" prefWidth="153.0" text="Your Score:    " textAlignment="CENTER" textFill="#753bbf">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="143.0" layoutY="163.0" prefHeight="30.0" prefWidth="293.0" text=" Enter Your Name To save the Score:" textFill="#4f20c7d0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="205.0" layoutY="213.0" promptText="(max : 12 letters)" />
+      <Button layoutX="262.0" layoutY="258.0" mnemonicParsing="false" text="OK" textAlignment="CENTER" textFill="#160f1e">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="button" contentDisplay="CENTER" layoutX="494.0" layoutY="327.0" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="70.0" prefWidth="103.0" text="Home Page" textFill="#d90606">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="302.0" layoutY="361.0" prefHeight="26.0" prefWidth="184.0" text="Return to Main Menu--&gt;" textFill="#27067ae9">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>
