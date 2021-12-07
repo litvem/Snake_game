@@ -13,5 +13,6 @@ module corn_snake {
 
     opens corn_snake to javafx.graphics, javafx.fxml;
     opens corn_snake.demo to javafx.graphics, javafx.fxml;
+    opens corn_snake.facade.controllers to javafx.graphics, javafx.fxml;
     exports corn_snake;
 }
