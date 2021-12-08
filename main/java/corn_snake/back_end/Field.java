@@ -238,7 +238,13 @@ public class Field {
                 int row = snake.getSegment(0)[0];
                 int column = snake.getSegment(0)[1];
 
-                matrix[row][column] = Tile.EMPTY;
+                 /*
+                Before changing the tail's old coordinates' value to Tile.EMPTY assure that the old coordinates' value
+                is still a tail to assure that the head doesn't disappear in specific situations.
+                 */
+                if (matrix[row][column].equals(Tile.SNAKE_TAIL)){
+                    matrix[row][column] = Tile.EMPTY;
+                }
                 matrix[previousSegment[0]][previousSegment[1]] = Tile.SNAKE_TAIL;
 
                 snake.setSegment(0, previousSegment[0], previousSegment[1]);
