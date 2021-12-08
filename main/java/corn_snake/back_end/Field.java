@@ -122,7 +122,11 @@ public class Field {
 
 
     public Tile[][] getMatrix(){
-        return this.matrix;
+        Tile[][] tempMatrix = new Tile[17][17];
+        for (int i = 0; i < tempMatrix.length; i++){
+            System.arraycopy(this.matrix[i], 0, tempMatrix[i], 0, tempMatrix.length);
+        }
+        return tempMatrix;
     }
 
     public void printField(){
