@@ -122,7 +122,11 @@ public class Field {
 
 
     public Tile[][] getMatrix(){
-        return this.matrix;
+        Tile[][] tempMatrix = new Tile[17][17];
+        for (int i = 0; i < tempMatrix.length; i++){
+            System.arraycopy(this.matrix[i], 0, tempMatrix[i], 0, tempMatrix.length);
+        }
+        return tempMatrix;
     }
 
     public void printField(){
@@ -238,7 +242,13 @@ public class Field {
                 int row = snake.getSegment(0)[0];
                 int column = snake.getSegment(0)[1];
 
-                matrix[row][column] = Tile.EMPTY;
+                 /*
+                Before changing the tail's old coordinates' value to Tile.EMPTY assure that the old coordinates' value
+                is still a tail to assure that the head doesn't disappear in specific situations.
+                 */
+                if (matrix[row][column].equals(Tile.SNAKE_TAIL)){
+                    matrix[row][column] = Tile.EMPTY;
+                }
                 matrix[previousSegment[0]][previousSegment[1]] = Tile.SNAKE_TAIL;
 
                 snake.setSegment(0, previousSegment[0], previousSegment[1]);
