@@ -17,9 +17,9 @@ public class FXDemo extends Application {
     }
 
     public void start(Stage stage) throws IOException {
-        // Starts directly in the game field
+        // Starts from the title screen
         FXMLLoader fxmlLoader = new FXMLLoader(
-                DemoFieldController.class.getResource("game_field.fxml")
+                DemoMenuController.class.getResource("menu-view.fxml")
         );
         Scene scene = new Scene(fxmlLoader.load());
 

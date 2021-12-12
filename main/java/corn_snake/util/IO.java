@@ -36,10 +36,29 @@ public class IO {
      * @throws IOException if loading fails
      */
     public static void loadScene(Stage currentStage, String file, Class<?> clazz) throws IOException {
+        loadScene(currentStage, file, clazz, null);
+    }
+
+    /**
+     * Loads a new JavaFX {@link Scene} using a CSS style sheet
+     *
+     * @param currentStage the current {@link Stage} that is used.
+     *                     Bind the container to an FXID to access the stage, example:
+     *                     {@code (Stage) <container>.getScene().getWindow()}
+     * @param file FXML file to load scene from
+     * @param clazz {@link Class} to get resources from
+     * @param css CSS to style the scene with
+     * @throws IOException if loading fails
+     */
+    public static void loadScene(Stage currentStage, String file, Class<?> clazz, String css) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 clazz.getResource(file)
         );
         Scene scene = new Scene(fxmlLoader.load());
+
+        if (css != null) {
+            scene.getStylesheets().add(clazz.getResource(css).toExternalForm());
+        }
 
         currentStage.setResizable(false);
 

@@ -7,6 +7,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.demo.DemoFieldController">
    <children>
+      <ImageView fx:id="backgroundView" fitHeight="400" fitWidth="600" layoutX="0" layoutY="0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="Q0" fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="Q1" fitHeight="20.0" fitWidth="20.0" layoutX="34.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="Q2" fitHeight="20.0" fitWidth="20.0" layoutX="54.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
@@ -296,7 +297,7 @@
       <ImageView fx:id="P14" fitHeight="20.0" fitWidth="20.0" layoutX="294.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="P15" fitHeight="20.0" fitWidth="20.0" layoutX="314.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="P16" fitHeight="20.0" fitWidth="20.0" layoutX="334.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="countdown" layoutX="371.0" layoutY="117.0" prefHeight="153.0" prefWidth="214.0">
+      <Label fx:id="countdown" layoutX="420.0" layoutY="155.0" prefHeight="153.0" prefWidth="170.0">
          <font>
             <Font size="30.0" />
          </font>
