@@ -52,7 +52,7 @@ public class Field {
 
         for (int i = 0; i <= INITIAL_COORDINATES.length - 1; i++) {
             if (i == 0) {
-                this.matrix[1 + i][7] = Tile.SNAKE_TAIL;
+                this.matrix[1 + i][7] = Tile.SNAKE_DOWNWARD_GOING_TAIL;
             } else if (i == INITIAL_COORDINATES.length - 1) {
                 this.matrix[1 + i][7] = Tile.SNAKE_HEAD_DOWN;
             } else {
@@ -117,9 +117,6 @@ public class Field {
             }
         }
     }
-
-
-
 
     public Tile[][] getMatrix(){
         Tile[][] tempMatrix = new Tile[17][17];
@@ -215,7 +212,7 @@ public class Field {
                 }
 
                 //If the head hits a wall or its body the GameOverException is thrown.
-                if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.EMPTY) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_TAIL)) {
+                if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.EMPTY) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_UPWARD_GOING_TAIL) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_DOWNWARD_GOING_TAIL) ||matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_LEFTWARD_GOING_TAIL) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_RIGHTWARD_GOING_TAIL)) {
                     //Updating the head segment's coordinates and the tile in the matrix.
                     this.snake.setSegment(i, newHeadCoordinates[0], newHeadCoordinates[1]);
                     this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
@@ -246,12 +243,11 @@ public class Field {
                 Before changing the tail's old coordinates' value to Tile.EMPTY assure that the old coordinates' value
                 is still a tail to assure that the head doesn't disappear in specific situations.
                  */
-                if (matrix[row][column].equals(Tile.SNAKE_TAIL)){
+                if (matrix[row][column].equals(Tile.SNAKE_UPWARD_GOING_TAIL) || matrix[row][column].equals(Tile.SNAKE_DOWNWARD_GOING_TAIL) || matrix[row][column].equals(Tile.SNAKE_LEFTWARD_GOING_TAIL) || matrix[row][column].equals(Tile.SNAKE_RIGHTWARD_GOING_TAIL)){
                     matrix[row][column] = Tile.EMPTY;
                 }
-                matrix[previousSegment[0]][previousSegment[1]] = Tile.SNAKE_TAIL;
-
                 snake.setSegment(0, previousSegment[0], previousSegment[1]);
+                matrix[previousSegment[0]][previousSegment[1]] = setTailDirection(i);
 
                 /*
                 If the current segment is not the head neither the last segment of the snake:
@@ -317,5 +313,28 @@ public class Field {
         int column = snake.getSegment(segmentIndex)[1];
 
         matrix[row][column] = bodyTile;
+    }
+
+    private Tile setTailDirection (int tailIndex) {
+
+        int tailRow = snake.getSegment(tailIndex)[0];
+        int tailColumn = snake.getSegment(tailIndex)[1];
+
+        int followingSegmentIndex = tailIndex + 1;
+        int followingSegmentRow = snake.getSegment(followingSegmentIndex)[0];
+        int followingSegmentColumn = snake.getSegment(followingSegmentIndex)[1];
+
+        Tile tailTile;
+
+        if (tailRow == followingSegmentRow + 1 && tailColumn == followingSegmentColumn){
+            tailTile = Tile.SNAKE_UPWARD_GOING_TAIL;
+        } else if (tailRow == followingSegmentRow - 1 && tailColumn == followingSegmentColumn) {
+            tailTile = Tile.SNAKE_DOWNWARD_GOING_TAIL;
+        } else if (tailRow == followingSegmentRow && tailColumn == followingSegmentColumn - 1) {
+            tailTile = Tile.SNAKE_RIGHTWARD_GOING_TAIL;
+        } else {
+            tailTile = Tile.SNAKE_LEFTWARD_GOING_TAIL;
+        } return tailTile;
+
     }
 }
