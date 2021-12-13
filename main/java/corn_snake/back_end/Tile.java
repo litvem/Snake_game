@@ -7,11 +7,20 @@ public enum Tile {
     EMPTY("o"),
 
     /**
-     * Represents the head of the snake.
+     * Represents the head of the snake going up.
      */
     SNAKE_HEAD_UP("x"),
+    /**
+     * Represents the head of the snake going down
+     */
     SNAKE_HEAD_DOWN("x"),
+    /**
+     * Represents the head of the snake going left
+     */
     SNAKE_HEAD_LEFT("x"),
+    /**
+     * Represents the head of the snake going right
+     */
     SNAKE_HEAD_RIGHT("x"),
 
     /**
@@ -47,9 +56,21 @@ public enum Tile {
     SNAKE_CORNER_LEFT_UP_BODY("_|"),
 
     /**
-     * Represents the last segment (using the movement's direction as reference) of the snake.
+     * Represents the tail of the snake going up
      */
-    SNAKE_TAIL("w"),
+    SNAKE_UPWARD_GOING_TAIL("u"),
+    /**
+     * Represents the tail of the snake going down
+     */
+    SNAKE_DOWNWARD_GOING_TAIL("n"),
+    /**
+     * Represents the tail of the snake going in left direction
+     */
+    SNAKE_LEFTWARD_GOING_TAIL("D"),
+    /**
+     * Represents the tail of the snake going in right direction
+     */
+    SNAKE_RIGHTWARD_GOING_TAIL("C"),
 
     /**
      * Represents the obstacles in the field.
@@ -59,8 +80,7 @@ public enum Tile {
     /**
      * Represents the fruit in the field.
      */
-    FRUIT("a");
-
+    FRUIT("y");
 
     final String symbol;
 

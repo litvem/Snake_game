@@ -6,17 +6,22 @@ import java.util.List;
 
 public class Leaderboard {
 
-    private ArrayList<Score> top10;
+    private List<Score> top10;
 
     public Leaderboard() {
-        this.top10 = new ArrayList<>();
-    }
+        top10 = new ArrayList<>();
+        }
 
+    /**
+     * Getter for top 10 list
+      * @return a copy of the top 10 leaderboard list
+     */
     public List<Score> getTop10() {
-        return top10;
+        List<Score> copyOfTop10 = new ArrayList<>(top10);
+        return copyOfTop10;
     }
 
-    public void setTop10(ArrayList<Score> top10) {
+    public void setTop10(List<Score> top10) {
         // Only to be used by the Json class
         this.top10 = top10;
     }
@@ -30,19 +35,21 @@ public class Leaderboard {
     }
 
     /**
-     * addScore method will add the score if leaderboard has less than 10 scores and sort the list in ascending order.
+     * addScore method will add the score if leaderboard has less than 10 scores and sort the list in descending order.
      * If leaderboard has 10 scores already, playerScore will be added if it's higher than lowest score of leaderboard and sort list.
-     * @param playerScore is the score which the current player of the game has when the game is over
+     * @param name and score is the name of player and score of player when the game is over
      */
-    public void addScore(Score playerScore) {
+    public void addScore(String name, int score) {
+        Score playerScore = new Score(name,score);
 
         if (top10.size() < 10) {
             top10.add(playerScore);
             Collections.sort(top10);
-        } else if (playerScore.getScore() > top10.get(0).getScore()) {
-            top10.remove(0);
+        } else if (playerScore.getScore() > top10.get(top10.size() - 1).getScore()) {
+            top10.remove(top10.get(top10.size() - 1));
             top10.add(playerScore);
             Collections.sort(top10);
         }
+
     }
 }
