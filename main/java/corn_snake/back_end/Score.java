@@ -39,8 +39,13 @@ public class Score implements Comparable<Score> {
         return String.format("Name: %s, Score: %d", name, score);
     }
 
+    /**
+     * Compares all score in leaderboard and sorts them in descending order
+     */
     @Override
     public int compareTo(Score otherScore) {
-        return Integer.compare(getScore(), otherScore.getScore());
+        return Integer.compare(otherScore.getScore(), getScore());
     }
+
 }
+
