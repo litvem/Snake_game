@@ -64,19 +64,35 @@ public class Field {
     /**
      * Creates and add fruit until random location of food is empty.
      */
-
     private void addFruit(){
         Random rand = new Random();
-        Integer c = 0;
-        Integer r = 0;
-        do{
-             r = rand.nextInt(ROWS-1) + 1;
-             c = rand.nextInt(COLS-1) + 1;
-            this.fruit = new Fruit(r, c);
-        } while(this.fruit.equals(Tile.SNAKE_HEAD_UP ));
 
+        Integer r = rand.nextInt(ROWS-1)+1;
+        Integer c = rand.nextInt(COLS-1)+1;
+        while(true){
+            if(this.matrix[r][c] == Tile.EMPTY) {
+                this.fruit = new Fruit(r, c);
+                break;
+            } else {
+                r = rand.nextInt(ROWS-1)+1;
+                c = rand.nextInt(COLS-1)+1;
+            }
+        }
         this.matrix[r][c] = Tile.FRUIT;
     }
+
+    //*private void addFruit(){
+    //    Random rand = new Random();
+    //    Integer c = 0;
+    //  Integer r = 0;
+    //   do{
+    //        r = rand.nextInt(ROWS-1) + 1;
+    //        c = rand.nextInt(COLS-1) + 1;
+    //       this.fruit = new Fruit(r, c);
+    //   } while(this.fruit.equals(Tile.SNAKE_HEAD_UP ));
+
+    // this.matrix[r][c] = Tile.FRUIT;
+    // }
 
 
     public void update(String command) {
