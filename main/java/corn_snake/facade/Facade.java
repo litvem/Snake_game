@@ -10,6 +10,20 @@ public class Facade {
     private Leaderboard lb;
     private Field field;
 
+    Facade() {
+        try {
+            // Tries to load leaderboard from JSON
+            this.lb = Json.load(getClass().getResource("leaderboard.json").getFile(), Leaderboard.class);
+        } catch (Exception e) {
+            // Creates a new leaderboard if loading fails
+            this.lb = new Leaderboard();
+        }
+        this.field = new Field();
+    }
+    public void moveSnake(String command) throws GameOverException {
+        field.moveSnake(command);
+    }
+
 
     public void newField(){
         field= new Field();
