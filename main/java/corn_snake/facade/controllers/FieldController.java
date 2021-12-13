@@ -1,7 +1,9 @@
 package corn_snake.facade.controllers;
 
+import corn_snake.Main;
 import corn_snake.back_end.GameOverException;
 import corn_snake.back_end.Tile;
+import corn_snake.facade.Facade;
 import corn_snake.util.IO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -19,6 +21,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FieldController implements Initializable {
+
+    final static Facade FACADE = Main.FACADE;
+
+    private String command;
 
     // Borders either have a leading P or Q, or have the number 0 or 16
     @FXML
@@ -67,66 +73,62 @@ public class FieldController implements Initializable {
     private ImageView startScreen;
 
     //add final below and initialize then in static block
-    private static Image empty, fruit, headU, headD, headR, headL, bodyH, bodyV, turnUR, turnUL;
-    private static Image turnDR, turnDL, tailU, tailD, tailR, tailL, obstacle;
+    private final static Image
+            EMPTY = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            FRUIT = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            HEAD_U = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            HEAD_D = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            HEAD_R = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            HEAD_L = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            BODY_H = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            BODY_V = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            TURN_UR = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            TURN_UL = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            TURN_DR = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            TURN_DL = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            TAIL_U = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            TAIL_D = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            TAIL_R = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            TAIL_L = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            ),
+            OBSTACLE = new Image(
+                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+            );
 
     private final static Image placeholder = new Image(
             FieldController.class.getResource("snowflake.jpeg").toExternalForm()
     );
-
-   static {
-       empty = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       fruit = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       headU = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       headD = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       headR = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       headL = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       bodyH = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       bodyV = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       turnUR = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       turnUL = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       turnDR = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       turnDL = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       tailU = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       tailD = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       tailR = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       tailL = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-       obstacle = new Image(
-               FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-       );
-   }
 
     private static final char[] ROWS = {
             'Q', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'
@@ -161,136 +163,24 @@ public class FieldController implements Initializable {
         Timeline load = new Timeline(
                 new KeyFrame(
                         Duration.millis(5), (event) -> {
-                    try {
-                        // Gets all tiles
-                        ImageView image = (ImageView) getClass().getDeclaredField(
-                                String.format("%s%d", ROWS[row], column)
-                        ).get(corn_snake.facade.controllers.FieldController.this);
-                        image.setImage(placeholder);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        // Increments column from 0-16
-                        // Increments row by 1 when column exceeds the number of columns in the field
-                        column++;
-                        if (column > 16) {
-                            column = 0;
-                            row++;
-                        }
-                    }
-                }
-                )
-        );
-
-        // Loads and displays the actual game field
-        Timeline game = new Timeline(
-                new KeyFrame(
-                        Duration.millis(5), (event) -> {
-                try {
-                    //facade.updateField(command);
-                }catch (GameOverException e){
-                    Stage stage = (Stage) window.getScene().getWindow();
-                    try {
-                        IO.loadScene(stage, "game_over.fxml", GameOverController.class);
-                    } catch (IOException g) {
-                }
-                }
-
-                Tile[][] field = facade.getField();
-
-                for (int i = 1; i < field.length; i++){
-                    Tile[] row = field[i];
-
-                    for (int j = 1; j < row.length; j++){
-                        Tile tile = row[j];
-                        try {
-                            ImageView image;
-                            switch (tile) {
-                                case FRUIT:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(fruit);
-                                    break;
-                                case SNAKE_HEAD_UP:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(headU);
-                                    break;
-                                case SNAKE_HEAD_DOWN:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(headD);
-                                    break;
-                                case SNAKE_HEAD_RIGHT:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(headR);
-                                    break;
-                                case SNAKE_HEAD_LEFT:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(headL);
-                                    break;
-                                case SNAKE_HORIZONTAL_BODY:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(bodyH);
-                                    break;
-                                case SNAKE_VERTICAL_BODY:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(bodyV);
-                                    break;
-                                case SNAKE_CORNER_RIGHT_UP_BODY:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(turnUR);
-                                    break;
-                                case SNAKE_CORNER_LEFT_UP_BODY:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(turnUL);
-                                    break;
-                                case SNAKE_CORNER_RIGHT_DOWN_BODY:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(turnDR);
-                                    break;
-                                case SNAKE_CORNER_LEFT_DOWN_BODY:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(turnDL);
-                                    break;
-                                //CASE to add 4 cases for the snake tail once it's verified
-                                case OBSTACLE:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(obstacle);
-                                    break;
-                                default:
-                                    image = (ImageView) getClass().getDeclaredField(
-                                            String.format("%s%d", ROWS[i], j)
-                                    ).get(FieldController.this);
-                                    image.setImage(empty);
-                                    break;
+                            try {
+                                // Gets all tiles
+                                ImageView image = (ImageView) getClass().getDeclaredField(
+                                        String.format("%s%d", ROWS[row], column)
+                                ).get(corn_snake.facade.controllers.FieldController.this);
+                                image.setImage(placeholder);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            } finally {
+                                // Increments column from 0-16
+                                // Increments row by 1 when column exceeds the number of columns in the field
+                                column++;
+                                if (column > 16) {
+                                    column = 0;
+                                    row++;
+                                }
                             }
-                        } catch (Exception e){
-                            e.printStackTrace();}
-                    }
-                }
-                }
+                        }
                 )
         );
 
@@ -298,9 +188,9 @@ public class FieldController implements Initializable {
         Timeline score = new Timeline(
                 new KeyFrame(
                         Duration.seconds(1), (event) -> {
-                    countdown.setText(String.valueOf(cdNum));
-                    cdNum--;
-                }
+                            countdown.setText(String.valueOf(cdNum));
+                            cdNum--;
+                        }
                 )
         );
         cd.setDelay(Duration.seconds(1));
@@ -309,6 +199,81 @@ public class FieldController implements Initializable {
                 (event) -> {
                     countdown.setText("");
                 }
+        );
+
+        // Loads and displays the actual game field
+        Timeline game = new Timeline(
+                new KeyFrame(
+                        Duration.millis(5), (event) -> {
+                            try {
+                                FACADE.updateField(command);
+                            } catch (GameOverException e){
+                                Stage stage = (Stage) window.getScene().getWindow();
+                                try {
+                                    IO.loadScene(stage, "game_over.fxml", GameOverController.class);
+                                } catch (IOException g) {
+
+                                }
+                            }
+
+                            Tile[][] field = FACADE.getField();
+
+                            for (int i = 1; i < field.length; i++){
+                                Tile[] row = field[i];
+
+                                for (int j = 1; j < row.length; j++){
+                                    Tile tile = row[j];
+                                    try {
+                                        // Retrieve the tile in question
+                                        ImageView image = getTile(i, j);
+                                        switch (tile) {
+                                            case FRUIT:
+                                                image.setImage(FRUIT);
+                                                break;
+                                            case SNAKE_HEAD_UP:
+                                                image.setImage(HEAD_U);
+                                                break;
+                                            case SNAKE_HEAD_DOWN:
+                                                image.setImage(HEAD_D);
+                                                break;
+                                            case SNAKE_HEAD_RIGHT:
+                                                image.setImage(HEAD_R);
+                                                break;
+                                            case SNAKE_HEAD_LEFT:
+                                                image.setImage(HEAD_L);
+                                                break;
+                                            case SNAKE_HORIZONTAL_BODY:
+                                                image.setImage(BODY_H);
+                                                break;
+                                            case SNAKE_VERTICAL_BODY:
+                                                image.setImage(BODY_V);
+                                                break;
+                                            case SNAKE_CORNER_RIGHT_UP_BODY:
+                                                image.setImage(TURN_UR);
+                                                break;
+                                            case SNAKE_CORNER_LEFT_UP_BODY:
+                                                image.setImage(TURN_UL);
+                                                break;
+                                            case SNAKE_CORNER_RIGHT_DOWN_BODY:
+                                                image.setImage(TURN_DR);
+                                                break;
+                                            case SNAKE_CORNER_LEFT_DOWN_BODY:
+                                                image.setImage(TURN_DL);
+                                                break;
+                                            //CASE to add 4 cases for the snake tail once it's verified
+                                            case OBSTACLE:
+                                                image.setImage(OBSTACLE);
+                                                break;
+                                            default:
+                                                image.setImage(EMPTY);
+                                                break;
+                                        }
+                                    } catch (Exception e){
+                                        e.printStackTrace();}
+                                }
+                            }
+                        }
+                )
         );
 
         load.setDelay(Duration.seconds(3.5));
@@ -320,5 +285,23 @@ public class FieldController implements Initializable {
         score.play();
     }
 
-
+    /**
+     * Gets one tile from the {@code FieldController}, given row and column
+     * @param row row of the Tile matrix
+     * @param col column of the Tile matix
+     * @return targeted ImageView in the FieldController
+     * @throws IndexOutOfBoundsException if {@code row} or {@code col} are out of bounds of the matrix
+     */
+    private ImageView getTile(int row, int col) throws IndexOutOfBoundsException {
+        if (row < 0 || row > 16 || col < 0 || col > 16) {
+            throw new IndexOutOfBoundsException("Row and column cannot be less than 0 or exceed 16.");
+        }
+        try {
+            return (ImageView) getClass().getDeclaredField(
+                    String.format("%s%d", ROWS[row], col)
+            ).get(FieldController.this);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
