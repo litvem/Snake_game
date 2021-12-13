@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
@@ -55,6 +56,9 @@ public class DemoFieldController implements Initializable {
     @FXML
     private Label score, countdown;
     private int cdNum, row, column;
+
+    @FXML
+    private AnchorPane window;
 
     @FXML
     private ImageView backgroundView;

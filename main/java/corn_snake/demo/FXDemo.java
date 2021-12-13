@@ -23,7 +23,7 @@ public class FXDemo extends Application {
         );
         Scene scene = new Scene(fxmlLoader.load());
 
-        Image icon = new Image("file:///" + FXDemo.class.getResource("Icon.png").getFile());
+        Image icon = new Image(FXDemo.class.getResource("Icon.png").toExternalForm());
         stage.getIcons().add(icon);
 
         stage.setResizable(false);
