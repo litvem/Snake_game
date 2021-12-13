@@ -10,7 +10,7 @@ public class Facade {
     private Leaderboard lb;
     private Field field;
 
-    Facade() {
+    public Facade() {
         try {
             // Tries to load leaderboard from JSON
             this.lb = Json.load(getClass().getResource("leaderboard.json").getFile(), Leaderboard.class);
@@ -20,10 +20,10 @@ public class Facade {
         }
         this.field = new Field();
     }
+
     public void moveSnake(String command) throws GameOverException {
         field.moveSnake(command);
     }
-
 
     public void newField(){
         field= new Field();
@@ -32,8 +32,7 @@ public class Facade {
     public List<Score> getLeaderboard(){return lb.getTop10();}
 
     public void addScore(String name, int score){
-        Score playerScore= new Score(name,score);
-        lb.addScore(playerScore);
+        lb.addScore(name,score);
     }
 
     public Tile[][] getField(){
