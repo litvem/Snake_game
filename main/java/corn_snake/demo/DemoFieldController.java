@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -56,14 +58,22 @@ public class DemoFieldController implements Initializable {
     private int cdNum, row, column;
 
     @FXML
-    private ImageView startScreen;
+    private AnchorPane window;
+
+    @FXML
+    private ImageView backgroundView;
 
     private static Image empty, fruit, headU, headD, headR, headL, bodyH, bodyV, turnUR, turnUL;
-    private static Image turnDR, turnDL, tailU, tailD, tailR, tailL, obstacle;
+    private static Image turnDR, turnDL, tailU, tailD, tailR, tailL, obstacle, background;
 
-    private final static Image placeholder = new Image(
-            "file:///" + DemoFieldController.class.getResource("snowflake.jpeg").getFile()
-    );
+    static {
+        background = new Image(
+                "file:///" + DemoFieldController.class.getResource("GameBG.png").getFile()
+        );
+        empty = new Image(
+                "file:///" + DemoFieldController.class.getResource("Empty.png").getFile()
+        );
+    }
 
     private static final char[] ROWS = {
             'Q', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'
@@ -74,6 +84,7 @@ public class DemoFieldController implements Initializable {
         cdNum = 3;
         row = 0;
         column = 0;
+        backgroundView.setImage(background);
         countdown.setText(String.format("Starting%sin...", IO.EOL));
 
         // Sets a countdown before starting the game
@@ -103,7 +114,7 @@ public class DemoFieldController implements Initializable {
                                 ImageView image = (ImageView) getClass().getDeclaredField(
                                         String.format("%s%d", ROWS[row], column)
                                 ).get(DemoFieldController.this);
-                                image.setImage(placeholder);
+                                image.setImage(empty);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             } finally {
