@@ -1,7 +1,5 @@
 package corn_snake.util;
 
-import corn_snake.facade.controllers.FieldController;
-import corn_snake.facade.controllers.MenuController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
