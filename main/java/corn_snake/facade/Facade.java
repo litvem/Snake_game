@@ -38,8 +38,8 @@ public class Facade {
     public Tile[][] getField(){
         return field.getMatrix();}
 
-    public void updateField(String command) {
-        updateField(command);
+    public void updateField(String command) throws GameOverException {
+        field.updateField(command);
     }
 
     public int getScore(Score score){
@@ -49,7 +49,7 @@ public class Facade {
     public void saveLeaderboard(){
         try {
             Json.dump(getLeaderboard(),"src/main/resources");
-        }catch (Exception e){
+        } catch (Exception e){
             System.out.println("Directory Invalid");
         }
     }
