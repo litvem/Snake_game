@@ -260,7 +260,18 @@ public class FieldController implements Initializable {
                                             case SNAKE_CORNER_LEFT_DOWN_BODY:
                                                 image.setImage(TURN_DL);
                                                 break;
-                                            //CASE to add 4 cases for the snake tail once it's verified
+                                            case SNAKE_UPWARD_GOING_TAIL:   //4 cases for the snake tail added
+                                                image.setImage(TAIL_U);
+                                                break;
+                                            case SNAKE_DOWNWARD_GOING_TAIL:
+                                                image.setImage(TAIL_D);
+                                                break;
+                                            case SNAKE_RIGHTWARD_GOING_TAIL:
+                                                image.setImage(TAIL_R);
+                                                break;
+                                            case SNAKE_LEFTWARD_GOING_TAIL:
+                                                image.setImage(TAIL_L);
+                                                break;
                                             case OBSTACLE:
                                                 image.setImage(OBSTACLE);
                                                 break;
@@ -288,7 +299,7 @@ public class FieldController implements Initializable {
     /**
      * Gets one tile from the {@code FieldController}, given row and column
      * @param row row of the Tile matrix
-     * @param col column of the Tile matix
+     * @param col column of the Tile matrix
      * @return targeted ImageView in the FieldController
      * @throws IndexOutOfBoundsException if {@code row} or {@code col} are out of bounds of the matrix
      */
