@@ -25,8 +25,6 @@ public class FieldController implements Initializable {
 
     final static Facade FACADE = Main.FACADE;
 
-    private String command;
-
     // Borders either have a leading P or Q, or have the number 0 or 16
     @FXML
     private ImageView
@@ -56,12 +54,15 @@ public class FieldController implements Initializable {
     private int cdNum, row, column;
 
     @FXML
-    private ImageView startScreen;
+    private ImageView backgroundView;
 
     //add final below and initialize then in static block
     private final static Image
+            BACKGROUND = new Image(
+                    FieldController.class.getResource("field/GameBG.png").toExternalForm()
+            ),
             EMPTY = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/Empty.png").toExternalForm()
             ),
             FRUIT = new Image(
                     FieldController.class.getResource("snowflake.jpeg").toExternalForm()
@@ -112,10 +113,6 @@ public class FieldController implements Initializable {
                     FieldController.class.getResource("snowflake.jpeg").toExternalForm()
             );
 
-    private final static Image placeholder = new Image(
-            FieldController.class.getResource("snowflake.jpeg").toExternalForm()
-    );
-
     private static final char[] ROWS = {
             'Q', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'
     };
@@ -125,6 +122,7 @@ public class FieldController implements Initializable {
         cdNum = 3;
         row = 0;
         column = 0;
+        backgroundView.setImage(BACKGROUND);
         countdown.setText(String.format("Starting%sin...", IO.EOL));
 
         // Sets a countdown before starting the game
@@ -152,7 +150,7 @@ public class FieldController implements Initializable {
                             try {
                                 // Gets all tiles
                                 ImageView image = getTile(row, column);
-                                image.setImage(placeholder);
+                                image.setImage(EMPTY); // FIXME Add switch block
                             } catch (Exception e) {
                                 e.printStackTrace();
                             } finally {
@@ -168,29 +166,15 @@ public class FieldController implements Initializable {
                 )
         );
 
-        // Displays the score
-        Timeline score = new Timeline(
-                new KeyFrame(
-                        Duration.seconds(1), (event) -> {
-                            countdown.setText(String.valueOf(cdNum));
-                            cdNum--;
-                        }
-                )
-        );
-        cd.setDelay(Duration.seconds(1));
-        cd.setCycleCount(4);
-        cd.setOnFinished(
-                (event) -> {
-                    countdown.setText("");
-                }
-        );
+        load.setDelay(Duration.seconds(3.5));
+        load.setCycleCount(289);
 
         // Loads and displays the actual game field
         Timeline game = new Timeline(
                 new KeyFrame(
                         Duration.millis(5), (event) -> {
                             try {
-                                FACADE.updateField(command);
+                                FACADE.updateField(""); // FIXME
                             } catch (GameOverException e){
                                 Stage stage = (Stage) window.getScene().getWindow();
                                 try {
@@ -256,7 +240,7 @@ public class FieldController implements Initializable {
                                             case SNAKE_LEFTWARD_GOING_TAIL:
                                                 image.setImage(TAIL_L);
                                                 break;
-                                            default:
+                                            case FRUIT:
                                                 image.setImage(FRUIT);
                                                 break;
                                         }
@@ -268,14 +252,11 @@ public class FieldController implements Initializable {
                         }
                 )
         );
-
-        load.setDelay(Duration.seconds(3.5));
-        load.setCycleCount(289);
+        game.setDelay(Duration.seconds(5));
 
         load.play();
         cd.play();
         game.play();
-        score.play();
     }
 
     /**
