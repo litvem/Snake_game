@@ -204,29 +204,17 @@ public class FieldController implements Initializable {
 
                             Tile[][] field = FACADE.getField();
 
-                            for (int i = 1; i < field.length; i++){
+                            for (int i = 1; i < field.length - 1; i++){
                                 Tile[] row = field[i];
 
-                                for (int j = 1; j < row.length; j++){
+                                for (int j = 1; j < row.length - 1; j++){
                                     Tile tile = row[j];
                                     try {
                                         // Retrieve the tile in question
                                         ImageView image = getTile(i, j);
                                         switch (tile) {
-                                            case FRUIT:
-                                                image.setImage(FRUIT);
-                                                break;
-                                            case SNAKE_HEAD_UP:
-                                                image.setImage(HEAD_U);
-                                                break;
-                                            case SNAKE_HEAD_DOWN:
-                                                image.setImage(HEAD_D);
-                                                break;
-                                            case SNAKE_HEAD_RIGHT:
-                                                image.setImage(HEAD_R);
-                                                break;
-                                            case SNAKE_HEAD_LEFT:
-                                                image.setImage(HEAD_L);
+                                            case EMPTY:
+                                                image.setImage(EMPTY);
                                                 break;
                                             case SNAKE_HORIZONTAL_BODY:
                                                 image.setImage(BODY_H);
@@ -246,12 +234,32 @@ public class FieldController implements Initializable {
                                             case SNAKE_CORNER_LEFT_DOWN_BODY:
                                                 image.setImage(TURN_DL);
                                                 break;
-                                            //CASE to add 4 cases for the snake tail once it's verified
-                                            case OBSTACLE:
-                                                image.setImage(OBSTACLE);
+                                            case SNAKE_HEAD_UP:
+                                                image.setImage(HEAD_U);
+                                                break;
+                                            case SNAKE_HEAD_DOWN:
+                                                image.setImage(HEAD_D);
+                                                break;
+                                            case SNAKE_HEAD_RIGHT:
+                                                image.setImage(HEAD_R);
+                                                break;
+                                            case SNAKE_HEAD_LEFT:
+                                                image.setImage(HEAD_L);
+                                                break;
+                                            case SNAKE_UPWARD_GOING_TAIL:
+                                                image.setImage(TAIL_U);
+                                                break;
+                                            case SNAKE_DOWNWARD_GOING_TAIL:
+                                                image.setImage(TAIL_D);
+                                                break;
+                                            case SNAKE_RIGHTWARD_GOING_TAIL:
+                                                image.setImage(TAIL_R);
+                                                break;
+                                            case SNAKE_LEFTWARD_GOING_TAIL:
+                                                image.setImage(TAIL_L);
                                                 break;
                                             default:
-                                                image.setImage(EMPTY);
+                                                image.setImage(FRUIT);
                                                 break;
                                         }
                                     } catch (Exception e) {
@@ -275,7 +283,7 @@ public class FieldController implements Initializable {
     /**
      * Gets one tile from the {@code FieldController}, given row and column
      * @param row row of the Tile matrix
-     * @param col column of the Tile matix
+     * @param col column of the Tile matrix
      * @return targeted ImageView in the FieldController
      * @throws IndexOutOfBoundsException if {@code row} or {@code col} are out of bounds of the matrix
      */
