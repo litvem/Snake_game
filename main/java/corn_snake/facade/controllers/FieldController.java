@@ -151,9 +151,7 @@ public class FieldController implements Initializable {
                         Duration.millis(5), (event) -> {
                             try {
                                 // Gets all tiles
-                                ImageView image = (ImageView) getClass().getDeclaredField(
-                                        String.format("%s%d", ROWS[row], column)
-                                ).get(corn_snake.facade.controllers.FieldController.this);
+                                ImageView image = getTile(row, column);
                                 image.setImage(placeholder);
                             } catch (Exception e) {
                                 e.printStackTrace();
