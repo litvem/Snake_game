@@ -30,7 +30,7 @@ public class LeaderboardController implements Initializable {
             rank1, name1, score1,
             rank2, name2, score2,
             rank3, name3, score3,
-            rank4, name4, score,
+            rank4, name4, score4,
             rank5, name5, score5,
             rank6, name6, score6,
             rank7, name7, score7,
