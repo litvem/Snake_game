@@ -1,5 +1,6 @@
 package corn_snake.demo;
 
+import corn_snake.facade.controllers.FieldController;
 import corn_snake.util.IO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -68,10 +69,10 @@ public class DemoFieldController implements Initializable {
 
     static {
         background = new Image(
-                "file:///" + DemoFieldController.class.getResource("GameBG.png").getFile()
+                DemoFieldController.class.getResource("GameBG.png").toExternalForm()
         );
         empty = new Image(
-                "file:///" + DemoFieldController.class.getResource("Empty.png").getFile()
+                FieldController.class.getResource("tiles/Empty.png").toExternalForm()
         );
     }
 
