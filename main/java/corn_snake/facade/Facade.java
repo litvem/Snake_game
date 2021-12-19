@@ -23,6 +23,10 @@ public class Facade {
         this.field = new Field();
     }
 
+    public String getCommand() {
+        return command;
+    }
+
     public void moveSnake() throws GameOverException {
         field.moveSnake(command);
     }
@@ -57,6 +61,7 @@ public class Facade {
     public void addScore(String name, int score){
         lb.addScore(name,score);
     }
+
 
     public Tile[][] getField(){
         return field.getMatrix();}
