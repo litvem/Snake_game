@@ -9,6 +9,8 @@ public class Facade {
 
     private Leaderboard lb;
     private Field field;
+    private String command;
+    private String previousCommand;
 
     public Facade() {
         try {
@@ -21,8 +23,29 @@ public class Facade {
         this.field = new Field();
     }
 
-    public void moveSnake(String command) throws GameOverException {
+    public void moveSnake() throws GameOverException {
         field.moveSnake(command);
+    }
+
+    public void setCommand(String command){
+        if(command.equals("s") || command.equals("S")) {
+            command = "d";
+            previousCommand="d";
+        }else if(command.equals("w") || command.equals("W")){
+            command="u";
+            previousCommand="u";
+        }
+        else if(command.equals("a") || command.equals("A")){
+            command="l";
+            previousCommand="l";
+        }
+        else if(command.equals("d") || command.equals("D")){
+            command="r";
+            previousCommand="r";
+        }
+        else{
+            command=previousCommand;
+        }
     }
 
     public void newField(){
