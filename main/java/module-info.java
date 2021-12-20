@@ -16,4 +16,5 @@ module corn_snake {
     opens corn_snake.facade.controllers to javafx.graphics, javafx.fxml;
     exports corn_snake;
     exports corn_snake.facade;
+    exports corn_snake.back_end;
 }
