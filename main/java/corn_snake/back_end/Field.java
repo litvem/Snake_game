@@ -61,6 +61,10 @@ public class Field {
         }
     }
 
+    public int getSnakeSize(){
+        return this.snake.getSize();
+    }
+
     /**
      * Creates and add fruit until random location of food is empty.
      */

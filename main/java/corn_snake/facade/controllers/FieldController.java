@@ -178,7 +178,7 @@ public class FieldController implements Initializable {
                 new KeyFrame(
                         Duration.millis(5), (event) -> {
                             try {
-                                FACADE.updateField(FACADE.getCommand()); // FIXME
+                                FACADE.moveSnake(); // FIXME
                             } catch (GameOverException e){
                                 Stage stage = (Stage) window.getScene().getWindow();
                                 try {
