@@ -55,7 +55,7 @@ public class SaveScoreController implements Initializable {
     @FXML
     public void onSaveClick(MouseEvent event) {
         String name = nameField.getText();
-        int score = FACADE.getScore(new Score("name", 0)); // FIXME
+        int score = FACADE.getScore();
 
         FACADE.addScore(name, score);
         try {
