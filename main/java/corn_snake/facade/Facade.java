@@ -10,7 +10,7 @@ public class Facade {
     private Leaderboard lb;
     private Field field;
     private String command;
-    private String previousCommand;
+    private int score;
 
     public Facade() {
         try {
@@ -23,32 +23,21 @@ public class Facade {
         this.field = new Field();
     }
 
-    public String getCommand() {
-        return command;
-    }
-
     public void moveSnake() throws GameOverException {
         field.moveSnake(command);
     }
 
     public void setCommand(String command){
-        if(command.equals("s") || command.equals("S")) {
-            command = "d";
-            previousCommand="d";
-        }else if(command.equals("w") || command.equals("W")){
-            command="u";
-            previousCommand="u";
+        if(command.equals("s") || command.equals("S") || command.equals("k") || command.equals("K")) {
+            this.command = "d";
+        }else if(command.equals("w") || command.equals("W") || command.equals("i") || command.equals("I")){
+            this.command="u";
         }
-        else if(command.equals("a") || command.equals("A")){
-            command="l";
-            previousCommand="l";
+        else if(command.equals("a") || command.equals("A") || command.equals("j") || command.equals("J")){
+            this.command="l";
         }
-        else if(command.equals("d") || command.equals("D")){
-            command="r";
-            previousCommand="r";
-        }
-        else{
-            command=previousCommand;
+        else if(command.equals("d") || command.equals("D") || command.equals("l") || command.equals("L")){
+            this.command="r";
         }
     }
 
@@ -66,17 +55,18 @@ public class Facade {
     public Tile[][] getField(){
         return field.getMatrix();}
 
-    public void updateField(String command) throws GameOverException {
-        field.updateField(command);
-    }
-
-    public int getScore(Score score){
-        return score.getScore();
+    public int getLiveScore(){
+        score=0;
+        int currentSnakeSize= field.getSnakeSize();
+        if(currentSnakeSize>4){
+            score=currentSnakeSize-4;
+        }
+        return score;
     }
 
     public void saveLeaderboard(){
         try {
-            Json.dump(getLeaderboard(),"src/main/resources");
+            Json.dump(lb, getClass().getResource("leaderboard.json").getFile());
         } catch (Exception e){
             System.out.println("Directory Invalid");
         }
