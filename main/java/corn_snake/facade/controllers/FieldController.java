@@ -129,6 +129,7 @@ public class FieldController implements Initializable {
         column = 0;
         backgroundView.setImage(BACKGROUND);
         countdown.setText(String.format("Starting%sin...", IO.EOL));
+        FACADE.newField();
 
         // Sets a countdown before starting the game
         Timeline cd = new Timeline(
@@ -149,42 +150,35 @@ public class FieldController implements Initializable {
 
         // Loads the field with an "animation"
         // Duration.millis(5) equivalent to Thread.sleep(5)
+        Tile[][] newField = FACADE.getField();
         Timeline load = new Timeline(
                 new KeyFrame(
                         Duration.millis(5), (event) -> {
                             try {
                                 // Gets all tiles
-                                Tile[][] newField = FACADE.getField();
+                                Tile tile = newField[row][column];
 
-                                for (int i = 0; i < newField.length; i++){
-                                    Tile[] row = newField[i];
+                                ImageView image = getTile(row, column);
 
-                                    for (int j = 0; j < row.length; j++) {
-                                        Tile tile = row[j];
-
-                                        ImageView image = getTile(i, j);
-
-                                        switch (tile) {
-                                            case EMPTY:
-                                                image.setImage(EMPTY);
-                                                break;
-                                            case OBSTACLE:
-                                                image.setImage(OBSTACLE);
-                                                break;
-                                            case SNAKE_VERTICAL_BODY:
-                                                image.setImage(BODY_V);
-                                                break;
-                                            case SNAKE_HEAD_DOWN:
-                                                image.setImage(HEAD_D);
-                                                break;
-                                            case SNAKE_DOWNWARD_GOING_TAIL:
-                                                image.setImage(TAIL_U);
-                                                break;
-                                            case FRUIT:
-                                                image.setImage(FRUIT);
-                                                break;
-                                        }
-                                    }
+                                switch (tile) {
+                                    case EMPTY:
+                                        image.setImage(EMPTY);
+                                        break;
+                                    case OBSTACLE:
+                                        image.setImage(OBSTACLE);
+                                        break;
+                                    case SNAKE_VERTICAL_BODY:
+                                        image.setImage(BODY_V);
+                                        break;
+                                    case SNAKE_HEAD_DOWN:
+                                        image.setImage(HEAD_D);
+                                        break;
+                                    case SNAKE_DOWNWARD_GOING_TAIL:
+                                        image.setImage(TAIL_U);
+                                        break;
+                                    case FRUIT:
+                                        image.setImage(FRUIT);
+                                        break;
                                 }
                             } catch (Exception e) {
                                 e.printStackTrace();
