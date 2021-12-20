@@ -16,7 +16,7 @@ public class HowToPlayController {
     @FXML
     public void onMainMenuClick(MouseEvent event) throws IOException {
         Stage stage = (Stage) window.getScene().getWindow();
-        IO.loadScene(stage, "menu-view.fxml", MenuController.class);
+        IO.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
     }
 
 

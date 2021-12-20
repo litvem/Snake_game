@@ -1,13 +1,17 @@
 package corn_snake.facade.controllers;
 
 import corn_snake.util.IO;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,40 +23,40 @@ public class MenuController implements Initializable {
     private AnchorPane window;
 
     @FXML
-    private ImageView titleView, playButton, controlsButton, leaderboardButton, creditsButton, exitButton;
+    private ImageView backgroundView, titleView, playButton, controlsButton, leaderboardButton, creditsButton, exitButton;
 
-    private Image title, play, controls, leaderboard, credits, exit;
+    @FXML
+    private Label playLabel;
+
+    // Images used in the title screen
+    private final static Image
+            BACKGROUND = new Image(MenuController.class.getResource("menu/TitleBG.png").toExternalForm()),
+            TITLE = new Image(MenuController.class.getResource("menu/Title.png").toExternalForm()),
+            PLAY = new Image(MenuController.class.getResource("menu/PlayButton.png").toExternalForm()),
+            CONTROLS = new Image(MenuController.class.getResource("menu/ControlsButton.png").toExternalForm()),
+            LEADERBOARD = new Image(MenuController.class.getResource("menu/LeaderboardButton.png").toExternalForm()),
+            CREDITS = new Image(MenuController.class.getResource("menu/CreditsButton.png").toExternalForm()),
+            EXIT = new Image(MenuController.class.getResource("menu/ExitButton.png").toExternalForm());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            title = new Image("file:///" + getClass().getResource("Title.png").getFile());
-            play = new Image("file:///" + getClass().getResource("PlayButton.png").getFile());
-            controls = new Image("file:///" + getClass().getResource("ControlsButton.png").getFile());
-            leaderboard = new Image("file:///" + getClass().getResource("LeaderboardButton.png").getFile());
-            credits = new Image("file:///" + getClass().getResource("CreditsButton.png").getFile());
-            exit = new Image("file:///" + getClass().getResource("ExitButton.png").getFile());
-        } catch (NullPointerException e) {
-            System.out.println(e.getMessage());
-        }
+        backgroundView.setImage(BACKGROUND);
 
-        /*
-        titleView.setImage(title);
-        playButton.setImage(play);
-        controlsButton.setImage(controls);
-        leaderboardButton.setImage(leaderboard);
-        creditsButton.setImage(credits);
-        exitButton.setImage(exit);
+        // Loads all visuals with a 0.2 seconds delay between each image/button
+        Timeline load = new Timeline(
+                new KeyFrame(Duration.seconds(0.2), (event) -> titleView.setImage(TITLE)),
+                new KeyFrame(Duration.seconds(0.4), (event) -> {
+                    playButton.setImage(PLAY);
+                    playLabel.setText("PLAY");
+                }),
+                new KeyFrame(Duration.seconds(0.6), (event) -> controlsButton.setImage(CONTROLS)),
+                new KeyFrame(Duration.seconds(0.8), (event) -> leaderboardButton.setImage(LEADERBOARD)),
+                new KeyFrame(Duration.seconds(1), (event) -> creditsButton.setImage(CREDITS)),
+                new KeyFrame(Duration.seconds(1.2), (event) -> exitButton.setImage(EXIT))
+        );
+        load.setDelay(Duration.seconds(0.5));
 
-         */
-
-        LoadButtons loadButtons = new LoadButtons();
-        Thread coro = new Thread(loadButtons);
-        coro.start();
-    }
-
-    public void start() {
-
+        load.play();
     }
 
     @FXML
@@ -64,7 +68,7 @@ public class MenuController implements Initializable {
     public void onPlayClick(MouseEvent event) throws IOException {
         Stage stage = (Stage) window.getScene().getWindow();
 
-        IO.loadScene(stage, "game_field.fxml", FieldController.class);
+        IO.loadScene(stage, "game_field.fxml", FieldController.class, "field/FieldStyle.css");
     }
 
     @FXML
@@ -86,28 +90,5 @@ public class MenuController implements Initializable {
         Stage stage = (Stage) window.getScene().getWindow();
 
         IO.loadScene(stage, "how_to_play.fxml", HowToPlayController.class);
-    }
-
-    private class LoadButtons implements Runnable {
-
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(1_000);
-                titleView.setImage(title);
-                Thread.sleep(500);
-                playButton.setImage(play);
-                Thread.sleep(500);
-                controlsButton.setImage(controls);
-                Thread.sleep(500);
-                leaderboardButton.setImage(leaderboard);
-                Thread.sleep(500);
-                creditsButton.setImage(credits);
-                Thread.sleep(500);
-                exitButton.setImage(exit);
-            } catch (InterruptedException e) {
-
-            }
-        }
     }
 }
