@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,7 +25,11 @@ public class MenuController implements Initializable {
     @FXML
     private ImageView backgroundView, titleView, playButton, controlsButton, leaderboardButton, creditsButton, exitButton;
 
-    private static Image
+    @FXML
+    private Label playLabel;
+
+    // Images used in the title screen
+    private final static Image
             BACKGROUND = new Image(MenuController.class.getResource("menu/TitleBG.png").toExternalForm()),
             TITLE = new Image(MenuController.class.getResource("menu/Title.png").toExternalForm()),
             PLAY = new Image(MenuController.class.getResource("menu/PlayButton.png").toExternalForm()),
@@ -40,7 +45,10 @@ public class MenuController implements Initializable {
         // Loads all visuals with a 0.2 seconds delay between each image/button
         Timeline load = new Timeline(
                 new KeyFrame(Duration.seconds(0.2), (event) -> titleView.setImage(TITLE)),
-                new KeyFrame(Duration.seconds(0.4), (event) -> playButton.setImage(PLAY)),
+                new KeyFrame(Duration.seconds(0.4), (event) -> {
+                    playButton.setImage(PLAY);
+                    playLabel.setText("PLAY");
+                }),
                 new KeyFrame(Duration.seconds(0.6), (event) -> controlsButton.setImage(CONTROLS)),
                 new KeyFrame(Duration.seconds(0.8), (event) -> leaderboardButton.setImage(LEADERBOARD)),
                 new KeyFrame(Duration.seconds(1), (event) -> creditsButton.setImage(CREDITS)),

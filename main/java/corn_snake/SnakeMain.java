@@ -1,6 +1,7 @@
 package corn_snake;
 
 import corn_snake.facade.controllers.MenuController;
+import corn_snake.util.IO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,18 +19,11 @@ public class SnakeMain extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // Starts from the main menu
-        FXMLLoader fxmlLoader = new FXMLLoader(
-                MenuController.class.getResource("menu-view.fxml")
-        );
-        Scene scene = new Scene(fxmlLoader.load());
-
-        Image icon = new Image("file:///" + getClass().getResource("Icon.png").getFile());
-        stage.getIcons().add(icon);
+        IO.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
 
         stage.setResizable(false);
 
         stage.setTitle("Corn Snake");
-        stage.setScene(scene);
         stage.show();
     }
 }
