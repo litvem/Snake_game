@@ -43,6 +43,7 @@ public class Facade {
 
     public void newField() {
         field = new Field();
+        command = "d";
         score = 0;
     }
 
