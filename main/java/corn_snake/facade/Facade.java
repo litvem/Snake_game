@@ -4,8 +4,9 @@ import corn_snake.back_end.*;
 import java.util.List;
 import corn_snake.util.Json;
 
-
 public class Facade {
+
+    private final static int INITIAL_LENGTH = 4;
 
     private Leaderboard lb;
     private Field field;
@@ -20,54 +21,51 @@ public class Facade {
             // Creates a new leaderboard if loading fails
             this.lb = new Leaderboard();
         }
-        this.field = new Field();
+        newField();
     }
 
     public void moveSnake() throws GameOverException {
         field.moveSnake(command);
+        score = field.getSnakeSize() - INITIAL_LENGTH;
     }
 
-    public void setCommand(String command){
-        if(command.equals("s") || command.equals("S") || command.equals("k") || command.equals("K")) {
+    public void setCommand(String command) {
+        if (command.equals("s") || command.equals("S") || command.equals("k") || command.equals("K")) {
             this.command = "d";
-        }else if(command.equals("w") || command.equals("W") || command.equals("i") || command.equals("I")){
+        } else if (command.equals("w") || command.equals("W") || command.equals("i") || command.equals("I")) {
             this.command="u";
-        }
-        else if(command.equals("a") || command.equals("A") || command.equals("j") || command.equals("J")){
+        } else if(command.equals("a") || command.equals("A") || command.equals("j") || command.equals("J")) {
             this.command="l";
-        }
-        else if(command.equals("d") || command.equals("D") || command.equals("l") || command.equals("L")){
+        } else if(command.equals("d") || command.equals("D") || command.equals("l") || command.equals("L")) {
             this.command="r";
         }
     }
 
-    public void newField(){
-        field= new Field();
+    public void newField() {
+        field = new Field();
+        score = 0;
     }
 
-    public List<Score> getLeaderboard(){return lb.getTop10();}
+    public List<Score> getLeaderboard() {
+        return lb.getTop10();
+    }
 
-    public void addScore(String name, int score){
+    public void addScore(String name, int score) {
         lb.addScore(name,score);
     }
 
 
-    public Tile[][] getField(){
+    public Tile[][] getField() {
         return field.getMatrix();}
 
-    public int getLiveScore(){
-        score=0;
-        int currentSnakeSize= field.getSnakeSize();
-        if(currentSnakeSize>4){
-            score=currentSnakeSize-4;
-        }
+    public int getScore() {
         return score;
     }
 
-    public void saveLeaderboard(){
+    public void saveLeaderboard() {
         try {
             Json.dump(lb, getClass().getResource("leaderboard.json").getFile());
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Directory Invalid");
         }
     }
