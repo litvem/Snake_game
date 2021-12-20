@@ -23,8 +23,10 @@ import java.util.ResourceBundle;
 
 public class FieldController implements Initializable {
 
+    // Unified facade
     final static Facade FACADE = Main.FACADE;
 
+    // Tile grid
     // Borders either have a leading P or Q, or have the number 0 or 16
     @FXML
     private ImageView
@@ -51,12 +53,11 @@ public class FieldController implements Initializable {
 
     @FXML
     private Label score, countdown;
-    private int cdNum, row, column;
 
     @FXML
     private ImageView backgroundView;
 
-    //add final below and initialize then in static block
+    // Images used in the game scene
     private final static Image
             BACKGROUND = new Image(
                     FieldController.class.getResource("field/GameBG.png").toExternalForm()
@@ -116,6 +117,9 @@ public class FieldController implements Initializable {
     private static final char[] ROWS = {
             'Q', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'
     };
+
+    // Iteration trackers
+    private int cdNum, row, column;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
