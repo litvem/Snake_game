@@ -240,7 +240,6 @@ public class Field {
                     this.setBodyDirection(i);
                     this.addFruit();
                     return;
-
                 } else {
                     throw new GameOverException("Game Over");
                 }

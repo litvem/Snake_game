@@ -67,7 +67,6 @@ public class MenuController implements Initializable {
     @FXML
     public void onPlayClick(MouseEvent event) throws IOException {
         Stage stage = (Stage) window.getScene().getWindow();
-
         IO.loadScene(stage, "game_field.fxml", FieldController.class, "field/FieldStyle.css");
     }
 
@@ -90,5 +89,27 @@ public class MenuController implements Initializable {
         Stage stage = (Stage) window.getScene().getWindow();
 
         IO.loadScene(stage, "how_to_play.fxml", HowToPlayController.class);
+    }
+
+    private class LoadButtons implements Runnable {
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(1_000);
+                titleView.setImage(title);
+                Thread.sleep(500);
+                playButton.setImage(play);
+                Thread.sleep(500);
+                controlsButton.setImage(controls);
+                Thread.sleep(500);
+                leaderboardButton.setImage(leaderboard);
+                Thread.sleep(500);
+                creditsButton.setImage(credits);
+                Thread.sleep(500);
+                exitButton.setImage(exit);
+            } catch (InterruptedException e) {
+
+            }
+        }
     }
 }

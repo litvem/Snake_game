@@ -18,6 +18,4 @@ public class HowToPlayController {
         Stage stage = (Stage) window.getScene().getWindow();
         IO.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
     }
-
-
 }

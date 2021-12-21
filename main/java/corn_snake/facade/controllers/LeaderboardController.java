@@ -104,5 +104,4 @@ public class LeaderboardController implements Initializable {
         load.setCycleCount(10);
         load.play();
     }
-
 }
