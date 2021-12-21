@@ -1,10 +1,5 @@
 package corn_snake.util;
 
-<<<<<<< HEAD
-=======
-import corn_snake.facade.controllers.FieldController;
-import corn_snake.facade.controllers.MenuController;
->>>>>>> main
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -39,7 +34,6 @@ public class IO {
      * @throws IOException if loading fails
      */
     public static void loadScene(Stage currentStage, String file, Class<?> clazz) throws IOException {
-<<<<<<< HEAD
         loadScene(currentStage, file, clazz, null);
     }
 
@@ -55,20 +49,15 @@ public class IO {
      * @throws IOException if loading fails
      */
     public static void loadScene(Stage currentStage, String file, Class<?> clazz, String css) throws IOException {
-=======
->>>>>>> main
         FXMLLoader fxmlLoader = new FXMLLoader(
                 clazz.getResource(file)
         );
         Scene scene = new Scene(fxmlLoader.load());
 
-<<<<<<< HEAD
         if (css != null) {
             scene.getStylesheets().add(clazz.getResource(css).toExternalForm());
         }
 
-=======
->>>>>>> main
         currentStage.setResizable(false);
 
         currentStage.setScene(scene);
