@@ -90,7 +90,7 @@ public class MenuController implements Initializable {
 
         IO.loadScene(stage, "how_to_play.fxml", HowToPlayController.class);
     }
-
+    /*
     private class LoadButtons implements Runnable {
         @Override
         public void run() {
@@ -111,5 +111,5 @@ public class MenuController implements Initializable {
 
             }
         }
-    }
+    }*/
 }

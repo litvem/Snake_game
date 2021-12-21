@@ -20,10 +20,6 @@ public class CreditsController {
     @FXML
     public void onMenuButtonClick(MouseEvent event) throws IOException {
         Stage stage = (Stage) window.getScene().getWindow();
-<<<<<<< HEAD
         IO.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
-=======
-        IO.loadScene(stage, "menu-view.fxml",MenuController.class);
->>>>>>> main
     }
 }
