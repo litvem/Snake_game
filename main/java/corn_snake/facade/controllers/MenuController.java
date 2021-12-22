@@ -75,7 +75,10 @@ public class MenuController implements Initializable {
             Class<FieldController> clazz = FieldController.class;
             FXMLLoader fxmlLoader = new FXMLLoader(clazz.getResource("field/game_field.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
+
+            // Create anonymous event handler for the game field
             FieldController controller = fxmlLoader.getController();
+            // onKeyPressed calls onKeyPressed(String command) in FieldController
             scene.setOnKeyPressed((event) -> controller.onKeyPressed(event.getCode().toString()));
 
             scene.getStylesheets().add(clazz.getResource("field/FieldStyle.css").toExternalForm());
@@ -85,7 +88,7 @@ public class MenuController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (Exception ignored) {
-            ignored.printStackTrace();
+
         }
     }
 
