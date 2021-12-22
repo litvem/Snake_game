@@ -88,7 +88,7 @@ public class MenuController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (Exception ignored) {
-            ignored.printStackTrace();
+
         }
     }
 
@@ -127,26 +127,4 @@ public class MenuController implements Initializable {
     private Stage getStage() {
         return (Stage) window.getScene().getWindow();
     }
-    /*
-    private class LoadButtons implements Runnable {
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(1_000);
-                titleView.setImage(title);
-                Thread.sleep(500);
-                playButton.setImage(play);
-                Thread.sleep(500);
-                controlsButton.setImage(controls);
-                Thread.sleep(500);
-                leaderboardButton.setImage(leaderboard);
-                Thread.sleep(500);
-                creditsButton.setImage(credits);
-                Thread.sleep(500);
-                exitButton.setImage(exit);
-            } catch (InterruptedException e) {
-
-            }
-        }
-    }*/
 }
