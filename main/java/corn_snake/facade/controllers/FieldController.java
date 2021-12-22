@@ -209,7 +209,7 @@ public class FieldController implements Initializable {
                         game.stop();
                         Stage stage = (Stage) window.getScene().getWindow();
                         try {
-                            IO.loadScene(stage, "game_over.fxml", GameOverController.class);
+                            IO.loadScene(stage, "game_over/game_over.fxml", GameOverController.class, "game_over/GameOverStyle.css");
                         } catch (IOException ignored) {
 
                         }
