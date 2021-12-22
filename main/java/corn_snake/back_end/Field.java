@@ -137,7 +137,8 @@ public class Field {
                     case "d":
 
                         if (snake.getSegment(i - 1)[0] == row + 1 && snake.getSegment(i - 1)[1] == column) {
-                            return;
+                            newHeadCoordinates = new Integer[]{row - 1, column};
+                            newHeadTile = Tile.SNAKE_HEAD_UP;
                         } else {
                             newHeadCoordinates = new Integer[]{row + 1, column};
                             newHeadTile = Tile.SNAKE_HEAD_DOWN;
@@ -147,7 +148,8 @@ public class Field {
                     case "u":
 
                         if (snake.getSegment(i - 1)[0] == row - 1 && snake.getSegment(i - 1)[1] == column) {
-                            return;
+                            newHeadCoordinates = new Integer[]{row + 1, column};
+                            newHeadTile = Tile.SNAKE_HEAD_DOWN;
                         } else {
                             newHeadCoordinates = new Integer[]{row - 1, column};
                             newHeadTile = Tile.SNAKE_HEAD_UP;
@@ -157,7 +159,8 @@ public class Field {
                     case "r":
 
                         if (snake.getSegment(i - 1)[0] == row && snake.getSegment(i - 1)[1] == column + 1) {
-                            return;
+                            newHeadCoordinates = new Integer[]{row, column - 1};
+                            newHeadTile = Tile.SNAKE_HEAD_LEFT;
                         } else {
                             newHeadCoordinates = new Integer[]{row, column + 1};
                             newHeadTile = Tile.SNAKE_HEAD_RIGHT;
@@ -167,7 +170,8 @@ public class Field {
                     case "l":
 
                         if (snake.getSegment(i - 1)[0] == row && snake.getSegment(i - 1)[1] == column - 1) {
-                            return;
+                            newHeadCoordinates = new Integer[]{row, column + 1};
+                            newHeadTile = Tile.SNAKE_HEAD_RIGHT;
                         } else {
                             newHeadCoordinates = new Integer[]{row, column - 1};
                             newHeadTile = Tile.SNAKE_HEAD_LEFT;
