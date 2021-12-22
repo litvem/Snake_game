@@ -1,0 +1,22 @@
+.label {
+    -fx-text-fill: #41a200;
+    -fx-font-family: "Comic Sans MS";
+    -fx-alignment: center;
+}
+
+#scoreText {
+    -fx-font-size: 30;
+}
+
+#playerScore {
+    -fx-font-size: 50;
+}
+
+#enterName {
+    -fx-font-size: 20;
+}
+
+#nameField {
+    -fx-text-fill: #41a200;
+    -fx-font-family: "Comic Sans MS";
+}
