@@ -1,14 +1,12 @@
 package corn_snake.facade.controllers;
 
 import corn_snake.Main;
-import corn_snake.back_end.Score;
 import corn_snake.facade.Facade;
 import corn_snake.util.IO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
