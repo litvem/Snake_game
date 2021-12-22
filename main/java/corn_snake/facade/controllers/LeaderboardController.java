@@ -82,7 +82,7 @@ public class LeaderboardController implements Initializable {
         row = 1;
 
         Timeline load = new Timeline(
-                new KeyFrame(Duration.millis(10), (event) -> {
+                new KeyFrame(Duration.millis(100), (event) -> {
                         try {
                             String rank = String.valueOf(row) + ".";
                             String name = lb.get(row - 1).getName();
@@ -93,7 +93,13 @@ public class LeaderboardController implements Initializable {
                             rankLabel.setText(rank);
                             nameLabel.setText(name);
                             scoreLabel.setText(String.valueOf(score));
-                        } catch (IndexOutOfBoundsException e) {
+                        } catch (Exception e) {
+                            Label rankLabel = getLabel(row, 0);
+                            Label nameLabel = getLabel(row, 1);
+                            Label scoreLabel = getLabel(row, 2);
+                            rankLabel.setText("Foo");
+                            nameLabel.setText("Bar");
+                            scoreLabel.setText("5");
 
                         }
                         row++;
