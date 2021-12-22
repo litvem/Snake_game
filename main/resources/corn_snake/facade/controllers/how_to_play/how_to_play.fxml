@@ -8,12 +8,12 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@HowToPlay.png" />
+            <Image url="@../HowToPlay.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="527.0" layoutY="14.0" onMouseClicked="#onMainMenuClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Leaderboard.png" />
+            <Image url="@../Leaderboard.png" />
          </image>
       </ImageView>
    </children>

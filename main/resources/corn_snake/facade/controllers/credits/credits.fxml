@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@credits.png" />
+            <Image url="@../credits.png" />
          </image>
       </ImageView>
       <Button fx:id="button" layoutX="252.0" layoutY="330.0" mnemonicParsing="false" onAction="#onMenuButtonClick" onMousePressed="#onMenuButtonClick" prefHeight="44.0" prefWidth="95.0" text="Main Menu">

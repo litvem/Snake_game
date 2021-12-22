@@ -74,19 +74,19 @@ public class SaveScoreController implements Initializable {
     }
 
     @FXML
-    public void onHomeClick(MouseEvent event) throws IOException {
+    public void onHomeClick() throws IOException {
         IO.loadScene(getStage(), "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
     }
 
     @FXML
-    public void onSaveClick(MouseEvent event) {
+    public void onSaveClick() {
         String name = nameField.getText();
         int score = FACADE.getScore();
 
         FACADE.addScore(name, score);
         FACADE.saveLeaderboard();
         try {
-            IO.loadScene(getStage(), "leaderboard.fxml", LeaderboardController.class);
+            IO.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class);
         } catch (Exception ignored) {
 
         }

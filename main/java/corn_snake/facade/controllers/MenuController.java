@@ -73,7 +73,7 @@ public class MenuController implements Initializable {
         try {
             Stage stage = getStage();
             Class<FieldController> clazz = FieldController.class;
-            FXMLLoader fxmlLoader = new FXMLLoader(clazz.getResource("game_field.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(clazz.getResource("field/game_field.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             FieldController controller = fxmlLoader.getController();
             scene.setOnKeyPressed((event) -> controller.onKeyPressed(event.getCode().toString()));
@@ -92,7 +92,7 @@ public class MenuController implements Initializable {
     @FXML
     public void onCreditsClick() {
         try {
-            IO.loadScene(getStage(), "credits.fxml", CreditsController.class);
+            IO.loadScene(getStage(), "credits/credits.fxml", CreditsController.class);
         } catch (IOException ignored) {
 
         }
@@ -101,7 +101,7 @@ public class MenuController implements Initializable {
     @FXML
     public void onLeaderboardClick() {
         try {
-            IO.loadScene(getStage(), "leaderboard.fxml", LeaderboardController.class);
+            IO.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class);
         } catch (IOException ignored) {
 
         }
@@ -110,7 +110,7 @@ public class MenuController implements Initializable {
     @FXML
     public void onHowToPlayClick() {
         try {
-            IO.loadScene(getStage(), "how_to_play.fxml", HowToPlayController.class);
+            IO.loadScene(getStage(), "how_to_play/how_to_play.fxml", HowToPlayController.class);
         } catch (IOException ignored) {
 
         }
