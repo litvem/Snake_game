@@ -3,6 +3,7 @@ package corn_snake.facade.controllers;
 import corn_snake.Main;
 import corn_snake.util.IO;
 import javafx.animation.KeyFrame;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,6 +42,8 @@ public class MenuController implements Initializable {
             LEADERBOARD = new Image(MenuController.class.getResource("menu/LeaderboardButton.png").toExternalForm()),
             CREDITS = new Image(MenuController.class.getResource("menu/CreditsButton.png").toExternalForm()),
             EXIT = new Image(MenuController.class.getResource("menu/ExitButton.png").toExternalForm());
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,7 +92,7 @@ public class MenuController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (Exception ignored) {
-            ignored.printStackTrace();
+
         }
     }
 
@@ -119,6 +123,101 @@ public class MenuController implements Initializable {
         }
     }
 
+            //scale buttons up
+    @FXML
+        public void largeExitButton() {
+
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(exitButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+    @FXML
+    public void largecontrolButton() {
+
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(controlsButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }@FXML
+    public void largeleaderboardButton() {
+
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(leaderboardButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+
+    @FXML
+    public void largecreditsButton() {
+
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(creditsButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+
+
+
+        // scale buttons back
+    @FXML
+        public void smallexitButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(exitButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }@FXML
+    public void smallcontrolButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(controlsButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }@FXML
+    public void smallleaderboardButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(leaderboardButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }@FXML
+    public void smallcreditsButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(creditsButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+
     /**
      * Retrieves the current stage that's being used
      *
@@ -127,26 +226,29 @@ public class MenuController implements Initializable {
     private Stage getStage() {
         return (Stage) window.getScene().getWindow();
     }
-    /*
-    private class LoadButtons implements Runnable {
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(1_000);
-                titleView.setImage(title);
-                Thread.sleep(500);
-                playButton.setImage(play);
-                Thread.sleep(500);
-                controlsButton.setImage(controls);
-                Thread.sleep(500);
-                leaderboardButton.setImage(leaderboard);
-                Thread.sleep(500);
-                creditsButton.setImage(credits);
-                Thread.sleep(500);
-                exitButton.setImage(exit);
-            } catch (InterruptedException e) {
 
-            }
-        }
-    }*/
+
+
+    @FXML
+    public void largeplayLabel() {
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(playLabel);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+    }@FXML
+    public void smallplayLabel() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(playLabel);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+
+
 }
