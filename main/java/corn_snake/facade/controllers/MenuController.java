@@ -12,11 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,8 +41,6 @@ public class MenuController implements Initializable {
             LEADERBOARD = new Image(MenuController.class.getResource("menu/LeaderboardButton.png").toExternalForm()),
             CREDITS = new Image(MenuController.class.getResource("menu/CreditsButton.png").toExternalForm()),
             EXIT = new Image(MenuController.class.getResource("menu/ExitButton.png").toExternalForm());
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -92,7 +89,7 @@ public class MenuController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (Exception ignored) {
-
+            ignored.printStackTrace();
         }
     }
 
@@ -226,9 +223,6 @@ public class MenuController implements Initializable {
     private Stage getStage() {
         return (Stage) window.getScene().getWindow();
     }
-
-
-
     @FXML
     public void largeplayLabel() {
         double x = 1.1;
