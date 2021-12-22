@@ -4,13 +4,14 @@ import corn_snake.back_end.*;
 import java.util.List;
 import corn_snake.util.Json;
 
-
 public class Facade {
+
+    private final static int INITIAL_LENGTH = 4;
 
     private Leaderboard lb;
     private Field field;
     private String command;
-    private String previousCommand;
+    private int score;
 
     public Facade() {
         try {
@@ -20,64 +21,54 @@ public class Facade {
             // Creates a new leaderboard if loading fails
             this.lb = new Leaderboard();
         }
-        this.field = new Field();
-    }
-
-    public String getCommand() {
-        return command;
+        newField();
     }
 
     public void moveSnake() throws GameOverException {
         field.moveSnake(command);
+        score = field.getSnakeSize() - INITIAL_LENGTH;
     }
 
-    public void setCommand(String command){
-        if(command.equals("s") || command.equals("S")) {
-            command = "d";
-            previousCommand="d";
-        }else if(command.equals("w") || command.equals("W")){
-            command="u";
-            previousCommand="u";
-        }
-        else if(command.equals("a") || command.equals("A")){
-            command="l";
-            previousCommand="l";
-        }
-        else if(command.equals("d") || command.equals("D")){
-            command="r";
-            previousCommand="r";
-        }
-        else{
-            command=previousCommand;
+    public void setCommand(String command) {
+        if (command.equals("s") || command.equals("k")) {
+            this.command = "d";
+        } else if (command.equals("w") || command.equals("i")) {
+            this.command="u";
+        } else if(command.equals("a") || command.equals("j")) {
+            this.command="l";
+        } else if(command.equals("d") || command.equals("l")) {
+            this.command="r";
         }
     }
 
-    public void newField(){
-        field= new Field();
+    public void newField() {
+        field = new Field();
+        command = "d";
+        score = 0;
     }
 
-    public List<Score> getLeaderboard(){return lb.getTop10();}
+    public List<Score> getLeaderboard() {
+        return lb.getTop10();
+    }
 
-    public void addScore(String name, int score){
-        lb.addScore(name,score);
+    public void addScore(String name, int score) {
+        if(!name.isBlank()) {
+            lb.addScore(name.strip(), score);
+        }
     }
 
 
-    public Tile[][] getField(){
+    public Tile[][] getField() {
         return field.getMatrix();}
 
-    public void updateField(String command) throws GameOverException {
-        field.updateField(command);
+    public int getScore() {
+        return score;
     }
 
-    public int getScore(Score score){
-        return score.getScore();
-    }
-
-    public void saveLeaderboard(){
+    public void saveLeaderboard() {
         try {
-            Json.dump(getLeaderboard(),"src/main/resources");
-        } catch (Exception e){
+            Json.dump(lb, getClass().getResource("leaderboard.json").getFile());
+        } catch (Exception e) {
             System.out.println("Directory Invalid");
         }
     }

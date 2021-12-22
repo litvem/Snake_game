@@ -44,18 +44,18 @@ public class MenuController implements Initializable {
 
         // Loads all visuals with a 0.2 seconds delay between each image/button
         Timeline load = new Timeline(
-                new KeyFrame(Duration.seconds(0.2), (event) -> titleView.setImage(TITLE)),
-                new KeyFrame(Duration.seconds(0.4), (event) -> {
+                new KeyFrame(Duration.seconds(0.1), (event) -> titleView.setImage(TITLE)),
+                new KeyFrame(Duration.seconds(0.2), (event) -> {
                     playButton.setImage(PLAY);
                     playLabel.setText("PLAY");
                 }),
-                new KeyFrame(Duration.seconds(0.6), (event) -> controlsButton.setImage(CONTROLS)),
-                new KeyFrame(Duration.seconds(0.8), (event) -> leaderboardButton.setImage(LEADERBOARD)),
-                new KeyFrame(Duration.seconds(1), (event) -> creditsButton.setImage(CREDITS)),
-                new KeyFrame(Duration.seconds(1.2), (event) -> exitButton.setImage(EXIT))
+                new KeyFrame(Duration.seconds(0.3), (event) -> controlsButton.setImage(CONTROLS)),
+                new KeyFrame(Duration.seconds(0.4), (event) -> leaderboardButton.setImage(LEADERBOARD)),
+                new KeyFrame(Duration.seconds(0.5), (event) -> creditsButton.setImage(CREDITS)),
+                new KeyFrame(Duration.seconds(0.6), (event) -> exitButton.setImage(EXIT))
         );
-        load.setDelay(Duration.seconds(0.5));
 
+        load.setDelay(Duration.seconds(0.8));
         load.play();
     }
 
@@ -65,30 +65,47 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    public void onPlayClick(MouseEvent event) throws IOException {
-        Stage stage = (Stage) window.getScene().getWindow();
+    public void onPlayClick(MouseEvent event){
+        try {
+            IO.loadScene(getStage(), "game_field.fxml", FieldController.class, "field/FieldStyle.css");
+        } catch (IOException ignored) {
 
-        IO.loadScene(stage, "game_field.fxml", FieldController.class, "field/FieldStyle.css");
+        }
     }
 
     @FXML
-    public void onCreditsClick(MouseEvent event) throws IOException {
-        Stage stage = (Stage) window.getScene().getWindow();
+    public void onCreditsClick(MouseEvent event) {
+        try {
+            IO.loadScene(getStage(), "credits.fxml", CreditsController.class);
+        } catch (IOException ignored) {
 
-        IO.loadScene(stage, "credits.fxml", CreditsController.class);
+        }
     }
 
     @FXML
-    public void onLeaderboardClick(MouseEvent event) throws IOException {
-        Stage stage = (Stage) window.getScene().getWindow();
+    public void onLeaderboardClick(MouseEvent event) {
+        try {
+            IO.loadScene(getStage(), "leaderboard.fxml", LeaderboardController.class);
+        } catch (IOException ignored) {
 
-        IO.loadScene(stage, "leaderboard.fxml", LeaderboardController.class);
+        }
     }
 
     @FXML
-    public void onHowToPlayClick(MouseEvent event) throws IOException {
-        Stage stage = (Stage) window.getScene().getWindow();
+    public void onHowToPlayClick(MouseEvent event) {
+        try {
+            IO.loadScene(getStage(), "how_to_play.fxml", HowToPlayController.class);
+        } catch (IOException ignored) {
 
-        IO.loadScene(stage, "how_to_play.fxml", HowToPlayController.class);
+        }
+    }
+
+    /**
+     * Retrieves the current stage that's being used
+     *
+     * @return the current stage
+     */
+    private Stage getStage() {
+        return (Stage) window.getScene().getWindow();
     }
 }
