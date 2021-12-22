@@ -53,7 +53,7 @@ public class FieldController implements Initializable {
     private AnchorPane window;
 
     @FXML
-    private Label score, countdown;
+    private Label scoreTitle, playerScore;
 
     @FXML
     private ImageView backgroundView;
@@ -128,14 +128,14 @@ public class FieldController implements Initializable {
         row = 0;
         column = 0;
         backgroundView.setImage(BACKGROUND);
-        countdown.setText(String.format("Starting%sin...", IO.EOL));
+        scoreTitle.setText("Starting in...");
         FACADE.newField();
 
         // Sets a countdown before starting the game
         Timeline cd = new Timeline(
                 new KeyFrame(
                         Duration.seconds(1), (event) -> {
-                            countdown.setText(String.valueOf(cdNum));
+                            playerScore.setText(String.valueOf(cdNum));
                             cdNum--;
                         }
                 )
@@ -144,7 +144,7 @@ public class FieldController implements Initializable {
         cd.setCycleCount(4);
         cd.setOnFinished(
                 (event) -> {
-                    countdown.setText("");
+                    scoreTitle.setText("Your score:");
                 }
         );
 
@@ -214,6 +214,8 @@ public class FieldController implements Initializable {
 
                         }
                     }
+
+                    playerScore.setText(String.valueOf(FACADE.getScore()));
 
                     Tile[][] field = FACADE.getField();
 
@@ -292,9 +294,8 @@ public class FieldController implements Initializable {
         game.play();
     }
 
-    @FXML
-    public void onKeyPressed(KeyEvent event){
-        FACADE.setCommand(event.getCharacter());
+    public void onKeyPressed(String key){
+        FACADE.setCommand(key);
     }
 
     /**
