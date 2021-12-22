@@ -88,7 +88,7 @@ public class MenuController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (Exception ignored) {
-
+            ignored.printStackTrace();
         }
     }
 
