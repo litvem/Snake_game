@@ -2,8 +2,6 @@ package corn_snake;
 
 import corn_snake.facade.controllers.MenuController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -26,7 +24,8 @@ public class SnakeMain extends Application {
         Image icon = new Image("file:///" + getClass().getResource("Icon.png").getFile());
         stage.getIcons().add(icon);
 
-        stage.setResizable(false);
+        Image icon = new Image(getClass().getResource("Icon.png").toExternalForm());
+        stage.getIcons().add(icon);
 
         stage.setTitle("Corn Snake");
         stage.setScene(scene);
