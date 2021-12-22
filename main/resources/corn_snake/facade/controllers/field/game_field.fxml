@@ -395,11 +395,8 @@
       <ImageView fx:id="P14" fitHeight="20.0" fitWidth="20.0" layoutX="294.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="P15" fitHeight="20.0" fitWidth="20.0" layoutX="314.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="P16" fitHeight="20.0" fitWidth="20.0" layoutX="334.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="countdown" layoutX="420.0" layoutY="155.0" prefHeight="153.0" prefWidth="170.0">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
+      <Label fx:id="scoreTitle" layoutX="429.0" layoutY="70.0" prefHeight="28.0" prefWidth="132.0" />
+      <Label fx:id="playerScore" layoutX="429.0" layoutY="99.0" prefHeight="48.0" prefWidth="132.0" />
    </children>
 </AnchorPane>
 =======

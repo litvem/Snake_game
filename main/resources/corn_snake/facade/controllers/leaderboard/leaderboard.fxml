@@ -20,167 +20,167 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Label fx:id="rank" layoutX="99.0" layoutY="75.0" text="Label">
+      <Label fx:id="rank" layoutX="99.0" layoutY="75.0" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name" layoutX="226.0" layoutY="75.0" text="Label">
+      <Label fx:id="name" layoutX="226.0" layoutY="75.0" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="score" layoutX="424.0" layoutY="75.0" text="Label">
+      <Label fx:id="score" layoutX="424.0" layoutY="75.0" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="rank1" layoutX="99.0" layoutY="112" text="Label">
+      <Label fx:id="rank1" layoutX="99.0" layoutY="112" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name1" layoutX="226.0" layoutY="112" text="Label">
+      <Label fx:id="name1" layoutX="226.0" layoutY="112" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="score1" layoutX="424.0" layoutY="112" text="Label">
+      <Label fx:id="score1" layoutX="424.0" layoutY="112" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="rank2" layoutX="99.0" layoutY="139" text="Label">
+      <Label fx:id="rank2" layoutX="99.0" layoutY="139" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name2" layoutX="226.0" layoutY="139" text="Label">
+      <Label fx:id="name2" layoutX="226.0" layoutY="139" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="score2" layoutX="424.0" layoutY="139" text="Label">
+      <Label fx:id="score2" layoutX="424.0" layoutY="139" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="rank3" layoutX="99.0" layoutY="166" text="Label">
+      <Label fx:id="rank3" layoutX="99.0" layoutY="166" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name3" layoutX="226.0" layoutY="166" text="Label">
+      <Label fx:id="name3" layoutX="226.0" layoutY="166" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="score3" layoutX="424.0" layoutY="166" text="Label">
+      <Label fx:id="score3" layoutX="424.0" layoutY="166" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="rank4" layoutX="99.0" layoutY="193" text="Label">
+      <Label fx:id="rank4" layoutX="99.0" layoutY="193" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name4" layoutX="226.0" layoutY="193" text="Label">
+      <Label fx:id="name4" layoutX="226.0" layoutY="193" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="score4" layoutX="424.0" layoutY="193" text="Label">
+      <Label fx:id="score4" layoutX="424.0" layoutY="193" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="rank5" layoutX="99.0" layoutY="220" text="Label">
+      <Label fx:id="rank5" layoutX="99.0" layoutY="220" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name5" layoutX="226.0" layoutY="220" text="Label">
+      <Label fx:id="name5" layoutX="226.0" layoutY="220" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="score5" layoutX="424.0" layoutY="220" text="Label">
+      <Label fx:id="score5" layoutX="424.0" layoutY="220" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="rank6" layoutX="99.0" layoutY="247" text="Label">
+      <Label fx:id="rank6" layoutX="99.0" layoutY="247" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name6" layoutX="226.0" layoutY="247" text="Label">
+      <Label fx:id="name6" layoutX="226.0" layoutY="247" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="score6" layoutX="424.0" layoutY="247" text="Label">
+      <Label fx:id="score6" layoutX="424.0" layoutY="247" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="rank7" layoutX="99.0" layoutY="274" text="Label">
+      <Label fx:id="rank7" layoutX="99.0" layoutY="274" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name7" layoutX="226.0" layoutY="274" text="Label">
+      <Label fx:id="name7" layoutX="226.0" layoutY="274" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="score7" layoutX="424.0" layoutY="274" text="Label">
+      <Label fx:id="score7" layoutX="424.0" layoutY="274" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="rank8" layoutX="99.0" layoutY="301" text="Label">
+      <Label fx:id="rank8" layoutX="99.0" layoutY="301" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name8" layoutX="226.0" layoutY="301" text="Label">
+      <Label fx:id="name8" layoutX="226.0" layoutY="301" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="score8" layoutX="424.0" layoutY="301" text="Label">
+      <Label fx:id="score8" layoutX="424.0" layoutY="301" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="rank9" layoutX="99.0" layoutY="328" text="Label">
+      <Label fx:id="rank9" layoutX="99.0" layoutY="328" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name9" layoutX="226.0" layoutY="328" text="Label">
+      <Label fx:id="name9" layoutX="226.0" layoutY="328" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="score9" layoutX="424.0" layoutY="328" text="Label">
+      <Label fx:id="score9" layoutX="424.0" layoutY="328" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="rank10" layoutX="99.0" layoutY="355" text="Label">
+      <Label fx:id="rank10" layoutX="99.0" layoutY="355" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name10" layoutX="226.0" layoutY="355" text="Label">
+      <Label fx:id="name10" layoutX="226.0" layoutY="355" >
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="score10" layoutX="424.0" layoutY="355" text="Label">
+      <Label fx:id="score10" layoutX="424.0" layoutY="355" >
          <font>
             <Font size="18.0" />
          </font>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.scene.control.Label?>
-<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.MenuController">
+<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.MenuController">
    <children>
       <ImageView fx:id="backgroundView" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="exitButton" fitHeight="50.0" fitWidth="50.0" layoutX="536.0" layoutY="14.0" onMouseClicked="#onExitClick" pickOnBounds="true" preserveRatio="true" />
@@ -13,6 +13,7 @@
       <ImageView fx:id="leaderboardButton" fitHeight="50.0" fitWidth="50.0" layoutX="406.0" layoutY="14.0" onMouseClicked="#onLeaderboardClick" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="controlsButton" fitHeight="50.0" fitWidth="50.0" layoutX="341.0" layoutY="14.0" onMouseClicked="#onHowToPlayClick" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="playButton" fitHeight="100.0" fitWidth="200.0" layoutX="200.0" layoutY="279.0" onMouseClicked="#onPlayClick" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="playLabel" prefHeight="100.0" prefWidth="200.0" layoutX="200.0" layoutY="279.0" onMouseClicked="#onPlayClick" />
+      <Label fx:id="playLabel" layoutX="200.0" layoutY="279.0" onMouseClicked="#onPlayClick" prefHeight="100.0" prefWidth="200.0" />
+      <Label fx:id="versionLabel" layoutX="24.0" layoutY="350.0" prefHeight="30.0" prefWidth="165.0" />
    </children>
 </AnchorPane>

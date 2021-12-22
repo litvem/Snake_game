@@ -16,7 +16,7 @@ public class Facade {
     public Facade() {
         try {
             // Tries to load leaderboard from JSON
-            this.lb = Json.load(getClass().getResource("leaderboard.json").getFile(), Leaderboard.class);
+            this.lb = Json.load(getClass().getResource("leaderboard.json").getPath(), Leaderboard.class);
         } catch (Exception e) {
             // Creates a new leaderboard if loading fails
             this.lb = new Leaderboard();
@@ -30,13 +30,17 @@ public class Facade {
     }
 
     public void setCommand(String command) {
-        if (command.equals("s") || command.equals("k")) {
+        if (command.equals("S") || command.equals("K")) {
+            if (this.command.equals("u")) return;
             this.command = "d";
-        } else if (command.equals("w") || command.equals("i")) {
+        } else if (command.equals("W") || command.equals("I")) {
+            if (this.command.equals("d")) return;
             this.command="u";
-        } else if(command.equals("a") || command.equals("j")) {
+        } else if(command.equals("A") || command.equals("J")) {
+            if (this.command.equals("r")) return;
             this.command="l";
-        } else if(command.equals("d") || command.equals("l")) {
+        } else if(command.equals("D") || command.equals("L")) {
+            if (this.command.equals("l")) return;
             this.command="r";
         }
     }
@@ -67,9 +71,11 @@ public class Facade {
 
     public void saveLeaderboard() {
         try {
-            Json.dump(lb, getClass().getResource("leaderboard.json").getFile());
-        } catch (Exception e) {
-            System.out.println("Directory Invalid");
+            // Always writes to leaderboard.json
+            // Creates a new file if it doesn't already exist
+            Json.dump(lb, getClass().getResource("").getPath() + "leaderboard.json");
+        } catch (Exception ignored) {
+
         }
     }
 }

@@ -1,0 +1,13 @@
+.label {
+    -fx-font-family: "Comic Sans MS";
+    -fx-alignment: center;
+    -fx-text-fill: #fd2e00;
+}
+
+#gameOver {
+    -fx-font-size: 55;
+}
+
+#clickPrompt {
+    -fx-font-size: 30;
+}
