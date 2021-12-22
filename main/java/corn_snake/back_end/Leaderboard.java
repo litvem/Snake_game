@@ -10,7 +10,7 @@ public class Leaderboard {
 
     public Leaderboard() {
         top10 = new ArrayList<>();
-        }
+    }
 
     /**
      * Getter for top 10 list

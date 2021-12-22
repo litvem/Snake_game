@@ -61,6 +61,10 @@ public class Field {
         }
     }
 
+    public int getSnakeSize(){
+        return this.snake.getSize();
+    }
+
     /**
      * Creates and add fruit until random location of food is empty.
      */
@@ -240,7 +244,6 @@ public class Field {
                     this.setBodyDirection(i);
                     this.addFruit();
                     return;
-
                 } else {
                     throw new GameOverException("Game Over");
                 }
