@@ -14,8 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -217,19 +215,98 @@ public class MenuController implements Initializable {
 
     }
 
-        /*because playlabel isnt the whole board
-        * and it would take up to much space
-        * I decided it should change colors instead.*/
+            //scale buttons up
     @FXML
-    public void redplayLabel() {
-        Text text = new Text();
-        text.setFill(Color.RED);
+        public void largeExitButton() {
+
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(exitButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+    @FXML
+    public void largecontrolButton() {
+
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(controlsButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
 
     }@FXML
-    public void greenplayLabel() {
-        Text text = new Text();
-        text.setFill(Color.GREEN);
+    public void largeleaderboardButton() {
 
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(leaderboardButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+
+    @FXML
+    public void largecreditsButton() {
+
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(creditsButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+
+
+
+        // scale buttons back
+    @FXML
+        public void smallexitButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(exitButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }@FXML
+    public void smallcontrolButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(controlsButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }@FXML
+    public void smallleaderboardButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(leaderboardButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }@FXML
+    public void smallcreditsButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(creditsButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
 
     }
 
@@ -243,17 +320,16 @@ public class MenuController implements Initializable {
         return (Stage) window.getScene().getWindow();
     }
 
-
-
     @FXML
     public void largeplayLabel() {
-        double x = 1.1
+        double x = 1.1;
         ScaleTransition scale = new ScaleTransition();
         scale.setNode(playLabel);
         scale.setToY(x);
         scale.setToX(x);
         scale.setDuration(Duration.millis(50));
         scale.play();
+
     }@FXML
     public void smallplayLabel() {
         double y = 1.0;
@@ -266,5 +342,3 @@ public class MenuController implements Initializable {
 
     }
 
-
-}
