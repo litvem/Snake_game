@@ -85,58 +85,6 @@ public class Field {
         this.matrix[r][c] = Tile.FRUIT;
     }
 
-    //*private void addFruit(){
-    //    Random rand = new Random();
-    //    Integer c = 0;
-    //  Integer r = 0;
-    //   do{
-    //        r = rand.nextInt(ROWS-1) + 1;
-    //        c = rand.nextInt(COLS-1) + 1;
-    //       this.fruit = new Fruit(r, c);
-    //   } while(this.fruit.equals(Tile.SNAKE_HEAD_UP ));
-
-    // this.matrix[r][c] = Tile.FRUIT;
-    // }
-
-
-    public void update(String command) {
-        updateField(command);
-        addFruit();
-
-    }
-
-    /**
-     * In cose of snake addition, we need to update its body, head and tail accordingly
-     */
-
-    public void updateField(String command) {
-        boolean isAdd = false;
-        for(int i = 0; i < this.matrix[0].length; i++){
-            for (int j = 0; j < matrix[0].length; j++){
-                if(this.matrix[i][j].equals(Tile.FRUIT)) {
-                    this.matrix[i][j] = Tile.EMPTY;
-                }
-                if(this.matrix[i][j].equals(Tile.FRUIT) && this.matrix[i][j].equals(Tile.SNAKE_HEAD_UP)) {
-                    snake.increaseSize(i,j);
-                    isAdd = true;
-
-                }
-                if(isAdd && this.matrix[i][j].equals(Tile.SNAKE_HEAD_UP)) {
-                    this.matrix[i][j] = Tile.SNAKE_VERTICAL_BODY;
-                    switch(command) {
-                        case "d":
-                            this.matrix[i+1][j] = Tile.SNAKE_HEAD_DOWN;
-                        case "u":
-                            this.matrix[i-1][j] = Tile.SNAKE_HEAD_UP;
-                        case "l":
-                            this.matrix[i][j-1] = Tile.SNAKE_HEAD_LEFT;
-                        case "r":
-                            this.matrix[i][j+1] = Tile.SNAKE_HEAD_RIGHT;
-                    }
-                }
-            }
-        }
-    }
 
     public Tile[][] getMatrix(){
         Tile[][] tempMatrix = new Tile[17][17];
