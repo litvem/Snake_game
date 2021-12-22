@@ -30,13 +30,13 @@ public class Facade {
     }
 
     public void setCommand(String command) {
-        if (command.equals("s") || command.equals("S") || command.equals("k") || command.equals("K")) {
+        if (command.equals("s") || command.equals("k")) {
             this.command = "d";
-        } else if (command.equals("w") || command.equals("W") || command.equals("i") || command.equals("I")) {
+        } else if (command.equals("w") || command.equals("i")) {
             this.command="u";
-        } else if(command.equals("a") || command.equals("A") || command.equals("j") || command.equals("J")) {
+        } else if(command.equals("a") || command.equals("j")) {
             this.command="l";
-        } else if(command.equals("d") || command.equals("D") || command.equals("l") || command.equals("L")) {
+        } else if(command.equals("d") || command.equals("l")) {
             this.command="r";
         }
     }
@@ -52,7 +52,9 @@ public class Facade {
     }
 
     public void addScore(String name, int score) {
-        lb.addScore(name,score);
+        if(!name.isBlank()) {
+            lb.addScore(name.strip(), score);
+        }
     }
 
 
