@@ -1,5 +1,6 @@
 package corn_snake.facade.controllers;
 
+import corn_snake.Main;
 import corn_snake.util.IO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -26,10 +27,10 @@ public class MenuController implements Initializable {
     private ImageView backgroundView, titleView, playButton, controlsButton, leaderboardButton, creditsButton, exitButton;
 
     @FXML
-    private Label playLabel;
+    private Label playLabel, versionLabel;
 
     // Images used in the title screen
-    private final static Image
+    final static Image
             BACKGROUND = new Image(MenuController.class.getResource("menu/TitleBG.png").toExternalForm()),
             TITLE = new Image(MenuController.class.getResource("menu/Title.png").toExternalForm()),
             PLAY = new Image(MenuController.class.getResource("menu/PlayButton.png").toExternalForm()),
@@ -49,10 +50,11 @@ public class MenuController implements Initializable {
                     playButton.setImage(PLAY);
                     playLabel.setText("PLAY");
                 }),
-                new KeyFrame(Duration.seconds(0.3), (event) -> controlsButton.setImage(CONTROLS)),
-                new KeyFrame(Duration.seconds(0.4), (event) -> leaderboardButton.setImage(LEADERBOARD)),
-                new KeyFrame(Duration.seconds(0.5), (event) -> creditsButton.setImage(CREDITS)),
-                new KeyFrame(Duration.seconds(0.6), (event) -> exitButton.setImage(EXIT))
+                new KeyFrame(Duration.seconds(0.3), (event) -> versionLabel.setText(String.format("Version: %s", Main.VERSION))),
+                new KeyFrame(Duration.seconds(0.4), (event) -> controlsButton.setImage(CONTROLS)),
+                new KeyFrame(Duration.seconds(0.5), (event) -> leaderboardButton.setImage(LEADERBOARD)),
+                new KeyFrame(Duration.seconds(0.6), (event) -> creditsButton.setImage(CREDITS)),
+                new KeyFrame(Duration.seconds(0.7), (event) -> exitButton.setImage(EXIT))
         );
 
         load.setDelay(Duration.seconds(0.8));
