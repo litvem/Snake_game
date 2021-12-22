@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.GameOverController">
+   <children>
+      <ImageView fx:id="background" fitHeight="400.0" fitWidth="600.0" onMouseClicked="#onClick" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="board" fitHeight="250.0" fitWidth="500.0" layoutX="50.0" layoutY="75.0" onMouseClicked="#onClick" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="gameOver" layoutX="106.0" layoutY="100.0" prefHeight="125.0" prefWidth="388.0" />
+      <Label fx:id="clickPrompt" layoutX="101.0" layoutY="246.0" onMouseClicked="#onClick" prefHeight="51.0" prefWidth="398.0" />
+   </children>
+</AnchorPane>

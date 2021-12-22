@@ -1,5 +1,6 @@
 package corn_snake.facade.controllers;
 
+import corn_snake.Main;
 import corn_snake.util.IO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -26,10 +27,10 @@ public class MenuController implements Initializable {
     private ImageView backgroundView, titleView, playButton, controlsButton, leaderboardButton, creditsButton, exitButton;
 
     @FXML
-    private Label playLabel;
+    private Label playLabel, versionLabel;
 
     // Images used in the title screen
-    private final static Image
+    final static Image
             BACKGROUND = new Image(MenuController.class.getResource("menu/TitleBG.png").toExternalForm()),
             TITLE = new Image(MenuController.class.getResource("menu/Title.png").toExternalForm()),
             PLAY = new Image(MenuController.class.getResource("menu/PlayButton.png").toExternalForm()),
@@ -44,18 +45,19 @@ public class MenuController implements Initializable {
 
         // Loads all visuals with a 0.2 seconds delay between each image/button
         Timeline load = new Timeline(
-                new KeyFrame(Duration.seconds(0.2), (event) -> titleView.setImage(TITLE)),
-                new KeyFrame(Duration.seconds(0.4), (event) -> {
+                new KeyFrame(Duration.seconds(0.1), (event) -> titleView.setImage(TITLE)),
+                new KeyFrame(Duration.seconds(0.2), (event) -> {
                     playButton.setImage(PLAY);
                     playLabel.setText("PLAY");
                 }),
-                new KeyFrame(Duration.seconds(0.6), (event) -> controlsButton.setImage(CONTROLS)),
-                new KeyFrame(Duration.seconds(0.8), (event) -> leaderboardButton.setImage(LEADERBOARD)),
-                new KeyFrame(Duration.seconds(1), (event) -> creditsButton.setImage(CREDITS)),
-                new KeyFrame(Duration.seconds(1.2), (event) -> exitButton.setImage(EXIT))
+                new KeyFrame(Duration.seconds(0.3), (event) -> versionLabel.setText(String.format("Version: %s", Main.VERSION))),
+                new KeyFrame(Duration.seconds(0.4), (event) -> controlsButton.setImage(CONTROLS)),
+                new KeyFrame(Duration.seconds(0.5), (event) -> leaderboardButton.setImage(LEADERBOARD)),
+                new KeyFrame(Duration.seconds(0.6), (event) -> creditsButton.setImage(CREDITS)),
+                new KeyFrame(Duration.seconds(0.7), (event) -> exitButton.setImage(EXIT))
         );
-        load.setDelay(Duration.seconds(0.5));
 
+        load.setDelay(Duration.seconds(0.8));
         load.play();
     }
 
@@ -65,30 +67,47 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    public void onPlayClick(MouseEvent event) throws IOException {
-        Stage stage = (Stage) window.getScene().getWindow();
+    public void onPlayClick(MouseEvent event){
+        try {
+            IO.loadScene(getStage(), "game_field.fxml", FieldController.class, "field/FieldStyle.css");
+        } catch (IOException ignored) {
 
-        IO.loadScene(stage, "game_field.fxml", FieldController.class, "field/FieldStyle.css");
+        }
     }
 
     @FXML
-    public void onCreditsClick(MouseEvent event) throws IOException {
-        Stage stage = (Stage) window.getScene().getWindow();
+    public void onCreditsClick(MouseEvent event) {
+        try {
+            IO.loadScene(getStage(), "credits.fxml", CreditsController.class);
+        } catch (IOException ignored) {
 
-        IO.loadScene(stage, "credits.fxml", CreditsController.class);
+        }
     }
 
     @FXML
-    public void onLeaderboardClick(MouseEvent event) throws IOException {
-        Stage stage = (Stage) window.getScene().getWindow();
+    public void onLeaderboardClick(MouseEvent event) {
+        try {
+            IO.loadScene(getStage(), "leaderboard.fxml", LeaderboardController.class);
+        } catch (IOException ignored) {
 
-        IO.loadScene(stage, "leaderboard.fxml", LeaderboardController.class);
+        }
     }
 
     @FXML
-    public void onHowToPlayClick(MouseEvent event) throws IOException {
-        Stage stage = (Stage) window.getScene().getWindow();
+    public void onHowToPlayClick(MouseEvent event) {
+        try {
+            IO.loadScene(getStage(), "how_to_play.fxml", HowToPlayController.class);
+        } catch (IOException ignored) {
 
-        IO.loadScene(stage, "how_to_play.fxml", HowToPlayController.class);
+        }
+    }
+
+    /**
+     * Retrieves the current stage that's being used
+     *
+     * @return the current stage
+     */
+    private Stage getStage() {
+        return (Stage) window.getScene().getWindow();
     }
 }

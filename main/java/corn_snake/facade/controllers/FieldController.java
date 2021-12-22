@@ -5,6 +5,7 @@ import corn_snake.back_end.GameOverException;
 import corn_snake.back_end.Tile;
 import corn_snake.facade.Facade;
 import corn_snake.util.IO;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -66,52 +67,52 @@ public class FieldController implements Initializable {
                     FieldController.class.getResource("field/tiles/Empty.png").toExternalForm()
             ),
             FRUIT = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/Fruit.png").toExternalForm()
             ),
             HEAD_U = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeHeadBottom.png").toExternalForm()
             ),
             HEAD_D = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeHeadTop.png").toExternalForm()
             ),
             HEAD_R = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeHeadLeft.png").toExternalForm()
             ),
             HEAD_L = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeHeadRight.png").toExternalForm()
             ),
             BODY_H = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeBodyHorizontal.png").toExternalForm()
             ),
             BODY_V = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeBodyVertical.png").toExternalForm()
             ),
             TURN_UR = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeTurnBottomRight.png").toExternalForm()
             ),
             TURN_UL = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeTurnBottomLeft.png").toExternalForm()
             ),
             TURN_DR = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeTurnTopRight.png").toExternalForm()
             ),
             TURN_DL = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeTurnTopLeft.png").toExternalForm()
             ),
             TAIL_U = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeTailBottom.png").toExternalForm()
             ),
             TAIL_D = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeTailTop.png").toExternalForm()
             ),
             TAIL_R = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeTailLeft.png").toExternalForm()
             ),
             TAIL_L = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/SnakeTailRight.png").toExternalForm()
             ),
             OBSTACLE = new Image(
-                    FieldController.class.getResource("snowflake.jpeg").toExternalForm()
+                    FieldController.class.getResource("field/tiles/Obstacle.png").toExternalForm()
             );
 
     private static final char[] ROWS = {
@@ -128,6 +129,7 @@ public class FieldController implements Initializable {
         column = 0;
         backgroundView.setImage(BACKGROUND);
         countdown.setText(String.format("Starting%sin...", IO.EOL));
+        FACADE.newField();
 
         // Sets a countdown before starting the game
         Timeline cd = new Timeline(
@@ -148,13 +150,36 @@ public class FieldController implements Initializable {
 
         // Loads the field with an "animation"
         // Duration.millis(5) equivalent to Thread.sleep(5)
+        Tile[][] newField = FACADE.getField();
         Timeline load = new Timeline(
                 new KeyFrame(
                         Duration.millis(5), (event) -> {
                             try {
                                 // Gets all tiles
+                                Tile tile = newField[row][column];
+
                                 ImageView image = getTile(row, column);
-                                image.setImage(EMPTY); // FIXME Add switch block
+
+                                switch (tile) {
+                                    case EMPTY:
+                                        image.setImage(EMPTY);
+                                        break;
+                                    case OBSTACLE:
+                                        image.setImage(OBSTACLE);
+                                        break;
+                                    case SNAKE_VERTICAL_BODY:
+                                        image.setImage(BODY_V);
+                                        break;
+                                    case SNAKE_HEAD_DOWN:
+                                        image.setImage(HEAD_D);
+                                        break;
+                                    case SNAKE_DOWNWARD_GOING_TAIL:
+                                        image.setImage(TAIL_U);
+                                        break;
+                                    case FRUIT:
+                                        image.setImage(FRUIT);
+                                        break;
+                                }
                             } catch (Exception e) {
                                 e.printStackTrace();
                             } finally {
@@ -174,93 +199,102 @@ public class FieldController implements Initializable {
         load.setCycleCount(289);
 
         // Loads and displays the actual game field
-        Timeline game = new Timeline(
-                new KeyFrame(
-                        Duration.millis(5), (event) -> {
+        Timeline game = new Timeline();
+
+        KeyFrame gameKeyFrame = new KeyFrame(
+                Duration.seconds(0.5), (event) -> {
+                    try {
+                        FACADE.moveSnake();
+                    } catch (GameOverException e){
+                        game.stop();
+                        Stage stage = (Stage) window.getScene().getWindow();
+                        try {
+                            IO.loadScene(stage, "game_over/game_over.fxml", GameOverController.class, "game_over/GameOverStyle.css");
+                        } catch (IOException ignored) {
+
+                        }
+                    }
+
+                    Tile[][] field = FACADE.getField();
+
+                    for (int i = 1; i < field.length - 1; i++){
+                        Tile[] row = field[i];
+
+                        for (int j = 1; j < row.length - 1; j++){
+                            Tile tile = row[j];
                             try {
-                                FACADE.updateField(FACADE.getCommand()); // FIXME
-                            } catch (GameOverException e){
-                                Stage stage = (Stage) window.getScene().getWindow();
-                                try {
-                                    IO.loadScene(stage, "game_over.fxml", GameOverController.class);
-                                } catch (IOException g) {
-
+                                // Retrieve the tile in question
+                                ImageView image = getTile(i, j);
+                                switch (tile) {
+                                    case EMPTY:
+                                        image.setImage(EMPTY);
+                                        break;
+                                    case SNAKE_HORIZONTAL_BODY:
+                                        image.setImage(BODY_H);
+                                        break;
+                                    case SNAKE_VERTICAL_BODY:
+                                        image.setImage(BODY_V);
+                                        break;
+                                    case SNAKE_CORNER_RIGHT_UP_BODY:
+                                        image.setImage(TURN_UR);
+                                        break;
+                                    case SNAKE_CORNER_LEFT_UP_BODY:
+                                        image.setImage(TURN_UL);
+                                        break;
+                                    case SNAKE_CORNER_RIGHT_DOWN_BODY:
+                                        image.setImage(TURN_DR);
+                                        break;
+                                    case SNAKE_CORNER_LEFT_DOWN_BODY:
+                                        image.setImage(TURN_DL);
+                                        break;
+                                    case SNAKE_HEAD_UP:
+                                        image.setImage(HEAD_U);
+                                        break;
+                                    case SNAKE_HEAD_DOWN:
+                                        image.setImage(HEAD_D);
+                                        break;
+                                    case SNAKE_HEAD_RIGHT:
+                                        image.setImage(HEAD_R);
+                                        break;
+                                    case SNAKE_HEAD_LEFT:
+                                        image.setImage(HEAD_L);
+                                        break;
+                                    case SNAKE_UPWARD_GOING_TAIL:
+                                        image.setImage(TAIL_D);
+                                        break;
+                                    case SNAKE_DOWNWARD_GOING_TAIL:
+                                        image.setImage(TAIL_U);
+                                        break;
+                                    case SNAKE_RIGHTWARD_GOING_TAIL:
+                                        image.setImage(TAIL_R);
+                                        break;
+                                    case SNAKE_LEFTWARD_GOING_TAIL:
+                                        image.setImage(TAIL_L);
+                                        break;
+                                    case FRUIT:
+                                        image.setImage(FRUIT);
+                                        break;
                                 }
-                            }
-
-                            Tile[][] field = FACADE.getField();
-
-                            for (int i = 1; i < field.length - 1; i++){
-                                Tile[] row = field[i];
-
-                                for (int j = 1; j < row.length - 1; j++){
-                                    Tile tile = row[j];
-                                    try {
-                                        // Retrieve the tile in question
-                                        ImageView image = getTile(i, j);
-                                        switch (tile) {
-                                            case EMPTY:
-                                                image.setImage(EMPTY);
-                                                break;
-                                            case SNAKE_HORIZONTAL_BODY:
-                                                image.setImage(BODY_H);
-                                                break;
-                                            case SNAKE_VERTICAL_BODY:
-                                                image.setImage(BODY_V);
-                                                break;
-                                            case SNAKE_CORNER_RIGHT_UP_BODY:
-                                                image.setImage(TURN_UR);
-                                                break;
-                                            case SNAKE_CORNER_LEFT_UP_BODY:
-                                                image.setImage(TURN_UL);
-                                                break;
-                                            case SNAKE_CORNER_RIGHT_DOWN_BODY:
-                                                image.setImage(TURN_DR);
-                                                break;
-                                            case SNAKE_CORNER_LEFT_DOWN_BODY:
-                                                image.setImage(TURN_DL);
-                                                break;
-                                            case SNAKE_HEAD_UP:
-                                                image.setImage(HEAD_U);
-                                                break;
-                                            case SNAKE_HEAD_DOWN:
-                                                image.setImage(HEAD_D);
-                                                break;
-                                            case SNAKE_HEAD_RIGHT:
-                                                image.setImage(HEAD_R);
-                                                break;
-                                            case SNAKE_HEAD_LEFT:
-                                                image.setImage(HEAD_L);
-                                                break;
-                                            case SNAKE_UPWARD_GOING_TAIL:
-                                                image.setImage(TAIL_U);
-                                                break;
-                                            case SNAKE_DOWNWARD_GOING_TAIL:
-                                                image.setImage(TAIL_D);
-                                                break;
-                                            case SNAKE_RIGHTWARD_GOING_TAIL:
-                                                image.setImage(TAIL_R);
-                                                break;
-                                            case SNAKE_LEFTWARD_GOING_TAIL:
-                                                image.setImage(TAIL_L);
-                                                break;
-                                            case FRUIT:
-                                                image.setImage(FRUIT);
-                                                break;
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
                         }
-                )
+                    }
+                }
         );
+
+        game.getKeyFrames().add(gameKeyFrame);
         game.setDelay(Duration.seconds(5));
+        game.setCycleCount(Animation.INDEFINITE);
 
         load.play();
         cd.play();
         game.play();
+    }
+
+    @FXML
+    public void onKeyPressed(KeyEvent event){
+        FACADE.setCommand(event.getCharacter());
     }
 
     /**

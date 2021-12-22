@@ -4,3 +4,9 @@
     -fx-font-family: "Comic Sans MS";
     -fx-alignment: center;
 }
+
+#versionLabel {
+    -fx-text-fill: #ffcc00;
+    -fx-font-size: 12;
+    -fx-alignment: bottom-left;
+}
