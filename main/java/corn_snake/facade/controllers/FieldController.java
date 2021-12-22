@@ -292,6 +292,10 @@ public class FieldController implements Initializable {
         game.play();
     }
 
+    @FXML
+    public void onKeyPressed(KeyEvent event){
+        FACADE.setCommand(event.getCharacter());
+    }
 
     /**
      * Gets one tile from the {@code FieldController}, given row and column
