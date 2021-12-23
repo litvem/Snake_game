@@ -106,6 +106,12 @@ public class Field {
 
     /**
      * @param command set the snake's direction of movement.
+     * This method iterates through all the snake's segments. For each category of segment (head, body and tail) there are specific verifications
+     * to update, if possible, each segment.
+     *
+     * After all the verifications are made and coordinates are updated the body tiles are updated.
+     *
+     * If the snake hits a wall ora body segment, a GameOverException is thrown
      */
     public void moveSnake(String command) throws GameOverException {
         /*
@@ -136,6 +142,7 @@ public class Field {
                 switch (command) {
                     case "d":
 
+                        //if the command is "down" but the snake is going up, the snake will move upwards
                         if (snake.getSegment(i - 1)[0] == row + 1 && snake.getSegment(i - 1)[1] == column) {
                             newHeadCoordinates = new Integer[]{row - 1, column};
                             newHeadTile = Tile.SNAKE_HEAD_UP;
@@ -147,6 +154,7 @@ public class Field {
                         break;
                     case "u":
 
+                        //if the command is "up" but the snake is going down, the snake will move downwards
                         if (snake.getSegment(i - 1)[0] == row - 1 && snake.getSegment(i - 1)[1] == column) {
                             newHeadCoordinates = new Integer[]{row + 1, column};
                             newHeadTile = Tile.SNAKE_HEAD_DOWN;
@@ -158,6 +166,7 @@ public class Field {
                         break;
                     case "r":
 
+                        //if the command is "right" but the snake is going left, the snake will move to the left
                         if (snake.getSegment(i - 1)[0] == row && snake.getSegment(i - 1)[1] == column + 1) {
                             newHeadCoordinates = new Integer[]{row, column - 1};
                             newHeadTile = Tile.SNAKE_HEAD_LEFT;
@@ -169,6 +178,7 @@ public class Field {
                         break;
                     case "l":
 
+                        //if the command is "left" but the snake is going right, the snake will move to the right
                         if (snake.getSegment(i - 1)[0] == row && snake.getSegment(i - 1)[1] == column - 1) {
                             newHeadCoordinates = new Integer[]{row, column + 1};
                             newHeadTile = Tile.SNAKE_HEAD_RIGHT;
