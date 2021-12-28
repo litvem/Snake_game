@@ -122,101 +122,25 @@ public class Field {
 
         //Iterating through the snake.
         for (int i = snake.getSize() - 1; i >= 0; i--) {
-            /*
-            - If the current segment is the snake's head the program verifies if the next tile in the desired direction is
-            the segment that precedes the snake's head. In that case nothing will happen.
-
-            - If it is possible to move in that direction:
-            the snake's head's new coordinates will be saved in the headNewCoordinates variable,
-            the correct head tile value is saved in the newHeadTile variable.
-             */
 
             if (i == snake.getSize() - 1) {
-                previousSegment = snake.getSegment(i);
-                int row = snake.getSegment(i)[0];
-                int column = snake.getSegment(i)[1];
-                Integer[] newHeadCoordinates;
-                Tile newHeadTile;
-
-
-                switch (command) {
-                    case "d":
-
-                        //if the command is "down" but the snake is going up, the snake will move upwards
-                        if (snake.getSegment(i - 1)[0] == row + 1 && snake.getSegment(i - 1)[1] == column) {
-                            newHeadCoordinates = new Integer[]{row - 1, column};
-                            newHeadTile = Tile.SNAKE_HEAD_UP;
-                        } else {
-                            newHeadCoordinates = new Integer[]{row + 1, column};
-                            newHeadTile = Tile.SNAKE_HEAD_DOWN;
-                        }
-
-                        break;
-                    case "u":
-
-                        //if the command is "up" but the snake is going down, the snake will move downwards
-                        if (snake.getSegment(i - 1)[0] == row - 1 && snake.getSegment(i - 1)[1] == column) {
-                            newHeadCoordinates = new Integer[]{row + 1, column};
-                            newHeadTile = Tile.SNAKE_HEAD_DOWN;
-                        } else {
-                            newHeadCoordinates = new Integer[]{row - 1, column};
-                            newHeadTile = Tile.SNAKE_HEAD_UP;
-                        }
-
-                        break;
-                    case "r":
-
-                        //if the command is "right" but the snake is going left, the snake will move to the left
-                        if (snake.getSegment(i - 1)[0] == row && snake.getSegment(i - 1)[1] == column + 1) {
-                            newHeadCoordinates = new Integer[]{row, column - 1};
-                            newHeadTile = Tile.SNAKE_HEAD_LEFT;
-                        } else {
-                            newHeadCoordinates = new Integer[]{row, column + 1};
-                            newHeadTile = Tile.SNAKE_HEAD_RIGHT;
-                        }
-
-                        break;
-                    case "l":
-
-                        //if the command is "left" but the snake is going right, the snake will move to the right
-                        if (snake.getSegment(i - 1)[0] == row && snake.getSegment(i - 1)[1] == column - 1) {
-                            newHeadCoordinates = new Integer[]{row, column + 1};
-                            newHeadTile = Tile.SNAKE_HEAD_RIGHT;
-                        } else {
-                            newHeadCoordinates = new Integer[]{row, column - 1};
-                            newHeadTile = Tile.SNAKE_HEAD_LEFT;
-                        }
-
-                        break;
-
-                    default:
-                        return;
-                }
-
-                //If the head hits a wall or its body the GameOverException is thrown.
-                if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.EMPTY) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_UPWARD_GOING_TAIL) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_DOWNWARD_GOING_TAIL) ||matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_LEFTWARD_GOING_TAIL) || matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_RIGHTWARD_GOING_TAIL)) {
-                    //Updating the head segment's coordinates and the tile in the matrix.
-                    this.snake.setSegment(i, newHeadCoordinates[0], newHeadCoordinates[1]);
-                    this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
-
-                //If the snake reaches a fruit, the snake eat the fruit and grows, after that a new fruit is added and the rest of the body doesn't move.
-                } else if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.FRUIT)) {
-                    this.snake.increaseSize(newHeadCoordinates[0], newHeadCoordinates[1]);
-                    this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
-                    this.setBodyDirection(i);
-                    this.addFruit();
+            /*
+            If the current segment is the head, the moveHead() method is called and will verify if the movement is allowed.
+            If the snake eats a fruit, moveHead() returns null, in that case moveSnake() is interrupted so the snake doesn't
+            move and the growth can be correctly represented.
+             */
+                previousSegment = this.moveHead(command);
+                if (previousSegment == null){
                     return;
-                } else {
-                    throw new GameOverException("Game Over");
                 }
 
-                /*
-                If the current segment is the final segment of the snake's body (the tail):
-                -the value of this tile in the field is changed to Tile.EMPTY.
-                -This segment's coordinates is changed to the old coordinates of the segment that was updated directly before this segment.
-                -the value of the updated coordinate is changed to Tile.SNAKE_TAIL
-                 */
             } else if (i == 0) {
+            /*
+            If the current segment is the final segment of the snake's body (the tail):
+            -the value of this tile in the field is changed to Tile.EMPTY.
+            -This segment's coordinates is changed to the old coordinates of the segment that was updated directly before this segment.
+            -the value of the updated coordinate is changed to Tile.SNAKE_TAIL
+            */
                 int row = snake.getSegment(0)[0];
                 int column = snake.getSegment(0)[1];
 
@@ -224,17 +148,21 @@ public class Field {
                 Before changing the tail's old coordinates' value to Tile.EMPTY assure that the old coordinates' value
                 is still a tail to assure that the head doesn't disappear in specific situations.
                  */
-                if (matrix[row][column].equals(Tile.SNAKE_UPWARD_GOING_TAIL) || matrix[row][column].equals(Tile.SNAKE_DOWNWARD_GOING_TAIL) || matrix[row][column].equals(Tile.SNAKE_LEFTWARD_GOING_TAIL) || matrix[row][column].equals(Tile.SNAKE_RIGHTWARD_GOING_TAIL)){
+                if (matrix[row][column].equals(Tile.SNAKE_UPWARD_GOING_TAIL) ||
+                        matrix[row][column].equals(Tile.SNAKE_DOWNWARD_GOING_TAIL) ||
+                        matrix[row][column].equals(Tile.SNAKE_LEFTWARD_GOING_TAIL) ||
+                        matrix[row][column].equals(Tile.SNAKE_RIGHTWARD_GOING_TAIL)){
+
                     matrix[row][column] = Tile.EMPTY;
                 }
                 snake.setSegment(0, previousSegment[0], previousSegment[1]);
                 matrix[previousSegment[0]][previousSegment[1]] = setTailDirection(i);
 
+            } else {
                 /*
                 If the current segment is not the head neither the last segment of the snake:
                 - The current segment will have its coordinates changed to the old coordinates of the segment that was updated directly before this segment.
                  */
-            } else {
                 int newRow = previousSegment[0];
                 int newColumn = previousSegment[1];
 
@@ -317,5 +245,126 @@ public class Field {
             tailTile = Tile.SNAKE_LEFTWARD_GOING_TAIL;
         } return tailTile;
 
+    }
+
+    /**
+     *
+     * @param command is the new direction inputted by the user
+     * @return an Integer[] with the head's coordinates before moving, so it can be used as reference
+     * to move the next segments.
+     * @throws GameOverException in case the head hits a wall or itself
+     */
+    private Integer[] moveHead(String command) throws GameOverException {
+        Integer[] previousSegment;
+
+        previousSegment = snake.getSegment(snake.getSize() - 1);
+        int row = snake.getSegment(snake.getSize() - 1)[0];
+        int column = snake.getSegment(snake.getSize() - 1)[1];
+
+        Integer[] precedingSegment = snake.getSegment(snake.getSize() - 2);
+        Integer[] newHeadCoordinates;
+        Tile newHeadTile;
+
+        /*
+        - If the current segment is the snake's head the program verifies if the next tile in the desired direction is
+        the segment that precedes the snake's head. In that case, the head will continue to move in the previous direction
+        ignoring the command.
+
+        - If it is possible to move in that direction:
+        the snake's head's new coordinates will be saved in the headNewCoordinates variable,
+        the correct head tile value is saved in the newHeadTile variable.
+        */
+        switch (command) {
+            case "d":
+
+                //if the command is "down" but the snake is going up, the snake will move upwards
+                if (precedingSegment[0] == row + 1 && precedingSegment[1] == column) {
+                    newHeadCoordinates = new Integer[]{row - 1, column};
+                    newHeadTile = Tile.SNAKE_HEAD_UP;
+                } else {
+                    newHeadCoordinates = new Integer[]{row + 1, column};
+                    newHeadTile = Tile.SNAKE_HEAD_DOWN;
+                }
+
+                break;
+            case "u":
+
+                //if the command is "up" but the snake is going down, the snake will move downwards
+                if (precedingSegment[0] == row - 1 && precedingSegment[1] == column) {
+                    newHeadCoordinates = new Integer[]{row + 1, column};
+                    newHeadTile = Tile.SNAKE_HEAD_DOWN;
+                } else {
+                    newHeadCoordinates = new Integer[]{row - 1, column};
+                    newHeadTile = Tile.SNAKE_HEAD_UP;
+                }
+
+                break;
+            case "r":
+
+                //if the command is "right" but the snake is going left, the snake will move to the left
+                if (precedingSegment[0] == row && precedingSegment[1] == column + 1) {
+                    newHeadCoordinates = new Integer[]{row, column - 1};
+                    newHeadTile = Tile.SNAKE_HEAD_LEFT;
+                } else {
+                    newHeadCoordinates = new Integer[]{row, column + 1};
+                    newHeadTile = Tile.SNAKE_HEAD_RIGHT;
+                }
+
+                break;
+            case "l":
+
+                //if the command is "left" but the snake is going right, the snake will move to the right
+                if (precedingSegment[0] == row && precedingSegment[1] == column - 1) {
+                    newHeadCoordinates = new Integer[]{row, column + 1};
+                    newHeadTile = Tile.SNAKE_HEAD_RIGHT;
+                } else {
+                    newHeadCoordinates = new Integer[]{row, column - 1};
+                    newHeadTile = Tile.SNAKE_HEAD_LEFT;
+                }
+
+                break;
+
+            default:
+                return null;
+        }
+
+
+        if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.EMPTY) ||
+                matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_UPWARD_GOING_TAIL) ||
+                matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_DOWNWARD_GOING_TAIL) ||
+                matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_LEFTWARD_GOING_TAIL) ||
+                matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.SNAKE_RIGHTWARD_GOING_TAIL)) {
+            //Updating the head segment's coordinates and the tile in the matrix.
+            this.snake.setSegment(snake.getSize() - 1, newHeadCoordinates[0], newHeadCoordinates[1]);
+            this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
+
+        //If the head eats a fruit the eatFruit() method is called and moveHead() returns null so moveSnake doesn't move the rest of the body
+        } else if (matrix[newHeadCoordinates[0]][newHeadCoordinates[1]].equals(Tile.FRUIT)) {
+            this.eatFruit(newHeadCoordinates, newHeadTile);
+            return null;
+
+        //If the head hits a wall or its body the GameOverException is thrown.
+        } else {
+            throw new GameOverException("Game Over");
+        }
+
+        return previousSegment;
+    }
+
+
+    /**
+     *
+     * @param newHeadCoordinates will be added to the snake.
+     * @param newHeadTile will be set on the matrix.
+     */
+    private void eatFruit(Integer[] newHeadCoordinates, Tile newHeadTile){
+        this.snake.increaseSize(newHeadCoordinates[0], newHeadCoordinates[1]);
+        this.matrix[newHeadCoordinates[0]][newHeadCoordinates[1]] = newHeadTile;
+
+        //The new segment is the new head, so the old head must be set as a body tile.
+        this.setBodyDirection(snake.getSize() - 2);
+
+        //A new fruit must be generated.
+        this.addFruit();
     }
 }
