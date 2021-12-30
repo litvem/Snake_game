@@ -27,7 +27,7 @@ public class LeaderboardController implements Initializable {
     private AnchorPane window;
 
     @FXML
-    private ImageView mainMenuButton;
+    private ImageView homeButton;
 
     private static final String[] COLUMNS = {"rank", "name", "score"};
 
