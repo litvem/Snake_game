@@ -45,15 +45,16 @@ public class CreditsController implements Initializable {
     private static final String PRODUCER_NAME = "Emma Litvin";
     private static final String DIRECTOR_NAME = "Bao Quan Lindgren";
     private static final String LOGIC_NAMES =
+                    "Ahmed Ebrahim Ahmed Algabri" + EOL +
                     "Fredrik Grund" + EOL +
                     "Luiz Eduardo Philippi Rosane" + EOL +
-                    "Robert Einer" + EOL +
-                    "Ahmed Ebrahim Ahmed Algabri";
+                    "Robert Einer";
     public static final String UI_NAMES =
-            "Bao Quan Lindgren" + EOL +
+                    "Bao Quan Lindgren" + EOL +
                     "Emma Litvin" + EOL +
                     "Faisal Sayed" + EOL +
-                    "Khaled Adel Saleh Mohammed Al-Baadani";
+                    "Khaled Adel Saleh Mohammed Al-Baadani" + EOL +
+                    "Luiz Eduardo Philippi Rosane";
     public static final String VISUALS_NAME = "Bao Quan Lindgren";
     public static final String SUPERVISOR_NAME = "Rongzhen Chen";
     public static final String EXAMINER_NAME = "Richard Berntsson Svensson";
