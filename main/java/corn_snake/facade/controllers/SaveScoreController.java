@@ -86,7 +86,7 @@ public class SaveScoreController implements Initializable {
         FACADE.addScore(name, score);
         FACADE.saveLeaderboard();
         try {
-            IO.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class);
+            IO.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class); //FIXME to add Leaderboard CSS here
         } catch (Exception ignored) {
 
         }
