@@ -63,4 +63,16 @@ public class IO {
         currentStage.setScene(scene);
         currentStage.show();
     }
+    public static final String HOW_TO_PLAY = "* Click on PLAY. \n \n* Control the snake in the field by pressing: \n" +
+            " w/i (to go up), " +
+            "a/j (to go left)," +
+            " d/l (to go right) or " +
+            "s/k (to go down). \n\n" +
+            "* To get points: \n" +
+            "Change the direction of the snake so it reaches the fruit on the screen. \n" +
+            "Once the snake eats a fruit, the snake grows by one segment.\n\n" +
+            "* To win the game:\n" +
+            " grow the snake to the point that the whole field is occupied by the snake. \n\n" +
+            "* If the head hits a wall or any segment of the body you lose. \n\n" +
+            "* Good Lock!!!";
 }
