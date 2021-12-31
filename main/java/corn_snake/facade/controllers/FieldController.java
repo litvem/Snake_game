@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -202,7 +201,7 @@ public class FieldController implements Initializable {
         Timeline game = new Timeline();
 
         KeyFrame gameKeyFrame = new KeyFrame(
-                Duration.seconds(0.5), (event) -> {
+                Duration.seconds(0.225), (event) -> {
                     try {
                         FACADE.moveSnake();
                     } catch (GameOverException e){
