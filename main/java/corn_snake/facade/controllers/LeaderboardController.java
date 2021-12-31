@@ -56,6 +56,15 @@ public class LeaderboardController implements Initializable {
         IO.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
     }
 
+    public void onResetClick(MouseEvent event) {
+        FACADE.resetLeaderboard();
+        try {
+            IO.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class);
+        } catch (Exception ignored) {
+
+        }
+    }
+
     private Label getLabel(int row, int col) throws IndexOutOfBoundsException {
         if (row < 1 || row > 10 ) {
             throw new IndexOutOfBoundsException(" Row cannot be less than 1 or exceed 10.");
@@ -109,5 +118,14 @@ public class LeaderboardController implements Initializable {
         load.setDelay(Duration.seconds(0.5));
         load.setCycleCount(10);
         load.play();
+    }
+
+    /**
+     * Retrieves the current stage that's being used
+     *
+     * @return the current stage
+     */
+    private Stage getStage() {
+        return (Stage) window.getScene().getWindow();
     }
 }

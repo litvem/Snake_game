@@ -1,7 +1,14 @@
 package corn_snake.facade;
 
-import corn_snake.back_end.*;
+import corn_snake.back_end.Field;
+import corn_snake.back_end.GameOverException;
+import corn_snake.back_end.Leaderboard;
+import corn_snake.back_end.Score;
+import corn_snake.back_end.Tile;
+
+import java.util.ArrayList;
 import java.util.List;
+
 import corn_snake.util.Json;
 
 public class Facade {
@@ -55,20 +62,6 @@ public class Facade {
         return lb.getTop10();
     }
 
-    public void addScore(String name, int score) {
-        if(!name.isBlank()) {
-            lb.addScore(name.strip(), score);
-        }
-    }
-
-
-    public Tile[][] getField() {
-        return field.getMatrix();}
-
-    public int getScore() {
-        return score;
-    }
-
     public void saveLeaderboard() {
         try {
             // Always writes to leaderboard.json
@@ -77,5 +70,24 @@ public class Facade {
         } catch (Exception ignored) {
 
         }
+    }
+
+    public void resetLeaderboard(){
+        List<Score> top10 = new ArrayList<>();
+        lb.setTop10(top10);
+        saveLeaderboard();
+    }
+
+    public void addScore(String name, int score) {
+        if(!name.isBlank()) {
+            lb.addScore(name.strip(), score);
+        }
+    }
+
+    public Tile[][] getField() {
+        return field.getMatrix();}
+
+    public int getScore() {
+        return score;
     }
 }
