@@ -1,0 +1,11 @@
+.anchorPane {
+    -fx-background-color: #002a01;
+}
+
+.label {
+    -fx-text-fill: #41a200;
+    -fx-font-size: 30;
+    -fx-font-family: "Segoe Script";
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}

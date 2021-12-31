@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.front_end.controllers.LoadController">
+   <children>
+      <ImageView fx:id="background" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="logo" fitHeight="80.0" fitWidth="80.0" layoutX="157.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="label" layoutX="237.0" layoutY="165.0" prefHeight="70.0" prefWidth="235.0" />
+   </children>
+</AnchorPane>
