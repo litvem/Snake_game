@@ -95,7 +95,7 @@ public class MenuController implements Initializable {
     @FXML
     public void onCreditsClick() {
         try {
-            IO.loadScene(getStage(), "credits/credits.fxml", CreditsController.class);
+            IO.loadScene(getStage(), "credits/credits.fxml", CreditsController.class, "credits/CreditsStyle.css");
         } catch (IOException ignored) {
 
         }

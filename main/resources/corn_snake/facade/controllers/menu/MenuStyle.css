@@ -1,8 +1,9 @@
 .label {
     -fx-text-fill: #41a200;
     -fx-font-size: 50;
-    -fx-font-family: "Comic Sans MS";
+    -fx-font-family: "Segoe Script";
     -fx-alignment: center;
+    -fx-text-alignment: center;
 }
 
 #versionLabel {
