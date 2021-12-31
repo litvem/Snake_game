@@ -88,10 +88,10 @@ public class LoadController implements Initializable {
                     fadeBackground.play();
                 })
         );
-        load.setDelay(Duration.seconds(1));
+        load.setDelay(Duration.seconds(1.2));
 
         PauseTransition loadTitle = new PauseTransition();
-        loadTitle.setDelay(Duration.seconds(4));
+        loadTitle.setDelay(Duration.seconds(4.5));
         loadTitle.setOnFinished(
                 (event) -> {
                     try {
