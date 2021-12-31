@@ -27,7 +27,7 @@ public class LeaderboardController implements Initializable {
     private AnchorPane window;
 
     @FXML
-    private ImageView mainMenuButton;
+    private ImageView homeButton;
 
     private static final String[] COLUMNS = {"rank", "name", "score"};
 
@@ -97,9 +97,9 @@ public class LeaderboardController implements Initializable {
                             Label rankLabel = getLabel(row, 0);
                             Label nameLabel = getLabel(row, 1);
                             Label scoreLabel = getLabel(row, 2);
-                            rankLabel.setText("Foo");
-                            nameLabel.setText("Bar");
-                            scoreLabel.setText("5");
+                            rankLabel.setText("---");
+                            nameLabel.setText("---");
+                            scoreLabel.setText("---");
 
                         }
                         row++;
