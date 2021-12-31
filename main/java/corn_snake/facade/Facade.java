@@ -23,7 +23,7 @@ public class Facade {
     public Facade() {
         try {
             // Tries to load leaderboard from JSON
-            this.lb = Json.load(getClass().getResource("leaderboard.json").getPath(), Leaderboard.class);
+            this.lb = Json.load("leaderboard.json", Leaderboard.class);
         } catch (Exception e) {
             // Creates a new leaderboard if loading fails
             this.lb = new Leaderboard();
@@ -66,7 +66,7 @@ public class Facade {
         try {
             // Always writes to leaderboard.json
             // Creates a new file if it doesn't already exist
-            Json.dump(lb, getClass().getResource("").getPath() + "leaderboard.json");
+            Json.dump(lb, "leaderboard.json");
         } catch (Exception ignored) {
 
         }
