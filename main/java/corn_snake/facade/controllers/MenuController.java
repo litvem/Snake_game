@@ -104,7 +104,7 @@ public class MenuController implements Initializable {
     @FXML
     public void onLeaderboardClick() {
         try {
-            IO.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class);
+            IO.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class, "leaderboard/LeaderboardStyle.css");
         } catch (IOException ignored) {
 
         }

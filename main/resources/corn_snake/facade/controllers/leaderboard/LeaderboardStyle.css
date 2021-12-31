@@ -1,0 +1,20 @@
+.label {
+    -fx-text-fill: #41a200;
+    -fx-font-size: 14;
+    -fx-font-family: "Segoe Script";
+    -fx-alignment: center-left;
+    -fx-text-alignment: left;
+}
+
+#title {
+    -fx-font-size: 50;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+
+.rank {
+    -fx-alignment: center-right;
+    -fx-text-alignment: right;
+}
+
