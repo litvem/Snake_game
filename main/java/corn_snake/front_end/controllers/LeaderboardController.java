@@ -67,7 +67,7 @@ public class LeaderboardController implements Initializable {
     public void onResetClick(MouseEvent event) {
         FACADE.resetLeaderboard();
         try {
-            FX.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class);
+            FX.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class, "leaderboard/LeaderboardStyle.css");
         } catch (Exception ignored) {
 
         }
