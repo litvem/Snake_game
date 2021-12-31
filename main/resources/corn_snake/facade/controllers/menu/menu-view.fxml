@@ -4,16 +4,26 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.MenuController">
-   <children>
-      <ImageView fx:id="backgroundView" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="exitButton" fitHeight="50.0" fitWidth="50.0" layoutX="536.0" layoutY="14.0" onMouseClicked="#onExitClick" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="titleView" fitHeight="218.0" fitWidth="332.0" layoutX="137.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="creditsButton" fitHeight="50.0" fitWidth="50.0" layoutX="471.0" layoutY="14.0" onMouseClicked="#onCreditsClick" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="leaderboardButton" fitHeight="50.0" fitWidth="50.0" layoutX="406.0" layoutY="14.0" onMouseClicked="#onLeaderboardClick" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="controlsButton" fitHeight="50.0" fitWidth="50.0" layoutX="341.0" layoutY="14.0" onMouseClicked="#onHowToPlayClick" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="playButton" fitHeight="100.0" fitWidth="200.0" layoutX="200.0" layoutY="279.0" onMouseClicked="#onPlayClick" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="playLabel" layoutX="200.0" layoutY="279.0" onMouseClicked="#onPlayClick" prefHeight="100.0" prefWidth="200.0" />
-      <Label fx:id="versionLabel" layoutX="24.0" layoutY="350.0" prefHeight="30.0" prefWidth="165.0" />
-   </children>
+<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.MenuController">
+   <ImageView fx:id="backgroundView" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true"/>
+   <ImageView fx:id="exitButton" fitHeight="50.0" fitWidth="50.0" layoutX="536.0" layoutY="14.0"
+              onMouseClicked="#onExitClick" pickOnBounds="true" preserveRatio="true" onMouseEntered="#largeExitButton"
+              onMouseExited="#smallexitButton"/>
+   <ImageView fx:id="titleView" fitHeight="218.0" fitWidth="332.0" layoutX="137.0" layoutY="73.0" pickOnBounds="true"
+              preserveRatio="true"/>
+   <ImageView fx:id="creditsButton" fitHeight="50.0" fitWidth="50.0" layoutX="471.0" layoutY="14.0"
+              onMouseClicked="#onCreditsClick" pickOnBounds="true" preserveRatio="true"
+              onMouseEntered="#largecreditsButton" onMouseExited="#smallcreditsButton"/>
+   <ImageView fx:id="leaderboardButton" fitHeight="50.0" fitWidth="50.0" layoutX="406.0" layoutY="14.0"
+              onMouseClicked="#onLeaderboardClick" pickOnBounds="true" preserveRatio="true"
+              onMouseEntered="#largeleaderboardButton" onMouseExited="#smallleaderboardButton"/>
+   <ImageView fx:id="controlsButton" fitHeight="50.0" fitWidth="50.0" layoutX="341.0" layoutY="14.0"
+              onMouseClicked="#onHowToPlayClick" pickOnBounds="true" preserveRatio="true"
+              onMouseEntered="#largecontrolButton" onMouseExited="#smallcontrolButton"/>
+   <ImageView fx:id="playButton" fitHeight="100.0" fitWidth="200.0" layoutX="200.0" layoutY="279.0"
+              onMouseClicked="#onPlayClick" pickOnBounds="true" preserveRatio="true"/>
+   <Label fx:id="playLabel" layoutX="200.0" layoutY="279.0" onMouseClicked="#onPlayClick" prefHeight="100.0"
+          prefWidth="200.0" onMouseEntered="#largeplayLabel" onMouseExited="#smallplayLabel"/>
+   <Label fx:id="versionLabel" layoutX="24.0" layoutY="350.0" prefHeight="30.0" prefWidth="165.0"/>
 </AnchorPane>
