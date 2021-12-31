@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.FieldController">
+<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.front_end.controllers.FieldController">
       <children>
             <ImageView fx:id="backgroundView" fitHeight="400" fitWidth="600" layoutX="0" layoutY="0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="Q0" fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />

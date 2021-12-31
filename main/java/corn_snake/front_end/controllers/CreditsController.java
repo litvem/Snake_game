@@ -1,4 +1,4 @@
-package corn_snake.facade.controllers;
+package corn_snake.front_end.controllers;
 
 import corn_snake.util.FX;
 import corn_snake.util.IO;
@@ -66,7 +66,7 @@ public class CreditsController implements Initializable {
     public void onHomeClick() throws IOException {
         Stage stage = (Stage) window.getScene().getWindow();
         playCredits.stop();
-        IO.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
+        FX.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
     }
 
     @Override

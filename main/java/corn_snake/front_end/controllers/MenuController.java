@@ -1,7 +1,6 @@
-package corn_snake.facade.controllers;
+package corn_snake.front_end.controllers;
 
 import corn_snake.Main;
-import corn_snake.util.IO;
 import corn_snake.util.FX;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -63,7 +62,7 @@ public class MenuController implements Initializable {
                 new KeyFrame(Duration.seconds(0.7), (event) -> exitButton.setImage(EXIT))
         );
 
-        load.setDelay(Duration.seconds(0.8));
+        load.setDelay(Duration.seconds(0.2));
         load.play();
     }
 
@@ -99,7 +98,7 @@ public class MenuController implements Initializable {
     @FXML
     public void onCreditsClick() {
         try {
-            IO.loadScene(getStage(), "credits/credits.fxml", CreditsController.class, "credits/CreditsStyle.css");
+            FX.loadScene(getStage(), "credits/credits.fxml", CreditsController.class, "credits/CreditsStyle.css");
         } catch (IOException ignored) {
 
         }
@@ -108,7 +107,7 @@ public class MenuController implements Initializable {
     @FXML
     public void onLeaderboardClick() {
         try {
-            IO.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class, "leaderboard/LeaderboardStyle.css");
+            FX.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class, "leaderboard/LeaderboardStyle.css");
         } catch (IOException ignored) {
 
         }
@@ -117,7 +116,7 @@ public class MenuController implements Initializable {
     @FXML
     public void onHowToPlayClick() {
         try {
-            IO.loadScene(getStage(), "how_to_play/how_to_play.fxml", HowToPlayController.class, "how_to_play/HowToPlayStyle.css");
+            FX.loadScene(getStage(), "how_to_play/how_to_play.fxml", HowToPlayController.class, "how_to_play/HowToPlayStyle.css");
         } catch (IOException ignored) {
 
         }

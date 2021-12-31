@@ -1,4 +1,4 @@
-package corn_snake.facade.controllers;
+package corn_snake.front_end.controllers;
 
 import corn_snake.Main;
 import corn_snake.facade.Facade;
@@ -77,7 +77,7 @@ public class SaveScoreController implements Initializable {
 
     @FXML
     public void onHomeClick() throws IOException {
-        IO.loadScene(getStage(), "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
+        FX.loadScene(getStage(), "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
     }
 
     @FXML
@@ -88,7 +88,7 @@ public class SaveScoreController implements Initializable {
         FACADE.addScore(name, score);
         FACADE.saveLeaderboard();
         try {
-            IO.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class, "leaderboard/LeaderboardStyle.css");
+            FX.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class, "leaderboard/LeaderboardStyle.css");
         } catch (Exception ignored) {
 
         }

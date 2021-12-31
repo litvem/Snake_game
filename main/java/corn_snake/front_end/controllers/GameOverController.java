@@ -1,7 +1,6 @@
-package corn_snake.facade.controllers;
+package corn_snake.front_end.controllers;
 
 import corn_snake.util.FX;
-import corn_snake.util.IO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -49,7 +48,7 @@ public class GameOverController implements Initializable {
     @FXML
     public void onClick(MouseEvent event) {
         try {
-            IO.loadScene(getStage(), "save_score/save_score.fxml", SaveScoreController.class, "save_score/SaveScoreStyle.css");
+            FX.loadScene(getStage(), "save_score/save_score.fxml", SaveScoreController.class, "save_score/SaveScoreStyle.css");
         } catch (Exception ignored) {
 
         }

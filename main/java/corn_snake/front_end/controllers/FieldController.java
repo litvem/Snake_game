@@ -1,10 +1,10 @@
-package corn_snake.facade.controllers;
+package corn_snake.front_end.controllers;
 
 import corn_snake.Main;
 import corn_snake.back_end.GameOverException;
 import corn_snake.back_end.Tile;
 import corn_snake.facade.Facade;
-import corn_snake.util.IO;
+import corn_snake.util.FX;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -208,7 +208,7 @@ public class FieldController implements Initializable {
                         game.stop();
                         Stage stage = (Stage) window.getScene().getWindow();
                         try {
-                            IO.loadScene(stage, "game_over/game_over.fxml", GameOverController.class, "game_over/GameOverStyle.css");
+                            FX.loadScene(stage, "game_over/game_over.fxml", GameOverController.class, "game_over/GameOverStyle.css");
                         } catch (IOException ignored) {
 
                         }

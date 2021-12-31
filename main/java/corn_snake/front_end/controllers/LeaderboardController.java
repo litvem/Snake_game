@@ -1,10 +1,9 @@
-package corn_snake.facade.controllers;
+package corn_snake.front_end.controllers;
 
 import corn_snake.Main;
 import corn_snake.back_end.Score;
 import corn_snake.facade.Facade;
 import corn_snake.util.FX;
-import corn_snake.util.IO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -62,13 +61,13 @@ public class LeaderboardController implements Initializable {
     @FXML
     public void onHomeClick(MouseEvent event) throws IOException {
         Stage stage = (Stage) window.getScene().getWindow();
-        IO.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
+        FX.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
     }
 
     public void onResetClick(MouseEvent event) {
         FACADE.resetLeaderboard();
         try {
-            IO.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class);
+            FX.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class);
         } catch (Exception ignored) {
 
         }
