@@ -57,7 +57,7 @@ public class FieldController implements Initializable {
     @FXML
     private ImageView backgroundView;
 
-    // Images used in the game scene
+    // FX used in the game scene
     private final static Image
             BACKGROUND = new Image(
                     FieldController.class.getResource("field/GameBG.png").toExternalForm()

@@ -2,8 +2,7 @@ package corn_snake.facade.controllers;
 
 import corn_snake.Main;
 import corn_snake.util.IO;
-import corn_snake.util.Images;
-import corn_snake.util.Scale;
+import corn_snake.util.FX;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -36,14 +35,14 @@ public class MenuController implements Initializable {
     @FXML
     private Label playLabel, versionLabel;
 
-    // Images used in the title screen
+    // FX used in the title screen
     final static Image
-            BACKGROUND = Images.BACKGROUND,
+            BACKGROUND = FX.BACKGROUND,
             TITLE = new Image(MenuController.class.getResource("menu/Title.png").toExternalForm()),
-            PLAY = Images.SMALL_BOARD,
+            PLAY = FX.SMALL_BOARD,
             CONTROLS = new Image(MenuController.class.getResource("menu/ControlsButton.png").toExternalForm()),
             LEADERBOARD = new Image(MenuController.class.getResource("menu/LeaderboardButton.png").toExternalForm()),
-            CREDITS = Images.LOGO,
+            CREDITS = FX.LOGO,
             EXIT = new Image(MenuController.class.getResource("menu/ExitButton.png").toExternalForm());
 
     @Override
@@ -140,9 +139,9 @@ public class MenuController implements Initializable {
 
         if (!IDS.contains(node.getId())) return;
 
-        Scale.scale(node, value);
+        FX.scale(node, value);
         if (node.getId().equals("playLabel")) {
-            Scale.scale(playButton, value);
+            FX.scale(playButton, value);
         }
     }
 

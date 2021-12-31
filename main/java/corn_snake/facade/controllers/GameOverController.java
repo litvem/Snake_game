@@ -1,7 +1,7 @@
 package corn_snake.facade.controllers;
 
+import corn_snake.util.FX;
 import corn_snake.util.IO;
-import corn_snake.util.Images;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -29,8 +29,8 @@ public class GameOverController implements Initializable {
     private Label gameOver, clickPrompt;
 
     final static Image
-            BACKGROUND = Images.BACKGROUND,
-            BOARD = Images.SMALL_BOARD;
+            BACKGROUND = FX.BACKGROUND,
+            BOARD = FX.SMALL_BOARD;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

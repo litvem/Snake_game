@@ -3,9 +3,8 @@ package corn_snake.facade.controllers;
 import corn_snake.Main;
 import corn_snake.back_end.Score;
 import corn_snake.facade.Facade;
+import corn_snake.util.FX;
 import corn_snake.util.IO;
-import corn_snake.util.Images;
-import corn_snake.util.Scale;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -36,9 +35,9 @@ public class LeaderboardController implements Initializable {
     private static final String[] COLUMNS = {"rank", "name", "score"};
 
     private static final Image
-            BACKGROUND = Images.BACKGROUND,
-            BOARD = Images.BOARD,
-            HOME = Images.HOME,
+            BACKGROUND = FX.BACKGROUND,
+            BOARD = FX.BOARD,
+            HOME = FX.HOME,
             RESET = new Image(LeaderboardController.class.getResource("leaderboard/Reset.png").toExternalForm());
 
     @FXML
@@ -146,7 +145,7 @@ public class LeaderboardController implements Initializable {
     public void onHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
         if (node.getId().equals("homeButton") || node.getId().equals("resetButton")) {
-            Scale.scale(node, 1.1);
+            FX.scale(node, 1.1);
         }
     }
 
@@ -154,7 +153,7 @@ public class LeaderboardController implements Initializable {
     public void onUnHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
         if (node.getId().equals("homeButton") || node.getId().equals("resetButton")) {
-            Scale.scale(node, 1);
+            FX.scale(node, 1);
         }
     }
 

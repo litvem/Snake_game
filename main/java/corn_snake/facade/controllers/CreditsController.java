@@ -1,8 +1,7 @@
 package corn_snake.facade.controllers;
 
+import corn_snake.util.FX;
 import corn_snake.util.IO;
-import corn_snake.util.Images;
-import corn_snake.util.Scale;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,10 +30,10 @@ public class CreditsController implements Initializable {
     private AnchorPane window;
 
     static final Image
-            BACKGROUND = Images.BACKGROUND,
-            BOARD = Images.BOARD,
-            HOME = Images.HOME,
-            LOGO = Images.LOGO;
+            BACKGROUND = FX.BACKGROUND,
+            BOARD = FX.BOARD,
+            HOME = FX.HOME,
+            LOGO = FX.LOGO;
 
     private Timeline playCredits;
 
@@ -237,7 +236,7 @@ public class CreditsController implements Initializable {
     public void onHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
         if (node.getId().equals("home")) {
-            Scale.scale(node, 1.1);
+            FX.scale(node, 1.1);
         }
     }
 
@@ -245,7 +244,7 @@ public class CreditsController implements Initializable {
     public void onUnHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
         if (node.getId().equals("home")) {
-            Scale.scale(node, 1);
+            FX.scale(node, 1);
         }
     }
 }

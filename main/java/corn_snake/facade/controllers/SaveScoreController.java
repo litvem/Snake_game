@@ -3,8 +3,7 @@ package corn_snake.facade.controllers;
 import corn_snake.Main;
 import corn_snake.facade.Facade;
 import corn_snake.util.IO;
-import corn_snake.util.Images;
-import corn_snake.util.Scale;
+import corn_snake.util.FX;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -42,10 +41,10 @@ public class SaveScoreController implements Initializable {
     private TextField nameField;
 
     static final Image
-            BACKGROUND = Images.BACKGROUND,
-            BOARD = Images.SMALL_BOARD,
+            BACKGROUND = FX.BACKGROUND,
+            BOARD = FX.SMALL_BOARD,
             SAVE = new Image(SaveScoreController.class.getResource("save_score/SaveButton.png").toExternalForm()),
-            HOME = Images.HOME;
+            HOME = FX.HOME;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -99,7 +98,7 @@ public class SaveScoreController implements Initializable {
     public void onHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
         if (node.getId().equals("homeButton") || node.getId().equals("saveButton")) {
-            Scale.scale(node, 1.1);
+            FX.scale(node, 1.1);
         }
     }
 
@@ -107,7 +106,7 @@ public class SaveScoreController implements Initializable {
     public void onUnHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
         if (node.getId().equals("homeButton") || node.getId().equals("saveButton")) {
-            Scale.scale(node, 1);
+            FX.scale(node, 1);
         }
     }
 

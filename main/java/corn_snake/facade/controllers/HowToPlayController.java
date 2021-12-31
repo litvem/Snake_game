@@ -1,8 +1,7 @@
 package corn_snake.facade.controllers;
 
+import corn_snake.util.FX;
 import corn_snake.util.IO;
-import corn_snake.util.Images;
-import corn_snake.util.Scale;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -34,9 +33,9 @@ public class HowToPlayController implements Initializable {
     private Label howToPlayLabel;
 
     static final Image
-            BACKGROUND = Images.BACKGROUND,
-            BOARD = Images.BOARD,
-            HOME = Images.HOME;
+            BACKGROUND = FX.BACKGROUND,
+            BOARD = FX.BOARD,
+            HOME = FX.HOME;
 
     @FXML
     public void onHomeClick(MouseEvent event) throws IOException {
@@ -80,7 +79,7 @@ public class HowToPlayController implements Initializable {
     public void onHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
         if (node.getId().equals("homeButton")) {
-            Scale.scale(node, 1.1);
+            FX.scale(node, 1.1);
         }
     }
 
@@ -88,7 +87,7 @@ public class HowToPlayController implements Initializable {
     public void onUnHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
         if (node.getId().equals("homeButton")) {
-            Scale.scale(node, 1);
+            FX.scale(node, 1);
         }
     }
 }
