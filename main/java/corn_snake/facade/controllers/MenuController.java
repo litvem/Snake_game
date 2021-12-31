@@ -120,9 +120,9 @@ public class MenuController implements Initializable {
         }
     }
 
-            //scale buttons up
+    //scale buttons up
     @FXML
-        public void largeExitButton() {
+    public void largeExitButton() {
 
         double x = 1.1;
         ScaleTransition scale = new ScaleTransition();
@@ -133,6 +133,7 @@ public class MenuController implements Initializable {
         scale.play();
 
     }
+
     @FXML
     public void largecontrolButton() {
 
@@ -144,7 +145,9 @@ public class MenuController implements Initializable {
         scale.setDuration(Duration.millis(50));
         scale.play();
 
-    }@FXML
+    }
+
+    @FXML
     public void largeleaderboardButton() {
 
         double x = 1.1;
@@ -171,10 +174,9 @@ public class MenuController implements Initializable {
     }
 
 
-
-        // scale buttons back
+    // scale buttons back
     @FXML
-        public void smallexitButton() {
+    public void smallexitButton() {
         double y = 1.0;
         ScaleTransition scale = new ScaleTransition();
         scale.setNode(exitButton);
@@ -183,7 +185,9 @@ public class MenuController implements Initializable {
         scale.setDuration(Duration.millis(50));
         scale.play();
 
-    }@FXML
+    }
+
+    @FXML
     public void smallcontrolButton() {
         double y = 1.0;
         ScaleTransition scale = new ScaleTransition();
@@ -193,7 +197,9 @@ public class MenuController implements Initializable {
         scale.setDuration(Duration.millis(50));
         scale.play();
 
-    }@FXML
+    }
+
+    @FXML
     public void smallleaderboardButton() {
         double y = 1.0;
         ScaleTransition scale = new ScaleTransition();
@@ -203,102 +209,9 @@ public class MenuController implements Initializable {
         scale.setDuration(Duration.millis(50));
         scale.play();
 
-    }@FXML
-    public void smallcreditsButton() {
-        double y = 1.0;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(creditsButton);
-        scale.setToY(y);
-        scale.setToX(y);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }
-
-            //scale buttons up
-    @FXML
-        public void largeExitButton() {
-
-        double x = 1.1;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(exitButton);
-        scale.setToY(x);
-        scale.setToX(x);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }
-    @FXML
-    public void largecontrolButton() {
-
-        double x = 1.1;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(controlsButton);
-        scale.setToY(x);
-        scale.setToX(x);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }@FXML
-    public void largeleaderboardButton() {
-
-        double x = 1.1;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(leaderboardButton);
-        scale.setToY(x);
-        scale.setToX(x);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
     }
 
     @FXML
-    public void largecreditsButton() {
-
-        double x = 1.1;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(creditsButton);
-        scale.setToY(x);
-        scale.setToX(x);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }
-
-
-
-        // scale buttons back
-    @FXML
-        public void smallexitButton() {
-        double y = 1.0;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(exitButton);
-        scale.setToY(y);
-        scale.setToX(y);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }@FXML
-    public void smallcontrolButton() {
-        double y = 1.0;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(controlsButton);
-        scale.setToY(y);
-        scale.setToX(y);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }@FXML
-    public void smallleaderboardButton() {
-        double y = 1.0;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(leaderboardButton);
-        scale.setToY(y);
-        scale.setToX(y);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }@FXML
     public void smallcreditsButton() {
         double y = 1.0;
         ScaleTransition scale = new ScaleTransition();
@@ -330,7 +243,9 @@ public class MenuController implements Initializable {
         scale.setDuration(Duration.millis(50));
         scale.play();
 
-    }@FXML
+    }
+
+    @FXML
     public void smallplayLabel() {
         double y = 1.0;
         ScaleTransition scale = new ScaleTransition();
@@ -341,4 +256,4 @@ public class MenuController implements Initializable {
         scale.play();
 
     }
-
+}
