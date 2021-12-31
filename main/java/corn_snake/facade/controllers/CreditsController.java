@@ -1,12 +1,16 @@
 package corn_snake.facade.controllers;
 
 import corn_snake.util.IO;
+import corn_snake.util.Images;
+import corn_snake.util.Scale;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -26,11 +30,11 @@ public class CreditsController implements Initializable {
     @FXML
     private AnchorPane window;
 
-    private static final Image
-            BACKGROUND = MenuController.BACKGROUND,
-            BOARD = new Image(CreditsController.class.getResource("credits/Board.png").toExternalForm()),
-            HOME = SaveScoreController.HOME,
-            LOGO = MenuController.CREDITS;
+    static final Image
+            BACKGROUND = Images.BACKGROUND,
+            BOARD = Images.BOARD,
+            HOME = Images.HOME,
+            LOGO = Images.LOGO;
 
     private Timeline playCredits;
 
@@ -227,5 +231,21 @@ public class CreditsController implements Initializable {
         moveOutNames.play();
         fadeOutTitle.play();
         fadeOutNames.play();
+    }
+
+    @FXML
+    public void onHover(MouseEvent event) {
+        Node node = (Node) event.getTarget();
+        if (node.getId().equals("home")) {
+            Scale.scale(node, 1.1);
+        }
+    }
+
+    @FXML
+    public void onUnHover(MouseEvent event) {
+        Node node = (Node) event.getTarget();
+        if (node.getId().equals("home")) {
+            Scale.scale(node, 1);
+        }
     }
 }

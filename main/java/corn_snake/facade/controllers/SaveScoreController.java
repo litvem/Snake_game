@@ -3,10 +3,13 @@ package corn_snake.facade.controllers;
 import corn_snake.Main;
 import corn_snake.facade.Facade;
 import corn_snake.util.IO;
+import corn_snake.util.Images;
+import corn_snake.util.Scale;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -38,11 +41,11 @@ public class SaveScoreController implements Initializable {
     @FXML
     private TextField nameField;
 
-    final static Image
-            BACKGROUND = MenuController.BACKGROUND,
-            BOARD = MenuController.PLAY,
+    static final Image
+            BACKGROUND = Images.BACKGROUND,
+            BOARD = Images.SMALL_BOARD,
             SAVE = new Image(SaveScoreController.class.getResource("save_score/SaveButton.png").toExternalForm()),
-            HOME = new Image(SaveScoreController.class.getResource("save_score/HomeButton.png").toExternalForm());
+            HOME = Images.HOME;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -89,6 +92,22 @@ public class SaveScoreController implements Initializable {
             IO.loadScene(getStage(), "leaderboard/leaderboard.fxml", LeaderboardController.class, "leaderboard/LeaderboardStyle.css");
         } catch (Exception ignored) {
 
+        }
+    }
+
+    @FXML
+    public void onHover(MouseEvent event) {
+        Node node = (Node) event.getTarget();
+        if (node.getId().equals("homeButton") || node.getId().equals("saveButton")) {
+            Scale.scale(node, 1.1);
+        }
+    }
+
+    @FXML
+    public void onUnHover(MouseEvent event) {
+        Node node = (Node) event.getTarget();
+        if (node.getId().equals("homeButton") || node.getId().equals("saveButton")) {
+            Scale.scale(node, 1);
         }
     }
 

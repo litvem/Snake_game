@@ -1,8 +1,8 @@
 .label {
-  -fx.fond.family: "Segoe Script";
-  -fx-alignment: center;
-  -fx-text-alignment: center;
-  -fx-font-size: 15;
-
-
+    -fx-font-family: "Segoe Script";
+    -fx-text-fill: #41a200;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
 }

@@ -4,11 +4,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.CreditsController">
+<AnchorPane fx:id="window" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="corn_snake.facade.controllers.CreditsController">
    <children>
       <ImageView fx:id="background" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="board" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="home" fitHeight="50.0" fitWidth="50.0" layoutX="536.0" layoutY="14.0" onMouseClicked="#onHomeClick" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="home" fitHeight="50.0" fitWidth="50.0" layoutX="536.0" layoutY="14.0" onMouseClicked="#onHomeClick" pickOnBounds="true" preserveRatio="true" onMouseEntered="#onHover" onMouseExited="#onUnHover" />
       <Label fx:id="title" layoutX="46.0" layoutY="168.0" prefHeight="50.0" prefWidth="508.0" />
       <Label fx:id="names" layoutX="46.0" layoutY="217.0" prefHeight="183.0" prefWidth="508.0" />
       <ImageView fx:id="logo" fitHeight="80.0" fitWidth="80.0" layoutX="260.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true" />

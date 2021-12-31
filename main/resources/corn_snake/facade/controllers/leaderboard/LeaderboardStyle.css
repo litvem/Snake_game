@@ -4,11 +4,12 @@
     -fx-font-family: "Segoe Script";
     -fx-alignment: center-left;
     -fx-text-alignment: left;
+    -fx-font-weight: bold;
 }
 
 #title {
-    -fx-font-size: 50;
-    -fx-alignment: center;
+    -fx-font-size: 45;
+    -fx-alignment: top-center;
     -fx-text-alignment: center;
 }
 

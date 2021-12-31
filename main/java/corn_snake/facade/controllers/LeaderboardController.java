@@ -4,11 +4,15 @@ import corn_snake.Main;
 import corn_snake.back_end.Score;
 import corn_snake.facade.Facade;
 import corn_snake.util.IO;
+import corn_snake.util.Images;
+import corn_snake.util.Scale;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,9 +31,15 @@ public class LeaderboardController implements Initializable {
     private AnchorPane window;
 
     @FXML
-    private ImageView homeButton;
+    private ImageView background, board, homeButton, resetButton;
 
     private static final String[] COLUMNS = {"rank", "name", "score"};
+
+    private static final Image
+            BACKGROUND = Images.BACKGROUND,
+            BOARD = Images.BOARD,
+            HOME = Images.HOME,
+            RESET = new Image(LeaderboardController.class.getResource("leaderboard/Reset.png").toExternalForm());
 
     @FXML
     private Label
@@ -51,7 +61,7 @@ public class LeaderboardController implements Initializable {
     private List<Score> lb;
 
     @FXML
-    public void onMainMenuClick(MouseEvent event) throws IOException {
+    public void onHomeClick(MouseEvent event) throws IOException {
         Stage stage = (Stage) window.getScene().getWindow();
         IO.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
     }
@@ -81,16 +91,26 @@ public class LeaderboardController implements Initializable {
         }
     }
 
-
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        background.setImage(BACKGROUND);
         lb = FACADE.getLeaderboard();
         row = 1;
 
-        Timeline load = new Timeline(
+        Timeline loadBackground = new Timeline(
+                new KeyFrame(Duration.seconds(0.1), (event) -> board.setImage(BOARD)),
+                new KeyFrame(Duration.seconds(0.2), (event) -> homeButton.setImage(HOME)),
+                new KeyFrame(Duration.seconds(0.3), (event) -> resetButton.setImage(RESET)),
+                new KeyFrame(Duration.seconds(0.4), (event) -> title.setText("Top 10")),
+                new KeyFrame(Duration.seconds(0.5), (event) -> {
+                    rank.setText("Rank");
+                    name.setText("Name");
+                    score.setText("Score");
+                })
+        );
+        loadBackground.setDelay(Duration.seconds(0.5));
+
+        Timeline loadLeaderboard = new Timeline(
                 new KeyFrame(Duration.millis(100), (event) -> {
                         try {
                             String rank = String.valueOf(row) + ".";
@@ -115,9 +135,27 @@ public class LeaderboardController implements Initializable {
                     }
                 )
         );
-        load.setDelay(Duration.seconds(0.5));
-        load.setCycleCount(10);
-        load.play();
+        loadLeaderboard.setDelay(Duration.seconds(1));
+        loadLeaderboard.setCycleCount(10);
+
+        loadBackground.play();
+        loadLeaderboard.play();
+    }
+
+    @FXML
+    public void onHover(MouseEvent event) {
+        Node node = (Node) event.getTarget();
+        if (node.getId().equals("homeButton") || node.getId().equals("resetButton")) {
+            Scale.scale(node, 1.1);
+        }
+    }
+
+    @FXML
+    public void onUnHover(MouseEvent event) {
+        Node node = (Node) event.getTarget();
+        if (node.getId().equals("homeButton") || node.getId().equals("resetButton")) {
+            Scale.scale(node, 1);
+        }
     }
 
     /**
