@@ -238,16 +238,16 @@ public class FieldController implements Initializable {
                                         image.setImage(BODY_V);
                                         break;
                                     case SNAKE_CORNER_RIGHT_UP_BODY:
-                                        image.setImage(TURN_UR);
-                                        break;
-                                    case SNAKE_CORNER_LEFT_UP_BODY:
-                                        image.setImage(TURN_UL);
-                                        break;
-                                    case SNAKE_CORNER_RIGHT_DOWN_BODY:
                                         image.setImage(TURN_DR);
                                         break;
-                                    case SNAKE_CORNER_LEFT_DOWN_BODY:
+                                    case SNAKE_CORNER_LEFT_UP_BODY:
                                         image.setImage(TURN_DL);
+                                        break;
+                                    case SNAKE_CORNER_RIGHT_DOWN_BODY:
+                                        image.setImage(TURN_UR);
+                                        break;
+                                    case SNAKE_CORNER_LEFT_DOWN_BODY:
+                                        image.setImage(TURN_UL);
                                         break;
                                     case SNAKE_HEAD_UP:
                                         image.setImage(HEAD_U);
@@ -268,10 +268,10 @@ public class FieldController implements Initializable {
                                         image.setImage(TAIL_U);
                                         break;
                                     case SNAKE_RIGHTWARD_GOING_TAIL:
-                                        image.setImage(TAIL_R);
+                                        image.setImage(TAIL_L);
                                         break;
                                     case SNAKE_LEFTWARD_GOING_TAIL:
-                                        image.setImage(TAIL_L);
+                                        image.setImage(TAIL_R);
                                         break;
                                     case FRUIT:
                                         image.setImage(FRUIT);
