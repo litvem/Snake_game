@@ -2,12 +2,14 @@ package corn_snake.facade.controllers;
 
 import corn_snake.Main;
 import corn_snake.util.IO;
+import corn_snake.util.Images;
+import corn_snake.util.Scale;
 import javafx.animation.KeyFrame;
-import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -19,6 +21,8 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
@@ -34,12 +38,12 @@ public class MenuController implements Initializable {
 
     // Images used in the title screen
     final static Image
-            BACKGROUND = new Image(MenuController.class.getResource("menu/TitleBG.png").toExternalForm()),
+            BACKGROUND = Images.BACKGROUND,
             TITLE = new Image(MenuController.class.getResource("menu/Title.png").toExternalForm()),
-            PLAY = new Image(MenuController.class.getResource("menu/PlayButton.png").toExternalForm()),
+            PLAY = Images.SMALL_BOARD,
             CONTROLS = new Image(MenuController.class.getResource("menu/ControlsButton.png").toExternalForm()),
             LEADERBOARD = new Image(MenuController.class.getResource("menu/LeaderboardButton.png").toExternalForm()),
-            CREDITS = new Image(MenuController.class.getResource("menu/CreditsButton.png").toExternalForm()),
+            CREDITS = Images.LOGO,
             EXIT = new Image(MenuController.class.getResource("menu/ExitButton.png").toExternalForm());
 
     @Override
@@ -114,115 +118,33 @@ public class MenuController implements Initializable {
     @FXML
     public void onHowToPlayClick() {
         try {
-            IO.loadScene(getStage(), "how_to_play/how_to_play.fxml", HowToPlayController.class);
+            IO.loadScene(getStage(), "how_to_play/how_to_play.fxml", HowToPlayController.class, "how_to_play/HowToPlayStyle.css");
         } catch (IOException ignored) {
 
         }
     }
 
-    //scale buttons up
     @FXML
-    public void largeExitButton() {
-
-        double x = 1.1;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(exitButton);
-        scale.setToY(x);
-        scale.setToX(x);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
+    public void onHover(MouseEvent event) {
+        scale((Node) event.getTarget(), 1.1);
     }
 
     @FXML
-    public void largecontrolButton() {
-
-        double x = 1.1;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(controlsButton);
-        scale.setToY(x);
-        scale.setToX(x);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
+    public void onUnHover(MouseEvent event) {
+        scale((Node) event.getTarget(), 1);
     }
 
-    @FXML
-    public void largeleaderboardButton() {
+    private void scale(Node node, double value) {
+        final String[] TEMP = {"playButton", "playLabel", "exitButton", "creditsButton", "leaderboardButton", "controlsButton"};
+        final ArrayList<String> IDS = new ArrayList<>(Arrays.asList(TEMP));
 
-        double x = 1.1;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(leaderboardButton);
-        scale.setToY(x);
-        scale.setToX(x);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
+        if (!IDS.contains(node.getId())) return;
 
+        Scale.scale(node, value);
+        if (node.getId().equals("playLabel")) {
+            Scale.scale(playButton, value);
+        }
     }
-
-    @FXML
-    public void largecreditsButton() {
-
-        double x = 1.1;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(creditsButton);
-        scale.setToY(x);
-        scale.setToX(x);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }
-
-
-    // scale buttons back
-    @FXML
-    public void smallexitButton() {
-        double y = 1.0;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(exitButton);
-        scale.setToY(y);
-        scale.setToX(y);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }
-
-    @FXML
-    public void smallcontrolButton() {
-        double y = 1.0;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(controlsButton);
-        scale.setToY(y);
-        scale.setToX(y);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }
-
-    @FXML
-    public void smallleaderboardButton() {
-        double y = 1.0;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(leaderboardButton);
-        scale.setToY(y);
-        scale.setToX(y);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }
-
-    @FXML
-    public void smallcreditsButton() {
-        double y = 1.0;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(creditsButton);
-        scale.setToY(y);
-        scale.setToX(y);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }
-
 
     /**
      * Retrieves the current stage that's being used
@@ -231,29 +153,5 @@ public class MenuController implements Initializable {
      */
     private Stage getStage() {
         return (Stage) window.getScene().getWindow();
-    }
-
-    @FXML
-    public void largeplayLabel() {
-        double x = 1.1;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(playLabel);
-        scale.setToY(x);
-        scale.setToX(x);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
-    }
-
-    @FXML
-    public void smallplayLabel() {
-        double y = 1.0;
-        ScaleTransition scale = new ScaleTransition();
-        scale.setNode(playLabel);
-        scale.setToY(y);
-        scale.setToX(y);
-        scale.setDuration(Duration.millis(50));
-        scale.play();
-
     }
 }
