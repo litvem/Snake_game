@@ -3,6 +3,7 @@ package corn_snake.facade.controllers;
 import corn_snake.Main;
 import corn_snake.util.IO;
 import javafx.animation.KeyFrame;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -119,6 +122,118 @@ public class MenuController implements Initializable {
         }
     }
 
+            //scale buttons up
+    @FXML
+        public void largeExitButton() {
+
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(exitButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+    @FXML
+    public void largecontrolButton() {
+
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(controlsButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }@FXML
+    public void largeleaderboardButton() {
+
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(leaderboardButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+
+    @FXML
+    public void largecreditsButton() {
+
+        double x = 1.1;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(creditsButton);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+
+
+
+        // scale buttons back
+    @FXML
+        public void smallexitButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(exitButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }@FXML
+    public void smallcontrolButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(controlsButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }@FXML
+    public void smallleaderboardButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(leaderboardButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }@FXML
+    public void smallcreditsButton() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(creditsButton);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+
+        /*because playlabel isnt the whole board
+        * and it would take up to much space
+        * I decided it should change colors instead.*/
+    @FXML
+    public void redplayLabel() {
+        Text text = new Text();
+        text.setFill(Color.RED);
+
+    }@FXML
+    public void greenplayLabel() {
+        Text text = new Text();
+        text.setFill(Color.GREEN);
+
+
+    }
+
+
     /**
      * Retrieves the current stage that's being used
      *
@@ -127,4 +242,29 @@ public class MenuController implements Initializable {
     private Stage getStage() {
         return (Stage) window.getScene().getWindow();
     }
+
+
+
+    @FXML
+    public void largeplayLabel() {
+        double x = 1.1
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(playLabel);
+        scale.setToY(x);
+        scale.setToX(x);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+    }@FXML
+    public void smallplayLabel() {
+        double y = 1.0;
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(playLabel);
+        scale.setToY(y);
+        scale.setToX(y);
+        scale.setDuration(Duration.millis(50));
+        scale.play();
+
+    }
+
+
 }
