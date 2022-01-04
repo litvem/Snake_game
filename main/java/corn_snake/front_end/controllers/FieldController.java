@@ -23,11 +23,11 @@ import java.util.ResourceBundle;
 
 public class FieldController implements Initializable {
 
-    // Unified facade
+    //Initializes unified Facade
     final static Facade FACADE = Main.FACADE;
 
-    // Tile grid
-    // Borders either have a leading P or Q, or have the number 0 or 16
+    //Declares tile grid
+    //Borders either have a leading P or Q, or have the number 0 or 16
     @FXML
     private ImageView
             Q0, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16,
@@ -57,7 +57,7 @@ public class FieldController implements Initializable {
     @FXML
     private ImageView backgroundView;
 
-    // FX used in the game scene
+    //Shows the path to the images used to display tiles in the game
     private final static Image
             BACKGROUND = new Image(
                     FieldController.class.getResource("field/GameBG.png").toExternalForm()
@@ -118,9 +118,12 @@ public class FieldController implements Initializable {
             'Q', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'
     };
 
-    // Iteration trackers
+    //Declares iteration trackers
     private int cdNum, row, column;
 
+    /**
+     * Runs the Game screen
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cdNum = 3;
@@ -179,8 +182,8 @@ public class FieldController implements Initializable {
                                         image.setImage(FRUIT);
                                         break;
                                 }
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            } catch (Exception ignored) {
+
                             } finally {
                                 // Increments column from 0-16
                                 // Increments row by 1 when column exceeds the number of columns in the field
@@ -276,8 +279,8 @@ public class FieldController implements Initializable {
                                         image.setImage(FRUIT);
                                         break;
                                 }
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            } catch (Exception ignored) {
+
                             }
                         }
                     }
@@ -293,6 +296,10 @@ public class FieldController implements Initializable {
         game.play();
     }
 
+    /**
+     * Called when the key is pressed
+     * Calls setCommand method in Facade
+     */
     public void onKeyPressed(String key){
         FACADE.setCommand(key);
     }
