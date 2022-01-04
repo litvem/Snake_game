@@ -32,6 +32,11 @@ public class LoadController implements Initializable {
             BACKGROUND = FX.BACKGROUND,
             LOGO = FX.LOGO;
 
+    /**
+     * This method is implicitly called by JavaFX.
+     * Initializes the loading screen.
+     * A {@link Timeline} animates the screen before fading in the background and changing to the title screen
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         label.setOpacity(0);

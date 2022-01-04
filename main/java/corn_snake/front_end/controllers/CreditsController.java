@@ -35,7 +35,7 @@ public class CreditsController implements Initializable {
             HOME = FX.HOME,
             LOGO = FX.LOGO;
 
-    private Timeline playCredits;
+    private Timeline playCredits; // Declared here, so it can be stopped in initialize()
 
     private static final String EOL = IO.EOL;
     private static final String PRODUCER_TITLE = "Producer";
@@ -69,6 +69,11 @@ public class CreditsController implements Initializable {
         FX.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
     }
 
+    /**
+     * This method is implicitly called by JavaFX.
+     * Initializes the credits screen and plays the credits.
+     * Two {@link Timeline}s make components appear in quick succession and plays the credits with animations
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         final double FADE_DURATION = 4.5;
@@ -201,6 +206,10 @@ public class CreditsController implements Initializable {
         }
     }
 
+    /**
+     * Animates a section of the credits by fading Nodes out.
+     * Fade out animation takes 0.5 seconds to complete
+     */
     private void fadeOutTitleAndNames() {
         final int INCREMENT = -52;
 
@@ -232,6 +241,11 @@ public class CreditsController implements Initializable {
         fadeOutNames.play();
     }
 
+    /**
+     * Called whenever the cursor hovers over a button.
+     * The button gets enlarged by 10%
+     * @param event the {@link MouseEvent} used to fetch the button
+     */
     @FXML
     public void onHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
@@ -240,6 +254,11 @@ public class CreditsController implements Initializable {
         }
     }
 
+    /**
+     * Called whenever the cursor stops hovering over a button.
+     * The button reverts to its original size
+     * @param event the {@link MouseEvent} used to fetch the button
+     */
     @FXML
     public void onUnHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
