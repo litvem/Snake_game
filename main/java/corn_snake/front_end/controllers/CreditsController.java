@@ -62,6 +62,10 @@ public class CreditsController implements Initializable {
     public static final String SUPERVISOR_NAME = "Rongzhen Chen";
     public static final String EXAMINER_NAME = "Richard Berntsson Svensson";
 
+    /**
+     * Called when the home button is clicked.
+     * Returns to the title screen
+     */
     @FXML
     public void onHomeClick() throws IOException {
         Stage stage = (Stage) window.getScene().getWindow();
