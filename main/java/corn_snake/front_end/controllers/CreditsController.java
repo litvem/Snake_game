@@ -1,7 +1,6 @@
 package corn_snake.front_end.controllers;
 
 import corn_snake.util.FX;
-import corn_snake.util.IO;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +16,8 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static corn_snake.util.IO.*;
 
 public class CreditsController implements Initializable {
 
@@ -36,31 +37,6 @@ public class CreditsController implements Initializable {
             LOGO = FX.LOGO;
 
     private Timeline playCredits; // Declared here, so it can be stopped in initialize()
-
-    private static final String EOL = IO.EOL;
-    private static final String PRODUCER_TITLE = "Producer";
-    private static final String DIRECTOR_TITLE = "Director";
-    private static final String LOGIC_TITLE = "Game logic programming";
-    private static final String UI_TITLE = "UI design and programming";
-    private static final String VISUALS_TITLE = "Visuals";
-    private static final String SUPERVISOR_TITLE = "Supervisor";
-    private static final String EXAMINER_TITLE = "Examiner";
-    private static final String PRODUCER_NAME = "Emma Litvin";
-    private static final String DIRECTOR_NAME = "Bao Quan Lindgren";
-    private static final String LOGIC_NAMES =
-                    "Ahmed Ebrahim Ahmed Algabri" + EOL +
-                    "Fredrik Grund" + EOL +
-                    "Luiz Eduardo Philippi Rosane" + EOL +
-                    "Robert Einer";
-    public static final String UI_NAMES =
-                    "Bao Quan Lindgren" + EOL +
-                    "Emma Litvin" + EOL +
-                    "Faisal Sayed" + EOL +
-                    "Khaled Adel Saleh Mohammed Al-Baadani" + EOL +
-                    "Luiz Eduardo Philippi Rosane";
-    public static final String VISUALS_NAME = "Bao Quan Lindgren";
-    public static final String SUPERVISOR_NAME = "Rongzhen Chen";
-    public static final String EXAMINER_NAME = "Richard Berntsson Svensson";
 
     /**
      * Called when the home button is clicked.
