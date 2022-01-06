@@ -37,12 +37,21 @@ public class HowToPlayController implements Initializable {
             BOARD = FX.BOARD,
             HOME = FX.HOME;
 
+    /**
+     * Called when the home button is clicked.
+     * Returns to the title screen
+     */
     @FXML
     public void onHomeClick(MouseEvent event) throws IOException {
         Stage stage = (Stage) window.getScene().getWindow();
         FX.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
     }
 
+    /**
+     * This method is implicitly called by JavaFX.
+     * Initializes the "how to play" screen.
+     * A short {@link Timeline} makes the background and text explaining the game appear in quick succession
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         background.setImage(BACKGROUND);
@@ -74,7 +83,11 @@ public class HowToPlayController implements Initializable {
         load.setDelay(Duration.seconds(0.4));
         load.play();
     }
-
+    /**
+     * Called whenever the cursor hovers over a button.
+     * The button gets enlarged by 10%
+     * @param event the {@link MouseEvent} used to fetch the button
+     */
     @FXML
     public void onHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
@@ -83,6 +96,11 @@ public class HowToPlayController implements Initializable {
         }
     }
 
+    /**
+     * Called whenever the cursor stops hovering over a button.
+     * The button reverts to its original size
+     * @param event the {@link MouseEvent} used to fetch the button
+     */
     @FXML
     public void onUnHover(MouseEvent event) {
         Node node = (Node) event.getTarget();

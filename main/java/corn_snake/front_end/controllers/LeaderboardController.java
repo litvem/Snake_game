@@ -58,12 +58,21 @@ public class LeaderboardController implements Initializable {
 
     private List<Score> lb;
 
+    /**
+     * Called when the home button is clicked.
+     * Returns to the title screen
+     */
     @FXML
     public void onHomeClick(MouseEvent event) throws IOException {
         Stage stage = (Stage) window.getScene().getWindow();
         FX.loadScene(stage, "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
     }
 
+    /**
+     * Called when the reset button is clicked.
+     * Wipes the leaderboard and reloads the leaderboard screen
+     */
+    @FXML
     public void onResetClick(MouseEvent event) {
         FACADE.resetLeaderboard();
         try {
@@ -73,22 +82,12 @@ public class LeaderboardController implements Initializable {
         }
     }
 
-    private Label getLabel(int row, int col) throws IndexOutOfBoundsException {
-        if (row < 1 || row > 10 ) {
-            throw new IndexOutOfBoundsException(" Row cannot be less than 1 or exceed 10.");
-        }
-        if (col < 0 || col > 2) {
-            throw new IndexOutOfBoundsException(" Column cannot be less than 0 or exceed 2.");
-        }
-        try {
-            return (Label) getClass().getDeclaredField(
-                    String.format("%s%d", COLUMNS[col], row)
-            ).get(LeaderboardController.this);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
+    /**
+     * This method is implicitly called by JavaFX.
+     * Initializes the leaderboard screen.
+     * Two short {@link Timeline}s make the background and saved leaderboard data appear in quick succession.
+     * If there are fewer than 10 registered scores, the rest of the rows will have "---" as their data
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         background.setImage(BACKGROUND);
@@ -163,5 +162,28 @@ public class LeaderboardController implements Initializable {
      */
     private Stage getStage() {
         return (Stage) window.getScene().getWindow();
+    }
+
+    /**
+     * Retrieves a label from the table of ranks, names, and scores of this controller.
+     * @param row integer value of the row. Indexing starts at 1
+     * @param col integer value of the row. Indexing starts at 0
+     * @return the label that corresponds to the given row and column
+     * @throws IndexOutOfBoundsException if an invalid row or column is given. 1 <= row <= 10, 0 <= col <= 2
+     */
+    private Label getLabel(int row, int col) throws IndexOutOfBoundsException {
+        if (row < 1 || row > 10 ) {
+            throw new IndexOutOfBoundsException("Row cannot be less than 1 or exceed 10.");
+        }
+        if (col < 0 || col > 2) {
+            throw new IndexOutOfBoundsException("Column cannot be less than 0 or exceed 2.");
+        }
+        try {
+            return (Label) getClass().getDeclaredField(
+                    String.format("%s%d", COLUMNS[col], row)
+            ).get(LeaderboardController.this);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
