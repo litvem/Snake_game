@@ -6,7 +6,6 @@ import corn_snake.back_end.Leaderboard;
 import corn_snake.back_end.Score;
 import corn_snake.back_end.Tile;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import corn_snake.util.Json;
@@ -36,7 +35,7 @@ public class Facade {
 
     /**
      * Creates a new game field
-     * By default,the field object and Score attribute is initialized
+     * By default, the field object and Score attribute is initialized
      * with the "downward" Command and score 0 respectively.
      */
     public void newField() {
@@ -54,18 +53,27 @@ public class Facade {
      * @param command is the command input from the keyboard when the User plays the game .
      */
     public void setCommand(String command) {
-        if (command.equals("S") || command.equals("K")) {
-            if (this.command.equals("u")) return;
-            this.command = "d";
-        } else if (command.equals("W") || command.equals("I")) {
-            if (this.command.equals("d")) return;
-            this.command="u";
-        } else if(command.equals("A") || command.equals("J")) {
-            if (this.command.equals("r")) return;
-            this.command="l";
-        } else if(command.equals("D") || command.equals("L")) {
-            if (this.command.equals("l")) return;
-            this.command="r";
+        switch (command) {
+            case "S":
+            case "K":
+                if (this.command.equals("u")) return;
+                this.command = "d";
+                break;
+            case "W":
+            case "I":
+                if (this.command.equals("d")) return;
+                this.command = "u";
+                break;
+            case "A":
+            case "J":
+                if (this.command.equals("r")) return;
+                this.command = "l";
+                break;
+            case "D":
+            case "L":
+                if (this.command.equals("l")) return;
+                this.command = "r";
+                break;
         }
     }
 
@@ -73,7 +81,7 @@ public class Facade {
      * moveSnake method calls the moveSnake() method from the back end and passes
      * the command attribute of Facade and its value as an argument to it.
      *
-     * the score Variable is updated each time moveSnake method is called .
+     * The score Variable is updated each time moveSnake method is called .
      *
      * @throws GameOverException when the snake hits the wall or its own body.
      */
@@ -97,7 +105,7 @@ public class Facade {
     }
 
     /**
-     * saves the leaderboard object by serializing it into an existing json file or a newly created one.
+     * Saves the leaderboard object by serializing it into an existing json file or a newly created one.
      */
     public void saveLeaderboard() {
         try {
@@ -110,12 +118,11 @@ public class Facade {
     }
 
     /**
-     * Creates a new empty arraylist and sets it as the new top10 of the leaderboard object.
+     * Creates a new Leaderboard with no player data.
      * The empty leaderboard is saved and the previous one is deleted.
      */
     public void resetLeaderboard(){
-        List<Score> top10 = new ArrayList<>();
-        lb.setTop10(top10);
+        lb = new Leaderboard();
         saveLeaderboard();
     }
 

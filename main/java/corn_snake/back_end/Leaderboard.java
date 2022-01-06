@@ -14,7 +14,7 @@ public class Leaderboard {
 
     /**
      * Getter for top 10 list
-      * @return a copy of the top 10 leaderboard list
+     * @return a copy of the top 10 leaderboard list
      */
     public List<Score> getTop10() {
         List<Score> copyOfTop10 = new ArrayList<>(top10);
@@ -24,14 +24,6 @@ public class Leaderboard {
     public void setTop10(List<Score> top10) {
         // Only to be used by the Json class
         this.top10 = top10;
-    }
-
-    public String toString() {
-        String res = "Top 10:\n";
-        for (Score score : top10) {
-            res += score.toString();
-        }
-        return res;
     }
 
     /**
