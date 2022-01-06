@@ -19,6 +19,12 @@ public class FX {
             SMALL_BOARD = new Image(FX.class.getResource("common_images/SmallBoard.png").toExternalForm()),
             BOARD = new Image(FX.class.getResource("common_images/Board.png").toExternalForm());
 
+    /**
+     * Animates a node in the GUI using a {@link ScaleTransition}. Each animation takes 50 milliseconds to complete
+     *
+     * @param node the node to animate
+     * @param value ratio to scale the node to. 1.0 translates to 100% its original size
+     */
     public static void scale(Node node, double value) {
         ScaleTransition scale = new ScaleTransition();
         scale.setNode(node);
@@ -26,20 +32,6 @@ public class FX {
         scale.setToX(value);
         scale.setDuration(Duration.millis(50));
         scale.play();
-    }
-
-    /**
-     * Loads a new JavaFX {@link Scene}
-     *
-     * @param currentStage the current {@link Stage} that is used.
-     *                     Bind the container to an FXID to access the stage, example:
-     *                     {@code (Stage) <container>.getScene().getWindow()}
-     * @param file FXML file to load scene from
-     * @param clazz {@link Class} to get resources from
-     * @throws IOException if loading fails
-     */
-    public static void loadScene(Stage currentStage, String file, Class<?> clazz) throws IOException {
-        loadScene(currentStage, file, clazz, null);
     }
 
     /**
