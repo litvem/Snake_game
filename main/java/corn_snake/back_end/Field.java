@@ -224,9 +224,11 @@ public class Field {
         matrix[row][column] = bodyTile;
     }
 
+
     /**
-     * Verify which tail tile must be assigned to the tail coordinates based on the adjacent segment.
-     * @return the correct tile to the current state of the snake
+     * Sets the correct tail tile depending on where the segment before it is located
+     * @param tailIndex is the index of the tail in the snake arraylist
+     * @return the correct tail tile to the moveSnake() method where it is assigned to the correct coordinates in the matrix
      */
     private Tile setTailDirection (int tailIndex) {
 

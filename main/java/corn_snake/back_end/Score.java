@@ -40,7 +40,7 @@ public class Score implements Comparable<Score> {
     }
 
     /**
-     * Compares all score in leaderboard and sorts them in descending order
+     * Compares all scores in leaderboard and sorts them in descending order
      */
     @Override
     public int compareTo(Score otherScore) {
