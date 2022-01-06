@@ -111,7 +111,7 @@ public class Field {
      *
      * After all the verifications are made and coordinates are updated the body tiles are updated.
      *
-     * If the snake hits a wall ora body segment, a GameOverException is thrown
+     * If the snake hits a wall or a body segment, a GameOverException is thrown
      */
     public void moveSnake(String command) throws GameOverException {
         /*
@@ -224,6 +224,10 @@ public class Field {
         matrix[row][column] = bodyTile;
     }
 
+    /**
+     * Verify which tail tile must be assigned to the tail coordinates based on the adjacent segment.
+     * @return the correct tile to the current state of the snake
+     */
     private Tile setTailDirection (int tailIndex) {
 
         int tailRow = snake.getSegment(tailIndex)[0];
