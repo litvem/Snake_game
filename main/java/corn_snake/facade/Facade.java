@@ -21,7 +21,7 @@ public class Facade {
     private int score;
 
     /**
-     * When called,the constructor creates a Facade object and initializes it with a field object and
+     * The constructor creates a Facade object and initializes it with a field object and
      * loads the leaderboard with data from an existing "leaderboard.json" file.
      * The constructor creates a new leaderboard if the loading fails.
      */
@@ -35,8 +35,9 @@ public class Facade {
     }
 
     /**
-     * Creates a new game field and by default initializes the field object
-     * with the "downward" Command and score 0.
+     * Creates a new game field
+     * By default,the field object and Score attribute is initialized
+     * with the "downward" Command and score 0 respectively.
      */
     public void newField() {
         field = new Field();
@@ -71,6 +72,7 @@ public class Facade {
     /**
      * moveSnake method calls the moveSnake() method from the back end and passes
      * the command attribute of Facade and its value as an argument to it.
+     *
      * the score Variable is updated each time moveSnake method is called .
      *
      * @throws GameOverException when the snake hits the wall or its own body.
