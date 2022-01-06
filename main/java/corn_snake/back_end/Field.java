@@ -224,6 +224,12 @@ public class Field {
         matrix[row][column] = bodyTile;
     }
 
+
+    /**
+     * Sets the correct tail tile depending on where the segment before it is located
+     * @param tailIndex is the index of the tail in the snake arraylist
+     * @return the correct tail tile to the moveSnake() method where it is assigned to the correct coordinates in the matrix
+     */
     private Tile setTailDirection (int tailIndex) {
 
         int tailRow = snake.getSegment(tailIndex)[0];
