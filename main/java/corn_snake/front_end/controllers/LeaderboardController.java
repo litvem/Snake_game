@@ -139,6 +139,11 @@ public class LeaderboardController implements Initializable {
         loadLeaderboard.play();
     }
 
+    /**
+     * Called whenever the cursor hovers over a button.
+     * The button gets enlarged by 10%
+     * @param event the {@link MouseEvent} used to fetch the button
+     */
     @FXML
     public void onHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
@@ -147,6 +152,11 @@ public class LeaderboardController implements Initializable {
         }
     }
 
+    /**
+     * Called whenever the cursor stops hovering over a button.
+     * The button reverts to its original size
+     * @param event the {@link MouseEvent} used to fetch the button
+     */
     @FXML
     public void onUnHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
