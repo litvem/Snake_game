@@ -44,6 +44,11 @@ public class MenuController implements Initializable {
             CREDITS = FX.LOGO,
             EXIT = new Image(MenuController.class.getResource("menu/ExitButton.png").toExternalForm());
 
+    /**
+     * This method is implicitly called by JavaFX.
+     * Initializes the title screen.
+     * A short {@link Timeline} makes the title and various buttons appear in quick succession
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         backgroundView.setImage(BACKGROUND);
@@ -66,11 +71,18 @@ public class MenuController implements Initializable {
         load.play();
     }
 
+    /**
+     * Called when the exit button is clicked. Exits the application
+     */
     @FXML
     public void onExitClick() {
         System.exit(0);
     }
 
+    /**
+     * Called when the play button is clicked.
+     * Sets an onKeyPressed {@link javafx.event.EventHandler} and changes scene to the game scene
+     */
     @FXML
     public void onPlayClick() {
         try {
@@ -95,6 +107,10 @@ public class MenuController implements Initializable {
         }
     }
 
+    /**
+     * Called when the credits button is clicked.
+     * Changes scene to the credits scene
+     */
     @FXML
     public void onCreditsClick() {
         try {
@@ -104,6 +120,10 @@ public class MenuController implements Initializable {
         }
     }
 
+    /**
+     * Called when the leaderboard button is clicked.
+     * Changes scene to the leaderboard scene
+     */
     @FXML
     public void onLeaderboardClick() {
         try {
@@ -113,6 +133,10 @@ public class MenuController implements Initializable {
         }
     }
 
+    /**
+     * Called when the "how to play" button is clicked.
+     * Changes scene to the "how to play" scene
+     */
     @FXML
     public void onHowToPlayClick() {
         try {
@@ -122,16 +146,33 @@ public class MenuController implements Initializable {
         }
     }
 
+    /**
+     * Called whenever the cursor hovers over a button.
+     * The button gets enlarged by 10%
+     * @param event the {@link MouseEvent} used to fetch the button
+     */
     @FXML
     public void onHover(MouseEvent event) {
         scale((Node) event.getTarget(), 1.1);
     }
 
+    /**
+     * Called whenever the cursor stops hovering over a button.
+     * The button reverts to its original size
+     * @param event the {@link MouseEvent} used to fetch the button
+     */
     @FXML
     public void onUnHover(MouseEvent event) {
         scale((Node) event.getTarget(), 1);
     }
 
+    /**
+     * Checks if a {@link Node} can be scaled.
+     * The {@code playButton} Node get scaled along with the {@code playLabel} Node
+     * @param node Node to be scaled
+     * @param value decimal value of the final scaling.
+     *              1 translates to a Node's initial size while 1.1 translates to 110% its initial size
+     */
     private void scale(Node node, double value) {
         final String[] TEMP = {"playButton", "playLabel", "exitButton", "creditsButton", "leaderboardButton", "controlsButton"};
         final ArrayList<String> IDS = new ArrayList<>(Arrays.asList(TEMP));

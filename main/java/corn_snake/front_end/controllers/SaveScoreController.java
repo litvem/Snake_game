@@ -46,6 +46,11 @@ public class SaveScoreController implements Initializable {
             SAVE = new Image(SaveScoreController.class.getResource("save_score/SaveButton.png").toExternalForm()),
             HOME = FX.HOME;
 
+    /**
+     * This method is implicitly called by JavaFX.
+     * Initializes the "save score" screen.
+     * A short {@link Timeline} makes a wooden board and different components appear in quick succession
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         background.setImage(BACKGROUND);
@@ -75,11 +80,24 @@ public class SaveScoreController implements Initializable {
         load.play();
     }
 
+    /**
+     * Called when the home button is clicked.
+     * Returns to the title screen without saving the player's score
+     */
     @FXML
-    public void onHomeClick() throws IOException {
-        FX.loadScene(getStage(), "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
+    public void onHomeClick() {
+        try {
+            FX.loadScene(getStage(), "menu/menu-view.fxml", MenuController.class, "menu/MenuStyle.css");
+        } catch (IOException ignored) {
+
+        }
     }
 
+    /**
+     * Called when the save button is clicked.
+     * Saves the player's score with the name they entered.
+     * The name and score gets checked by the Facade.
+     */
     @FXML
     public void onSaveClick() {
         String name = nameField.getText();
@@ -94,6 +112,11 @@ public class SaveScoreController implements Initializable {
         }
     }
 
+    /**
+     * Called whenever the cursor hovers over a button.
+     * The button gets enlarged by 10%
+     * @param event the {@link MouseEvent} used to fetch the button
+     */
     @FXML
     public void onHover(MouseEvent event) {
         Node node = (Node) event.getTarget();
@@ -102,6 +125,11 @@ public class SaveScoreController implements Initializable {
         }
     }
 
+    /**
+     * Called whenever the cursor stops hovering over a button.
+     * The button reverts to its original size
+     * @param event the {@link MouseEvent} used to fetch the button
+     */
     @FXML
     public void onUnHover(MouseEvent event) {
         Node node = (Node) event.getTarget();

@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -31,6 +30,11 @@ public class GameOverController implements Initializable {
             BACKGROUND = FX.BACKGROUND,
             BOARD = FX.SMALL_BOARD;
 
+    /**
+     * This method is implicitly called by JavaFX.
+     * Initializes the "game over" screen.
+     * A short {@link Timeline} makes a wooden board and different labels appear in quick succession
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         background.setImage(BACKGROUND);
@@ -45,8 +49,12 @@ public class GameOverController implements Initializable {
         delay.play();
     }
 
+    /**
+     * Called when the screen is clicked.
+     * Changes to the "save score" scene
+     */
     @FXML
-    public void onClick(MouseEvent event) {
+    public void onClick() {
         try {
             FX.loadScene(getStage(), "save_score/save_score.fxml", SaveScoreController.class, "save_score/SaveScoreStyle.css");
         } catch (Exception ignored) {
@@ -54,6 +62,11 @@ public class GameOverController implements Initializable {
         }
     }
 
+    /**
+     * Retrieves the current stage that's being used
+     *
+     * @return the current stage
+     */
     public Stage getStage() {
         return (Stage) window.getScene().getWindow();
     }

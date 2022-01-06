@@ -111,7 +111,7 @@ public class Field {
      *
      * After all the verifications are made and coordinates are updated the body tiles are updated.
      *
-     * If the snake hits a wall ora body segment, a GameOverException is thrown
+     * If the snake hits a wall or a body segment, a GameOverException is thrown
      */
     public void moveSnake(String command) throws GameOverException {
         /*

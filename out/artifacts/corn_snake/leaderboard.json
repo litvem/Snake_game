@@ -1,0 +1,24 @@
+{
+  "top10" : [ {
+    "name" : "Voldemort",
+    "score" : 59
+  }, {
+    "name" : "Jimi Hendrix",
+    "score" : 54
+  }, {
+    "name" : "Tony",
+    "score" : 46
+  }, {
+    "name" : "Robert",
+    "score" : 36
+  }, {
+    "name" : "Bruce",
+    "score" : 35
+  }, {
+    "name" : "Harry Potter",
+    "score" : 23
+  }, {
+    "name" : "John Doe",
+    "score" : 13
+  } ]
+}
