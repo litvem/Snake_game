@@ -1,7 +1,6 @@
-# DIT094_Group_8
-## Project "Corn Snake"
+# Project "Corn Snake"
 
-### Group members
+## Group members
 + Ahmed Ebrahim Ahmed Algabri
 + Bao Quan Lindgren
 + Emma Litvin
@@ -11,8 +10,8 @@
 + Luiz Eduardo Philippi Rosane
 + Robert Einer
 
-### Project examiner
+## Project examiner
 + Richard Berntsson Svensson
 
-### Project supervisor
+## Project supervisor
 + Rongzhen Chen
